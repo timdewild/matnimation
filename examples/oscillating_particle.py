@@ -42,5 +42,3 @@ canvas_particle.construct_legend()
 # generate and render animation
 particle_animation = Animation(canvas_particle, interval = 15)
 particle_animation.render('examples/oscillating_particle.mp4')
-
-#test

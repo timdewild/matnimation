@@ -15,7 +15,6 @@ class BaseArtist(ABC):
         # this is the Legend handle to be defined in all subclasses (could be Proxy artists)
         self.legend_handle: Artist = None
         
-
     def set_styling_properties(self, **styling):
         """Set styling properties, all kwargs of matplotlib Artist can be passed here."""
 

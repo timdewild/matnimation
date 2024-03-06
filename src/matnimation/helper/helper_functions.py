@@ -5,7 +5,7 @@ class HelperFunctions:
     def __init__(self):
         return 
     
-    def func_ab_to_grid(func: Callable, a: np.ndarray, b: np.ndarray) -> np.ndarray: 
+    def func_ab_to_grid(func: Callable, a: np.ndarray, b: np.ndarray, **func_kwargs) -> np.ndarray: 
         """
         Takes a mathematical function f(a,b) called func, and two 1D arrays a and b.
         Returns a 2D numpy array called func_grid, where entry [i,j] contains function value func(a[i], b[j]).
@@ -14,7 +14,7 @@ class HelperFunctions:
         a = a[:, np.newaxis]
         b = b[np.newaxis, :]
 
-        func_grid = func(a,b)
+        func_grid = func(a,b, **func_kwargs)
 
         return func_grid
     

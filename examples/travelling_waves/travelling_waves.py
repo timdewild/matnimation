@@ -11,7 +11,7 @@ from src.matnimation.canvas.single_canvas import SingleCanvas
 from src.matnimation.artist.animated.animated_line import AnimatedLine
 from src.matnimation.helper.helper_functions import HelperFunctions as hf
 
-# animation to simulate travelling sine waves in the x-direction of the form A*sin(k*x - omega*t)
+# animation to simulate travelling sine waves in the x-direction of the form Psi = A*sin(k*x - omega*t)
 
 # descretize space (x) and time (t)
 Nx = 100

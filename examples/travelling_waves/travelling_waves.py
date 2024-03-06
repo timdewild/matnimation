@@ -25,7 +25,7 @@ x_data = x_array
 def travelling_wave(x, t, amplitude = 1, wavenumber = 1, omega = 1):
     return amplitude * np.sin(wavenumber * x - omega * t)
 
-# y_data for all waves
+# y_data for all waves: columns represent the waveform at all x-values at specific timestep.
 A1, k1, w1 = 1, 1, 1
 y_data_wave1 = hf.func_ab_to_grid(travelling_wave, x_array, t_array, amplitude = A1, wavenumber = k1, omega = w1)
 label_wave1 = f"$\\Psi$ ($A={A1}$, $k={k1}$,$\\omega={w1}$)"

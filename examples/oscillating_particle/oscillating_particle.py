@@ -1,3 +1,9 @@
+import sys
+import os
+
+#we add the ~/matnimation directory to be able to import the 'src' module
+sys.path.append(os.path.abspath(''))              
+
 import matplotlib.colors as colors
 import numpy as np
 from src.matnimation.animation.animation import Animation
@@ -8,7 +14,7 @@ from src.matnimation.canvas.single_canvas import SingleCanvas
 # generate animation of particle moving in (x,y) space according to:
 # x(t) = t
 # y(t) = sin(t) 
-# over time t = [0,2pi]
+# over time interval t = [0,2pi]
 
 # generate animation data
 
@@ -18,11 +24,11 @@ y_particle = np.sin(time_array)
 
 # generate canvas
 canvas_particle = SingleCanvas(
-    (4,4),
-    400,
-    time_array,
-    [0, 2*np.pi, -1, 1],
-    ['$x$', '$y$'],
+    figsize=(4,4),
+    dpi=400,
+    time_array=time_array,
+    axis_limits=[0, 2*np.pi, -1, 1],
+    axis_labels=['$x$', '$y$'],
 )
 
 # add static trajectory
@@ -35,10 +41,8 @@ particle = AnimatedSingleScatter('Particle', x_particle, y_particle)
 particle.set_styling_properties(markeredgecolor = 'tab:blue', markerfacecolor = colors.to_rgba('tab:blue', 0.4))
 canvas_particle.add_artist(particle, in_legend = True)
 
-legend_styling = dict(fontsize = 'x-small', ncols = 2, loc = 'upper center', framealpha = 1)
-
-canvas_particle.construct_legend()
+canvas_particle.construct_legend(fontsize = 'x-small', ncols = 2, loc = 'lower center')
 
 # generate and render animation
 particle_animation = Animation(canvas_particle, interval = 15)
-particle_animation.render('examples/oscillating_particle.mp4')
+particle_animation.render('examples/oscillating_particle/oscillating_particle2.mp4')

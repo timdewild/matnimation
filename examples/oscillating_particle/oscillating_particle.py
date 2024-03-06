@@ -1,7 +1,7 @@
 import sys
 import os
 
-#we add the ~/matnimation directory to be able to import the 'src' module
+# we add the ~/matnimation directory to be able to import the 'src' module
 sys.path.append(os.path.abspath(''))              
 
 import matplotlib.colors as colors

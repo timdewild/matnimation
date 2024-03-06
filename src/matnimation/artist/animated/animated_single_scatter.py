@@ -31,22 +31,21 @@ class AnimatedSingleScatter(AnimatedArtist):
         #Create handle for legend
         self.legend_handle = self.artist
 
-    # def set_styling_properties(self, **styling):
-    #     args_dict: dict = styling
-    #     print(args_dict)
-    #     styling_dict: dict = args_dict['styling']
-    #     marker_stylings = ['marker', 'markerfacecolor', 'markeredgecolor', 'markeredgewidth', 'markersize']
+    def set_styling_properties(self, **styling):
+        args_dict: dict = locals()
+        print(args_dict)
+        styling_dict: dict = args_dict['styling']
+        marker_stylings = ['marker', 'markerfacecolor', 'markeredgecolor', 'markeredgewidth', 'markersize']
 
-    #     for styling_option in styling_dict.copy():
-    #         if styling_option not in marker_stylings:
-    #             styling_dict.pop(styling_option)
-    #             print(f"Options {styling_option} is discarded because it is not a valid keyword. 
-    #                   Allowed keywords are 'marker', 'markerfacecolor', 'markeredgecolor', 'markeredgewidth', 'markersize'.")
+        for styling_option in styling_dict.copy():
+            if styling_option not in marker_stylings:
+                styling_dict.pop(styling_option)
+                print(
+                    f"Keyword {styling_option} is discarded because it is not a valid keyword. Allowed keywords are 'marker', 'markerfacecolor', 'markeredgecolor', 'markeredgewidth', 'markersize'."
+                    )
 
-    #     self.artist.set(**styling_dict)
-
-        
-        
+        self.artist.set(**styling_dict)
+                
     def update_timestep(self, time_index: int):
         """Set coordinates of scatters at specific timestep in animation."""
 

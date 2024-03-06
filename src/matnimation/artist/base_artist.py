@@ -17,7 +17,7 @@ class BaseArtist(ABC):
         
     def set_styling_properties(self, **styling):
         """Set styling properties, all kwargs of matplotlib Artist can be passed here."""
-
+        
         self.artist.set(**styling)
 
     # add artist to axes #WARNING: For some artists (like quiver vector plots), this method will be overwritten

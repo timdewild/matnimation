@@ -16,6 +16,9 @@ class AnimatedArtist(BaseArtist, ABC):
         # if vis_interval = [1,10, 20, 30], visiblity will turned on at 1 and 20 and off at 10 and 30
         self.vis_interval = vis_interval  
 
+    def set_styling_properties(self, **styling):
+        return super().set_styling_properties(**styling)
+
     def update_visibility(self, time_index: int):
         if self.vis_interval:
             ti_appear = self.vis_interval[0]

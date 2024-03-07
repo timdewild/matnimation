@@ -28,3 +28,9 @@ where $\omega$ is the angular frequency and $k$ is the wavenumber. Go to the [co
 
 https://github.com/timdewild/matnimation/assets/93600756/85cfe8b4-bf54-49f1-84da-cd9f4b3870f7
 
+## Rotating Vectors
+
+https://github.com/timdewild/matnimation/assets/93600756/b691ea55-d7cb-4104-86cc-14cd340c227a
+
+
+

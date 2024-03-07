@@ -33,7 +33,6 @@ class AnimatedSingleScatter(AnimatedArtist):
 
     def set_styling_properties(self, **styling):
         args_dict: dict = locals()
-        print(args_dict)
         styling_dict: dict = args_dict['styling']
         marker_stylings = ['marker', 'markerfacecolor', 'markeredgecolor', 'markeredgewidth', 'markersize']
 

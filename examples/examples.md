@@ -7,6 +7,6 @@
 
 ## Oscillating Particle
 
-
+![Alt Text](/assets/oscillating_particle.mp4)
 
 ## Travelling Waves

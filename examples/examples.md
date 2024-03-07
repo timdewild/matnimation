@@ -24,7 +24,7 @@ Animation of travelling waves using the `AnimatedLine` artist. The waves are of 
 ```
 where $\omega$ is the angular frequency and $k$ is the wavenumber. Go to the [code](travelling_waves/travelling_waves.py). 
 
-https://github.com/timdewild/matnimation/assets/93600756/85cfe8b4-bf54-49f1-84da-cd9f4b3870f7
+https://github.com/timdewild/matnimation/assets/93600756/3614890c-66ae-4fa0-8537-be5d13f5e111
 
 ## Rotating Vectors
 Using the `AnimatedQuiver` artist, vector fields of the form:

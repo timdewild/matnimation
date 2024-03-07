@@ -7,6 +7,6 @@
 
 ## Oscillating Particle
 
-https://github.com/timdewild/matnimation/raw/main/examples/oscillating_particle/oscillating_particle.mp4
+raw.githubusercontent.com/timdewild/matnimation/main/examples/oscillating_particle/oscillating_particle.mp4
 
 ## Travelling Waves

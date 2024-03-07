@@ -20,9 +20,13 @@ from src.matnimation.canvas.single_canvas import SingleCanvas
 tmin, tmax, N_timesteps = 0, 2*np.pi, 60
 time_array = np.linspace(tmin, tmax, N_timesteps)
 
-# generate trajectory at all timesteps
+# generate particle's position at all timesteps
 x_particle = time_array
 y_particle = np.sin(time_array)
+
+# generate trajectory
+x_trajectory = np.linspace(0, 2*np.pi, 100)
+y_trajectory = np.sin(x_trajectory)
 
 # generate canvas
 canvas_particle = SingleCanvas(
@@ -34,7 +38,7 @@ canvas_particle = SingleCanvas(
 )
 
 # add static trajectory
-trajectory = StaticLine('Trajectory', x_particle, y_particle)
+trajectory = StaticLine('Trajectory', x_trajectory, y_trajectory)
 trajectory.set_styling_properties(linewidth = 0.5, linestyle = 'dotted', color = 'k')
 canvas_particle.add_artist(trajectory, in_legend = True)
 

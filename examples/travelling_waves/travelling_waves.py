@@ -44,7 +44,7 @@ canvas = SingleCanvas(
     dpi=400, 
     time_array=t_array, 
     axis_limits=[0,2*np.pi,-1,1], 
-    axis_labels=['$x$','$y$']
+    axis_labels=['$x$','$\\Psi$']
     )
 
 # generate waves

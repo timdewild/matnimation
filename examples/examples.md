@@ -9,7 +9,8 @@
 We animate a particle that moves along a trajectory given by:
 ```math
 \begin{align}
-x(t) = t
+x(t) &= t \\
+y(t) &= \sin(t)
 \end{align}
 ```
 

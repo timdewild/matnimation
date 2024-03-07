@@ -2,7 +2,7 @@
 In this tutorial, we show how to use `matnimation` to make a simple animation of a particle moving along an oscillating trajectory. This trajectory is given by the parametric equations:
 ```math
 \begin{align*}
-x(t) = t
+x(t) = t \\
 y(t) = \sin t
 \end{align*}
 ```

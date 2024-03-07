@@ -110,7 +110,7 @@ The construction of an artist consists of three steps:
 3. Adding the artist to the canvas.
 
 #### Trajectory
-First we construct the trajectory by providing the name `'Trajectory'` trajectory data to `StaticLine`.
+First we construct the trajectory by providing the name `'Trajectory'` and the trajectory data to `StaticLine`.
 
 ```python
 # instantiate trajectory

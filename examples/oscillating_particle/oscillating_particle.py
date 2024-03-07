@@ -29,7 +29,7 @@ x_trajectory = np.linspace(0, 2*np.pi, 100)
 y_trajectory = np.sin(x_trajectory)
 
 # generate canvas
-canvas_particle = SingleCanvas(
+canvas = SingleCanvas(
     figsize=(4,4),
     dpi=400,
     time_array=time_array,
@@ -37,18 +37,22 @@ canvas_particle = SingleCanvas(
     axis_labels=['$x$', '$y$'],
 )
 
-# add static trajectory
+# instantiate trajectory
 trajectory = StaticLine('Trajectory', x_trajectory, y_trajectory)
-trajectory.set_styling_properties(linewidth = 0.5, linestyle = 'dotted', color = 'k')
-canvas_particle.add_artist(trajectory, in_legend = True)
 
-# add animated single scatter artist to represent particle
+# set styling properties
+trajectory.set_styling_properties(linewidth = 0.5, linestyle = 'dotted', color = 'k')
+
+# add trajectory to canvas
+canvas.add_artist(trajectory, in_legend = True)
+
+# particle
 particle = AnimatedSingleScatter('Particle', x_particle, y_particle)
 particle.set_styling_properties(markeredgecolor = 'tab:blue', markerfacecolor = colors.to_rgba('tab:blue', 0.4))
-canvas_particle.add_artist(particle, in_legend = True)
+canvas.add_artist(particle, in_legend = True)
 
-canvas_particle.construct_legend(fontsize = 'x-small', ncols = 2, loc = 'lower center')
+canvas.construct_legend(fontsize = 'x-small', ncols = 2, loc = 'lower center')
 
 # generate and render animation
-particle_animation = Animation(canvas_particle, interval = 15)
-particle_animation.render('examples/oscillating_particle/oscillating_particle2.mp4')
+animation = Animation(canvas, interval = 15)
+animation.render('examples/oscillating_particle/oscillating_particle2.mp4')

@@ -98,11 +98,42 @@ canvas = SingleCanvas(
 > [!IMPORTANT]
 > The canvas should be thought of as the stage on which animated (and static) objects live over time. Therefore, it takes the `time_array` as argument. 
 
-## Step 3: Construct Artists
+### Step 3: Construct Artists
 Now we are in the position to contruct the artists living on the canvas. In our case we have two: the particle and its trajectory. Naturally, the trajectory is a static line represented by `StaticLine`, and the particle is depicted as a moving dot, represented by `AnimatedSingleScatter`. 
 
 > [!NOTE]
 > `StaticLine` and `AnimatedSingleScatter` are subclasses of `StaticArtist` and `AnimatedArtist`, respectively. 
+
+The construction of an artist consists of three steps:
+1. Instantiating the artist.
+2. Setting styling properties of the artist.
+3. Adding the artist to the canvas.
+
+First we construct the trajectory.
+
+```python
+# instantiate trajectory
+trajectory = StaticLine('Trajectory', x_trajectory, y_trajectory)
+
+# set styling properties
+trajectory.set_styling_properties(linewidth = 0.5, linestyle = 'dotted', color = 'k')
+
+# add trajectory to canvas
+canvas.add_artist(trajectory, in_legend = True)
+```
+
+Now for the particle.
+
+```python
+# particle
+particle = AnimatedSingleScatter('Particle', x_particle, y_particle)
+particle.set_styling_properties(markeredgecolor = 'tab:blue', markerfacecolor = colors.to_rgba('tab:blue', 0.4))
+canvas.add_artist(particle, in_legend = True)
+```
+
+
+
+
 
 
 

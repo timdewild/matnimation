@@ -118,16 +118,16 @@ trajectory = StaticLine(
     x_data = x_trajectory, 
     y_data = y_trajectory
     )
+```
+We have given the trajectory the name `'Trajectory'` and feeded the trajectory data. 
 
+```python
 # set styling properties
 trajectory.set_styling_properties(
     linewidth = 0.5, 
     linestyle = 'dotted', 
     color = 'k'
     )
-
-# add trajectory to canvas
-canvas.add_artist(trajectory, in_legend = True)
 ```
 
 Under its hood, `StaticLine` uses Matplotlib's `Line2D` class. When setting styling properties via `set_styling_properties`, all keywords that are allowed in the `set` method of `Line2D` can be passed ([docs](https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html)). 
@@ -135,26 +135,33 @@ Under its hood, `StaticLine` uses Matplotlib's `Line2D` class. When setting styl
 > [!NOTE]
 > Practically all artists in `matnimation` are based on some form of a Matplotlib `Artist`. To find which keywords may be passed to the `set_styling_properties` method, look at the documentation on the `set` method of the corresponding Matplotlib `Artist`. 
 
-In the last line, we have added the `trajectory` to the `canvas` via `add_artist` and specified that it should be added to the canvas' legend via the `in_legend = True` keyword.
+```python
+# add trajectory to canvas
+canvas.add_artist(trajectory, in_legend = True)
+```
+
+We have added the `trajectory` to the `canvas` via `add_artist` and specified that it should be added to the canvas' legend via the `in_legend = True` keyword.
 
 > [!IMPORTANT]
 > For the legend to be *visible* on the canvas, it should still be constructed using the `construct_legend()` method of the `canvas` object, even if artists are already added to the legend via the `in_legend` keyword. The legend label will be the `name` of the artist, in this case `'trajectory'`. 
 
-Now for the particle.
+Now we repeat the same process for the particle, with the difference that we now use an instance of `AnimatedSingleScatter`.
 
 ```python
-# particle
+# instantiate particle
 particle = AnimatedSingleScatter(
     name = 'Particle', 
     x_data = x_particle, 
     y_data = y_particle
     )
 
+# set styling properties
 particle.set_styling_properties(
     markeredgecolor = 'tab:blue', 
     markerfacecolor = colors.to_rgba('tab:blue', 0.4)
     )
 
+# add particle to canvas
 canvas.add_artist(particle, in_legend = True)
 ```
 

@@ -16,6 +16,8 @@ from src.matnimation.canvas.single_canvas import SingleCanvas
 # y(t) = sin(t) 
 # over time interval t = [0,2pi]
 
+#--- Generate Data ---#
+
 # generate timearray
 tmin, tmax, N_timesteps = 0, 2*np.pi, 60
 time_array = np.linspace(tmin, tmax, N_timesteps)
@@ -28,7 +30,8 @@ y_particle = np.sin(time_array)
 x_trajectory = np.linspace(0, 2*np.pi, 100)
 y_trajectory = np.sin(x_trajectory)
 
-# generate canvas
+
+#--- Construct Canvas ---#
 canvas = SingleCanvas(
     figsize=(4,4),
     dpi=400,
@@ -37,22 +40,48 @@ canvas = SingleCanvas(
     axis_labels=['$x$', '$y$'],
 )
 
+#--- Trajectory ---#
+
 # instantiate trajectory
-trajectory = StaticLine('Trajectory', x_trajectory, y_trajectory)
+trajectory = StaticLine(
+    name = 'Trajectory', 
+    x_data = x_trajectory, 
+    y_data = y_trajectory
+    )
 
 # set styling properties
-trajectory.set_styling_properties(linewidth = 0.5, linestyle = 'dotted', color = 'k')
+trajectory.set_styling_properties(
+    linewidth = 0.5, 
+    linestyle = 'dotted', 
+    color = 'k')
 
 # add trajectory to canvas
 canvas.add_artist(trajectory, in_legend = True)
 
-# particle
-particle = AnimatedSingleScatter('Particle', x_particle, y_particle)
-particle.set_styling_properties(markeredgecolor = 'tab:blue', markerfacecolor = colors.to_rgba('tab:blue', 0.4))
+#--- Particle ---#
+
+# instantiate particle
+particle = AnimatedSingleScatter(
+    name = 'Particle', 
+    x_data = x_particle, 
+    y_data = y_particle)
+
+# set styling properties
+particle.set_styling_properties(
+    markeredgecolor = 'tab:blue', 
+    markerfacecolor = colors.to_rgba('tab:blue', 0.4)
+    )
+
+# add particle to canvas
 canvas.add_artist(particle, in_legend = True)
 
-canvas.construct_legend(fontsize = 'x-small', ncols = 2, loc = 'lower center')
+#--- Construct Legend ---#
+canvas.construct_legend(
+    fontsize = 'x-small', 
+    ncols = 2, 
+    loc = 'lower center'
+    )
 
-# generate and render animation
+#--- Render Animation ---#
 animation = Animation(canvas, interval = 15)
 animation.render('examples/oscillating_particle/oscillating_particle2.mp4')

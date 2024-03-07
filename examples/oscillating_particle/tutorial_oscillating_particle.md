@@ -8,6 +8,8 @@ y(t) &= \sin t
 ```
 for $t\in [0,2\pi]$. We will go through the [code](/examples/oscillating_particle/oscillating_particle.py) for this animation step by step. 
 
+https://github.com/timdewild/matnimation/assets/93600756/d51b1a3f-6b0b-476b-8277-93d33d578183
+
 ## General Workflow
 We start by describing the general workflow to make animations. The animations are build using three base classes/objects: 
 * `Canvas`
@@ -25,6 +27,22 @@ We start by describing the general workflow to make animations. The animations a
 * `Animation`
 
     The canvas and (collection of) artists are rendered into an actual animation (video) using the `Animation` class. This class runs Matplotlib's `animation.FuncAnimation` under it's hood ([docs](https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation)).  
-    
+
+## Step-by-Step Process
+Now we will go through the code in the file [oscillating_particle.py](/examples/oscillating_particle/oscillating_particle.py) step by step to demonstrate how the above animation is made.
+
+### Step 0: Import Dependencies
+We first import the required modules. For local modules, such as `matnimation`, python will search in the current file's directory by default, which is `~/matnimation/examples/oscillating_particle` in our case. However, the source code is located in `~/matnimation/src`. Therefore, we add the root directory `~/matnimation` to the `sys.path` list, allowing the interpreter to find source code of the module there. 
+
+```python
+import sys
+import os
+
+# we add the ~/matnimation directory to be able to import the 'src' module
+sys.path.append(os.path.abspath(''))
+```
+
+
+
 
  

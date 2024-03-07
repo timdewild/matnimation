@@ -47,6 +47,7 @@ Then we can import all the required dependencies. We will explain the use of all
 ```python
 import matplotlib.colors as colors
 import numpy as np
+
 from src.matnimation.animation.animation import Animation
 from src.matnimation.artist.animated.animated_single_scatter import AnimatedSingleScatter
 from src.matnimation.artist.static.static_line import StaticLine

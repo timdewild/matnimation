@@ -14,6 +14,6 @@ We start by describing the general workflow to make animations. The animations a
 2. `BaseArtist`: Artists that live on the canvas. Examples are a e.g. a line, circle, vector field or image, but also a textbox is considered an artist. Artists can be _static_ or _animated_, as implemented via the `StaticArtist` and `AnimatedArtist` subclasses. As the name suggests, static artists do not change during the animation. Animated artists change in some way or another during the animation. 
 
 [!TIP]
-> For example, a line can change its shape during the animation,, just as the text string in a textbox can change over time. 
+> For example, a line can change its shape during the animation, just as the text string in a textbox can change over time. 
 
  

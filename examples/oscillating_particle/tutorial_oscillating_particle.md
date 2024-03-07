@@ -2,8 +2,8 @@
 In this tutorial, we show how to use `matnimation` to make a simple animation of a particle moving along an oscillating trajectory. This trajectory is given by the parametric equations:
 ```math
 \begin{align*}
-x(t) = t \\
-y(t) = \sin t
+x(t) &= t \\
+y(t) &= \sin t
 \end{align*}
 ```
 for $t\in [0,2\pi]$. We will go through the [code](/examples/oscillating_particle/oscillating_particle.py) for this animation step by step. 

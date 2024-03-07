@@ -41,7 +41,7 @@ can be animated on a grid. In this example, the considered vector field is:
 \vec{F}(x,y,t) = \cos(t)\hat{x} + \sin(t)\hat{y}.
 \end{equation}
 ```
-These are vectors with constant unit length rotating countclockwise in the $(x,y)$ plane with period $T=2\pi$. 
+These are vectors with constant length rotating counterclockwise in the $(x,y)$ plane with period $T=2\pi$. 
 Note that in this case the components ($F_{x,y}$) only depend on time and not on $x$ and $y$, but `AnimatedQuiver` does allow for this possibility. Go to the [code](rotating_vectors/rotating_vectors.py). 
 
 https://github.com/timdewild/matnimation/assets/93600756/b691ea55-d7cb-4104-86cc-14cd340c227a

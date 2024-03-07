@@ -18,7 +18,7 @@ over the time interval $t\in [0,2\pi]$. Go to the [code](/oscillating_particle/o
 https://github.com/timdewild/matnimation/assets/93600756/d51b1a3f-6b0b-476b-8277-93d33d578183
 
 ## Travelling Waves
-Animation travelling waves of the form:
+Animation of travelling waves of the form:
 ```math
 \begin{equation}
 \Psi(x,t) = A\sin(kx-\omega t),

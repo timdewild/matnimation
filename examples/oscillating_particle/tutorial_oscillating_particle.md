@@ -109,7 +109,7 @@ The construction of an artist consists of three steps:
 2. Setting styling properties of the artist.
 3. Adding the artist to the canvas.
 
-First we construct the trajectory.
+First we construct the trajectory by providing the name `'Trajectory'` and feeding the trajectory data.
 
 ```python
 # instantiate trajectory
@@ -119,7 +119,7 @@ trajectory = StaticLine(
     y_data = y_trajectory
     )
 ```
-We have given the trajectory the name `'Trajectory'` and feeded the trajectory data. 
+Then we set the styling properties.  
 
 ```python
 # set styling properties
@@ -135,12 +135,12 @@ Under its hood, `StaticLine` uses Matplotlib's `Line2D` class. When setting styl
 > [!NOTE]
 > Practically all artists in `matnimation` are based on some form of a Matplotlib `Artist`. To find which keywords may be passed to the `set_styling_properties` method, look at the documentation on the `set` method of the corresponding Matplotlib `Artist`. 
 
+Finally we add the `trajectory` to the `canvas` via the `add_artist` method and specify that it should be included in the canvas' legend via `in_legend = True`.
+
 ```python
 # add trajectory to canvas
 canvas.add_artist(trajectory, in_legend = True)
 ```
-
-We have added the `trajectory` to the `canvas` via `add_artist` and specified that it should be added to the canvas' legend via the `in_legend = True` keyword.
 
 > [!IMPORTANT]
 > For the legend to be *visible* on the canvas, it should still be constructed using the `construct_legend()` method of the `canvas` object, even if artists are already added to the legend via the `in_legend` keyword. The legend label will be the `name` of the artist, in this case `'trajectory'`. 

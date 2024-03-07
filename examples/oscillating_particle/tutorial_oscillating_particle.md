@@ -42,7 +42,7 @@ import os
 sys.path.append(os.path.abspath(''))
 ```
 
-Then we can import all the required dependencies. We will explain the use of all the classes in detail below.  
+Then we can import all the required dependencies.
 
 ```python
 import matplotlib.colors as colors
@@ -53,6 +53,24 @@ from src.matnimation.artist.animated.animated_single_scatter import AnimatedSing
 from src.matnimation.artist.static.static_line import StaticLine
 from src.matnimation.canvas.single_canvas import SingleCanvas
 ```
+
+### Step 1: Generate Trajectory
+In the animation we wish to make, the particle moves in the $(x,y)$ plane, so we have to descriteze time and find the coordinates of the trajectory at all timesteps.
+
+```python
+# generate timearray
+tmin, tmax, N_timesteps = 0, 2*np.pi, 60
+time_array = np.linspace(tmin, tmax, N_timesteps)
+
+# generate trajectory at all timesteps
+x_particle = time_array
+y_particle = np.sin(time_array)
+```
+
+In `time_array`, we chose the number of timesteps `N_timesteps` to be 60, which means that the final animation will contain 60 frames in total. At a later stage, when we construct the `Animation` object, we will set the time `interval` between each frame. The total duration of the rendered animation will then be `N_timesteps * interval`. 
+
+
+
 
 
 

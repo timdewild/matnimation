@@ -16,9 +16,11 @@ from src.matnimation.canvas.single_canvas import SingleCanvas
 # y(t) = sin(t) 
 # over time interval t = [0,2pi]
 
-# generate animation data
+# generate timearray
+tmin, tmax, N_timesteps = 0, 2*np.pi, 60
+time_array = np.linspace(tmin, tmax, N_timesteps)
 
-time_array = np.linspace(0, 2*np.pi, 60)
+# generate trajectory at all timesteps
 x_particle = time_array
 y_particle = np.sin(time_array)
 

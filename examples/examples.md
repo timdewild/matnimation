@@ -8,10 +8,10 @@
 ## Oscillating Particle
 We animate a particle that moves along a trajectory given by:
 $$
-\begin{aligned} 
-2x - 5y &=  8 \\ 
-3x + 9y &=  -12
-\end{aligned}
+\begin{align}
+ x(t) &= t \\
+ y(t) &= \sin(t)
+\end{align}
 $$
 over the time interval $t\in [0,2\pi]$. 
 

@@ -7,6 +7,8 @@ A wrapper to quickly make Matplotlib animations.
 - [Travelling Waves](#travelling-waves)
 - [Rotating Vectors](#rotating-vectors)
 
+![](/examples/rotating_vectors/rotating_vectors.mp4)
+
 ## Oscillating Particle
 Animation of a particle that moves along a trajectory using the `AnimatedSingleScatter` artist. The trajectory is given by:
 ```math

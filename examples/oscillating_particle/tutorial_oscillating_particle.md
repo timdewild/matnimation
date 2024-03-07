@@ -170,7 +170,7 @@ canvas.add_artist(particle, in_legend = True)
 We provided the animation data (the $x$ and $y$ coordinates at each timestep) via the arrays `x_particle` and `y_particle`. 
 
 > [!IMPORTANT]
-> For all instances of `AnimatedObject`, the dimensions of the animation data must be compatible with `time_array`. In our case this means that the length of `x_particle` and `y_particle` must equal that of `time_array`. This makes sense: we need the coordinates of the particle at each timestep. 
+> For all instances of `AnimatedObject` used in an animation, the dimensions of the animation data must be compatible with `time_array`. In our case this means that the length of `x_particle` and `y_particle` must equal that of `time_array`. This makes sense: we need the coordinates of the particle at each timestep. 
 
 ### Step 5: Add a Legend
 Next we add a legend to the `canvas` via the `construct_legend()` method. This method accepts keyword arguments `**legend_styling` for legend styling. You can pass all kwargs listed under 'Other Parameters' in the Matplotlib [docs](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html#matplotlib.axes.Axes.legend) of `Axes.legend`. We have set the fontsize to extra small and the location to lower center. 

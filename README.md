@@ -47,3 +47,5 @@ These are vectors with constant length rotating counterclockwise in the $(x,y)$ 
 Note that in this case the components ($F_{x,y}$) only depend on time and not on $x$ and $y$, but `AnimatedQuiver` does allow for this possibility. Go to the [code](/examples/rotating_vectors/rotating_vectors.py). 
 
 https://github.com/timdewild/matnimation/assets/93600756/b691ea55-d7cb-4104-86cc-14cd340c227a
+
+<video src='/examples/rotating_vectors/rotating_vectors.mp4'>

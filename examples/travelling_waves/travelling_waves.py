@@ -11,7 +11,7 @@ from src.matnimation.canvas.single_canvas import SingleCanvas
 from src.matnimation.artist.animated.animated_line import AnimatedLine
 from src.matnimation.helper.helper_functions import HelperFunctions as hf
 
-# animation to simulate travelling sine waves in the x-direction of the form Psi = A*sin(k*x - omega*t)
+# animation to simulate travelling sine waves in the x-direction of the form Psi(x,t) = A*sin(k*x - omega*t)
 
 # descretize space (x) and time (t)
 Nx = 100
@@ -25,7 +25,7 @@ x_data = x_array
 def travelling_wave(x, t, amplitude = 1, wavenumber = 1, omega = 1):
     return amplitude * np.sin(wavenumber * x - omega * t)
 
-# y_data for all waves: columns represent the waveform at all x-values at specific timestep.
+# y_data for all waves: y_data[:,i] would be the waveform Psi(x, t) at the i-th timestep for all x in x_data. 
 A1, k1, w1 = 1, 1, 1
 y_data_wave1 = hf.func_ab_to_grid(travelling_wave, x_array, t_array, amplitude = A1, wavenumber = k1, omega = w1)
 label_wave1 = f"$\\Psi$ ($A={A1}$, $k={k1}$,$\\omega={w1}$)"
@@ -65,5 +65,5 @@ canvas.add_artist(wave3, in_legend = True)
 canvas.construct_legend(loc = 'upper right', fontsize = 'x-small')
 
 # render animation
-sines_animation = Animation(canvas)
-sines_animation.render('examples/travelling_waves/travelling_waves.mp4')          
+animation = Animation(canvas)
+animation.render('examples/travelling_waves/travelling_waves.mp4')          

@@ -84,4 +84,4 @@ canvas.construct_legend(
 
 #--- Render Animation ---#
 animation = Animation(canvas, interval = 15)
-animation.render('examples/oscillating_particle/oscillating_particle2.mp4')
+animation.render('examples/oscillating_particle/oscillating_particle.mp4')

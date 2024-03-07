@@ -67,7 +67,8 @@ x_particle = time_array
 y_particle = np.sin(time_array)
 ```
 
-In `time_array`, we chose the number of timesteps `N_timesteps` to be 60, which means that the final animation will contain 60 frames in total. At a later stage, when we construct the `Animation` object, we will set the time `interval` between each frame. The total duration of the rendered animation will then be `N_timesteps * interval`. 
+> [!NOTE]
+> In `time_array`, we chose the number of timesteps `N_timesteps` to be 60, which means that the final animation will contain 60 frames in total. At a later stage, when we construct the `Animation` object, we will set the time `interval` between each frame. The total duration of the rendered animation will then be `N_timesteps * interval`. 
 
 
 

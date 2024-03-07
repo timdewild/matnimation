@@ -8,10 +8,10 @@
 ## Oscillating Particle
 We animate a particle that moves along a trajectory given by:
 $$
-\begin{align*}
-    x(t) = t\\
-    y(t) = \sin(t)
-\end{align*}
+\begin{align}
+    x(t) &= t\\
+    y(t) &= \sin(t)
+\end{align}
 $$
 over the time interval $t\in [0,2\pi]$. 
 

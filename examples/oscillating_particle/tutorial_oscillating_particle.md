@@ -6,7 +6,7 @@ x(t) &= t \\
 y(t) &= \sin t
 \end{align*}
 ```
-for $t\in [0,2\pi]$. See the final animation below. We will go through the [code](/examples/oscillating_particle/oscillating_particle.py) for this animation step by step. 
+for $t\in [0,2\pi]$. See the final animation below. We will go through the [code](examples/oscillating_particle/oscillating_particle.py) for this animation step by step. 
 
 https://github.com/timdewild/matnimation/assets/93600756/d51b1a3f-6b0b-476b-8277-93d33d578183
 
@@ -188,7 +188,7 @@ Lastly, we construct an `Animation` object which takes the `canvas` as input, in
 
 ```python
 animation = Animation(canvas, interval = 15)
-animation.render('examples/oscillating_particle/oscillating_particle2.mp4')
+animation.render('examples/oscillating_particle/oscillating_particle.mp4')
 ```
 
 

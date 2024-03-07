@@ -109,7 +109,8 @@ The construction of an artist consists of three steps:
 2. Setting styling properties of the artist.
 3. Adding the artist to the canvas.
 
-First we construct the trajectory by providing the name `'Trajectory'` and feeding the trajectory data.
+#### Trajectory
+First we construct the trajectory by providing the name `'Trajectory'` trajectory data to `StaticLine`.
 
 ```python
 # instantiate trajectory
@@ -145,6 +146,7 @@ canvas.add_artist(trajectory, in_legend = True)
 > [!IMPORTANT]
 > For the legend to be *visible* on the canvas, it should still be constructed using the `construct_legend()` method of the `canvas` object, even if artists are already added to the legend via the `in_legend` keyword. The legend label will be the `name` of the artist, in this case `'trajectory'`. 
 
+#### Particle
 Now we repeat the same process for the particle, with the difference that we now use an instance of `AnimatedSingleScatter`.
 
 ```python
@@ -164,6 +166,37 @@ particle.set_styling_properties(
 # add particle to canvas
 canvas.add_artist(particle, in_legend = True)
 ```
+
+We provided the animation data (the $x$ and $y$ coordinates at each timestep) via the arrays `x_particle` and `y_particle`. 
+
+> [!IMPORTANT]
+> For all instances of `AnimatedObject`, the dimensions of the animation data must be compatible with `time_array`. In our case this means that the length of `x_particle` and `y_particle` must equal that of `time_array`. This makes sense: we need the coordinates of the particle at each timestep. 
+
+### Step 5: Add a Legend
+Next we add a legend to the `canvas` via the `construct_legend()` method. This method accepts keyword arguments `**legend_styling` for legend styling. You can pass all kwargs listed under 'Other Parameters' in the Matplotlib [docs](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html#matplotlib.axes.Axes.legend) of `Axes.legend`. We have set the fontsize to extra small and the location to lower center. 
+
+```python
+canvas.construct_legend(
+    fontsize = 'x-small', 
+    ncols = 2, 
+    loc = 'lower center'
+    )
+```
+
+### Step 6: Construct and Render Animation
+Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N_timesteps * interval` milliseconds.
+
+```python
+animation = Animation(canvas, interval = 15)
+animation.render('examples/oscillating_particle/oscillating_particle2.mp4')
+```
+
+
+
+
+
+
+
 
 
 

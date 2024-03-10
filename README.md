@@ -15,7 +15,7 @@ x(t) &= t \\
 y(t) &= \sin(t)
 \end{align}
 ```
-over the time interval $t\in [0,2\pi]$. Go to the [code](./examples/oscillating_particle/oscillating_particle.py) or [tutorial](examples/oscillating_particle/tutorial_oscillating_particle.md). 
+over the time interval $t\in [0,2\pi]$. [test](./examples/oscillating_particle/tutorial_oscillating_particle.md) Go to the [code](./examples/oscillating_particle/oscillating_particle.py) or [tutorial](examples/oscillating_particle/tutorial_oscillating_particle.md). 
 
 https://github.com/timdewild/matnimation/assets/93600756/d51b1a3f-6b0b-476b-8277-93d33d578183
 

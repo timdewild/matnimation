@@ -30,6 +30,7 @@ canvas = MultiCanvas(
     ncols = 3,
     axes_limits = [[-2,2,-2,2]]*3,
     axes_labels = [['$x$', '$y$'],['$x$', ''],['$x$', '']],
+    shared_y=True
 )
 
 # set aspect ratio to equal and visually appealing xticks and yticks manually
@@ -58,7 +59,7 @@ curve2_data = lissajous_curve(time_array, a = 3, b = 4, delta = np.pi/2)
 
 # Parametric curves
 curve0 = StaticLine(
-    name = 'Curve 0',
+    name = '$a=1$, $b=2$, $\delta = \pi/2$',
     x_data = curve0_data[0],
     y_data = curve0_data[1]
 )
@@ -66,7 +67,7 @@ curve0 = StaticLine(
 curve0.set_styling_properties(lw = 1)
 
 curve1 = StaticLine(
-    name = 'Curve 1',
+    name = '$a=3$, $b=2$, $\delta = \pi/2$',
     x_data = curve1_data[0],
     y_data = curve1_data[1]
 )
@@ -74,16 +75,16 @@ curve1 = StaticLine(
 curve1.set_styling_properties(lw = 1, color = 'tab:red')
 
 curve2 = StaticLine(
-    name = 'Curve 2',
+    name = '$a=3$, $b=4$, $\delta = \pi/2$',
     x_data = curve2_data[0],
     y_data = curve2_data[1]
 )
 
 curve2.set_styling_properties(lw = 1, color = 'tab:green')
 
-canvas.add_artist(curve0, row = 0, col = 0)
-canvas.add_artist(curve1, row = 0, col = 1)
-canvas.add_artist(curve2, row = 0, col = 2)
+canvas.add_artist(curve0, row = 0, col = 0, in_legend = True)
+canvas.add_artist(curve1, row = 0, col = 1, in_legend = True)
+canvas.add_artist(curve2, row = 0, col = 2, in_legend = True)
 
 # Trajectory dots
 dot0 = AnimatedSingleScatter(
@@ -108,9 +109,12 @@ canvas.add_artist(dot0, row = 0, col = 0)
 canvas.add_artist(dot1, row = 0, col = 1)
 canvas.add_artist(dot2, row = 0, col = 2)
 
-dot0.set_styling_properties(markeredgecolor = 'tab:blue', markerfacecolor = colors.to_rgba('tab:blue',0.5), markeredgewidth = 0.5)
-dot1.set_styling_properties(markeredgecolor = 'tab:red', markerfacecolor = colors.to_rgba('tab:red',0.5), markeredgewidth = 0.5)
-dot2.set_styling_properties(markeredgecolor = 'tab:green', markerfacecolor = colors.to_rgba('tab:green',0.5), markeredgewidth = 0.5)
+dot0.set_styling_properties(markeredgecolor = 'tab:blue', markerfacecolor = 'white', markeredgewidth = 1)
+dot1.set_styling_properties(markeredgecolor = 'tab:red', markerfacecolor = 'white', markeredgewidth = 1)
+dot2.set_styling_properties(markeredgecolor = 'tab:green', markerfacecolor = 'white', markeredgewidth = 1)
+
+for col in [0,1,2]:
+    canvas.construct_legend(row = 0, col = col, loc = 'upper center', fontsize = 'small')
 
 fig = canvas.get_figure()
 fig.savefig('examples/lissajous_figures/canvas_3x1.jpg', dpi = 400)

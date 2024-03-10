@@ -8,7 +8,7 @@ A wrapper to quickly make Matplotlib animations.
 - [Rotating Vectors](#rotating-vectors)
 
 > [!WARNING]
-> For blabla to work lala.
+> In the examples animations shown below, links to the corresponding code files are given. For those links to work, explicitly open the `README.md` file. In preview mode on the start page of the repository, the links **do not work**.
 
 ## Oscillating Particle
 Animation of a particle that moves along a trajectory using the `AnimatedSingleScatter` artist. The trajectory is given by:

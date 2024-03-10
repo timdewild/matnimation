@@ -10,6 +10,7 @@ from src.matnimation.animation.animation import Animation
 from src.matnimation.artist.animated.animated_single_scatter import AnimatedSingleScatter
 from src.matnimation.artist.static.static_line import StaticLine
 from src.matnimation.canvas.single_canvas import SingleCanvas
+from src.matnimation.artist.animated.animated_text import AnimatedText, AnimatedTextBbox
 
 # generate animation of particle moving in (x,y) space according to:
 # x(t) = t
@@ -21,6 +22,9 @@ from src.matnimation.canvas.single_canvas import SingleCanvas
 # generate timearray
 tmin, tmax, N_timesteps = 0, 2*np.pi, 60
 time_array = np.linspace(tmin, tmax, N_timesteps)
+
+# strings for time label
+timelabel_str_data = ['$t={time:.{digits}f}$ '.format(time=t, digits=2) for t in time_array]
 
 # generate particle's position at all timesteps
 x_particle = time_array
@@ -36,7 +40,7 @@ canvas = SingleCanvas(
     figsize=(4,4),
     dpi=400,
     time_array=time_array,
-    axis_limits=[0, 2*np.pi, -1, 1],
+    axis_limits=[0, 2*np.pi, -1, 1], 
     axis_labels=['$x$', '$y$'],
 )
 
@@ -74,6 +78,34 @@ particle.set_styling_properties(
 
 # add particle to canvas
 canvas.add_artist(particle, in_legend = True)
+
+#--- Time Label ---#
+time_label = AnimatedText(
+    name = 'Time label',
+    text_str_data = timelabel_str_data,
+    text_x_data = 4.75,
+    text_y_data = 0.75,
+)
+canvas.add_artist(time_label)
+
+time_label.set_styling_properties(
+    ha = 'left', 
+    fontproperties = dict(size = 'medium'),
+    )
+
+canvas.add_artist(time_label)
+
+#--- Bounding Box (Bbox) Time Label
+bbox_time_label = AnimatedTextBbox(
+    name = 'Bbox Time label',
+    animated_text = time_label
+)
+
+bbox_time_label.set_styling_properties(
+    bbox = dict(facecolor=colors.to_rgba('gray',0.5), edgecolor='k', boxstyle='round', linewidth = 0.5))
+
+canvas.add_artist(bbox_time_label)
+
 
 #--- Construct Legend ---#
 canvas.construct_legend(

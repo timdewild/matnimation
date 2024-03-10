@@ -61,12 +61,13 @@ class MultiCanvas(Canvas):
             raise ValueError('You specified a canvas with only one plot (ncols = nrows = 1), use SingleCanvas instead.')  
         
         self.fig, self.axs_array = plt.subplots(
+            figsize=self.figsize,
             nrows=self.nrows, 
             ncols=self.ncols, 
             constrained_layout=True, 
             squeeze=False, 
             sharex=self.shared_x, 
-            sharey=self.shared_y
+            sharey=self.shared_y,
             )
         
         self.set_layout(self.fig, self.axs_array, self.axes_limits, self.axes_labels)

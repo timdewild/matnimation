@@ -5,9 +5,6 @@
 - [Rotating Vectors](#rotating-vectors)
 - [Lissajous Curves](#lissajous-curves)
 
-> [!WARNING]
-> In the examples animations shown below, links to the corresponding code files are given. For those links to work, explicitly open the `README.md` file. In preview mode on the start page of the repository, the links **do not work**.
-
 ## Oscillating Particle
 Animation of a particle that moves along a trajectory using the `AnimatedSingleScatter` artist. The trajectory is given by:
 ```math
@@ -52,7 +49,7 @@ https://github.com/timdewild/matnimation/assets/93600756/b691ea55-d7cb-4104-86cc
 ## Lissajous Curves
 In this example, we use `MultiCanvas` to generate a canvas with a grid of 1 by 3 subplots, each showing a different Lissajous curve. These curves correspond to the parametric equations:
 ```math
-\begin{aling}
+\begin{align}
 x(t) &= A\sin(at+\delta),\\
 y(t) &= B\sin(bt),
 \end{align}

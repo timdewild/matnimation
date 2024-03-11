@@ -68,4 +68,6 @@ In this example, we demonstrate the use of the artist `AnimatedImshow` and the `
 ```
 where $r^2\equiv x^2+y^2$. The decay constant $\tau$ determines how fast the Gaussian decays over time. Go to the [code](decaying_2D_gaussian/decaying_2D_gaussian.py). 
 
+https://github.com/timdewild/matnimation/assets/93600756/509e027f-ae1b-47c1-9b67-38bc607ff91a
+
 

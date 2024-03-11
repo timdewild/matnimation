@@ -139,6 +139,7 @@ bbox_time_label.set_styling_properties(
 
 canvas.add_artist(bbox_time_label, row = 0, col = 0)
 
+#--- Construct Legend for each Subplot ---#
 for col in [0,1,2]:
     canvas.construct_legend(row = 0, col = col, loc = 'lower center', fontsize = 'small')
 

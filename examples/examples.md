@@ -54,4 +54,4 @@ x(t) &= A\sin(at+\delta),\\
 y(t) &= B\sin(bt),
 \end{align}
 ```
-where $t\in[0,2\pi]$. In the animated curves, we fix the overall amplitudes $A=B\equiv 1$ and vary only $a,b$ and $\delta$. We also illustrate the use of the animated artist `AnimatedText` to show the time value $t$ during the animation in the left subplot. 
+where $t\in[0,2\pi]$. In the animated curves, we fix the overall amplitudes $A=B\equiv 1$ and vary only $a,b$ and $\delta$. We also illustrate the use of the animated artist `AnimatedText` to show the time value $t$ during the animation in the left subplot. Go to the [code](/examples/lissajous_figures/lissajous_figures.py). 

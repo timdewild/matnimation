@@ -47,8 +47,7 @@ density = AnimatedImshow(
 colorscale = StaticColorBar(
     name = 'Colorbar',
     imshow = density,
-    styling_dict = dict(location = 'bottom', orientation = 'horizontal', label = '$\\varphi(x,y)$', ticks = np.linspace(0,2,5))
-
+    styling_dict = dict(location = 'bottom', orientation = 'horizontal', label = '$\\varphi(x,y)$', ticks = np.linspace(0,1,3))
 )
 
 canvas.add_artist(density)

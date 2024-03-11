@@ -55,3 +55,7 @@ y(t) &= B\sin(bt),
 \end{align}
 ```
 where $t\in[0,2\pi]$. In the animated curves, we fix the overall amplitudes $A=B\equiv 1$ and vary only $a,b$ and $\delta$. We also illustrate the use of the animated artist `AnimatedText` to show the time value $t$ during the animation in the left subplot. Go to the [code](lissajous_figures/lissajous_figures.py). 
+
+https://github.com/timdewild/matnimation/assets/93600756/79bf4e87-c909-4b6f-aec9-13f561e28727
+
+

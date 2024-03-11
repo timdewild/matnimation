@@ -19,7 +19,7 @@ tmin, tmax, N_timesteps = 0, 2*np.pi, 200
 time_array = np.linspace(tmin, tmax, N_timesteps)
 
 # strings for time label
-timelabel_str_data = ['$\theta={time:.{digits}f}$'.format(time=t, digits=2) for t in np.linspace(0,10,N_timesteps)]
+timelabel_str_data = ['$t={time:.{digits}f}$'.format(time=t, digits=2) for t in time_array]
 
 #--- Generate MultiCanvas of 1 x 3 plots ---#
 canvas = MultiCanvas(
@@ -57,7 +57,7 @@ curve0_data = lissajous_curve(time_array, a = 1, b = 2, delta = np.pi/2)
 curve1_data = lissajous_curve(time_array, a = 3, b = 2, delta = np.pi/2)
 curve2_data = lissajous_curve(time_array, a = 3, b = 4, delta = np.pi/2)
 
-# Parametric curves
+#--- Generate StaticLines for the Lissajous Curve ---#
 curve0 = StaticLine(
     name = '$a=1$, $b=2$, $\delta = \pi/2$',
     x_data = curve0_data[0],
@@ -86,7 +86,7 @@ canvas.add_artist(curve0, row = 0, col = 0, in_legend = True)
 canvas.add_artist(curve1, row = 0, col = 1, in_legend = True)
 canvas.add_artist(curve2, row = 0, col = 2, in_legend = True)
 
-# Trajectory dots
+#--- Particles (Dots) following the Lissajous Trajectories ---#
 dot0 = AnimatedSingleScatter(
     name = 'Dot 0',
     x_data = curve0_data[0],
@@ -113,8 +113,34 @@ dot0.set_styling_properties(markeredgecolor = 'tab:blue', markerfacecolor = 'whi
 dot1.set_styling_properties(markeredgecolor = 'tab:red', markerfacecolor = 'white', markeredgewidth = 1)
 dot2.set_styling_properties(markeredgecolor = 'tab:green', markerfacecolor = 'white', markeredgewidth = 1)
 
+#--- Time Label for Left Subplot ---#
+time_label = AnimatedText(
+    name = 'Time label',
+    text_str_data = timelabel_str_data,
+    text_x_data = 0.98,
+    text_y_data = 1.7,
+)
+
+time_label.set_styling_properties(
+    ha = 'left', 
+    fontproperties = dict(size = 'medium'),
+    )
+
+canvas.add_artist(time_label, row = 0, col = 0)
+
+#--- Bounding Box (Bbox) Time Label ---#
+bbox_time_label = AnimatedTextBbox(
+    name = 'Bbox Time label',
+    animated_text = time_label
+)
+
+bbox_time_label.set_styling_properties(
+    bbox = dict(facecolor=colors.to_rgba('gray',0.5), edgecolor='k', boxstyle='round', linewidth = 0.5))
+
+canvas.add_artist(bbox_time_label, row = 0, col = 0)
+
 for col in [0,1,2]:
-    canvas.construct_legend(row = 0, col = col, loc = 'upper center', fontsize = 'small')
+    canvas.construct_legend(row = 0, col = col, loc = 'lower center', fontsize = 'small')
 
 fig = canvas.get_figure()
 fig.savefig('examples/lissajous_figures/canvas_3x1.jpg', dpi = 400)

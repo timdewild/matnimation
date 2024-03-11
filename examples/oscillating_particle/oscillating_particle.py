@@ -79,34 +79,6 @@ particle.set_styling_properties(
 # add particle to canvas
 canvas.add_artist(particle, in_legend = True)
 
-#--- Time Label ---#
-time_label = AnimatedText(
-    name = 'Time label',
-    text_str_data = timelabel_str_data,
-    text_x_data = 4.75,
-    text_y_data = 0.75,
-)
-canvas.add_artist(time_label)
-
-time_label.set_styling_properties(
-    ha = 'left', 
-    fontproperties = dict(size = 'medium'),
-    )
-
-canvas.add_artist(time_label)
-
-#--- Bounding Box (Bbox) Time Label
-bbox_time_label = AnimatedTextBbox(
-    name = 'Bbox Time label',
-    animated_text = time_label
-)
-
-bbox_time_label.set_styling_properties(
-    bbox = dict(facecolor=colors.to_rgba('gray',0.5), edgecolor='k', boxstyle='round', linewidth = 0.5))
-
-canvas.add_artist(bbox_time_label)
-
-
 #--- Construct Legend ---#
 canvas.construct_legend(
     fontsize = 'x-small', 

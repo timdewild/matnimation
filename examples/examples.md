@@ -4,6 +4,7 @@
 - [Travelling Waves](#travelling-waves)
 - [Rotating Vectors](#rotating-vectors)
 - [Lissajous Curves](#lissajous-curves)
+- [Decaying 2D Gaussian](#decaying-2d-gaussian)
 
 ## Oscillating Particle
 Animation of a particle that moves along a trajectory using the `AnimatedSingleScatter` artist. The trajectory is given by:
@@ -57,5 +58,14 @@ y(t) &= B\sin(bt),
 where $t\in[0,2\pi]$. In the animated curves, we fix the overall amplitudes $A=B\equiv 1$ and vary only $a,b$ and $\delta$. We also illustrate the use of the animated artist `AnimatedText` to show the time value $t$ during the animation in the left subplot. Go to the [code](lissajous_figures/lissajous_figures.py). 
 
 https://github.com/timdewild/matnimation/assets/93600756/79bf4e87-c909-4b6f-aec9-13f561e28727
+
+## Decaying 2D Gaussian
+In this example, we demonstrate the use of the artist `AnimatedImshow` and the `StaticColorBar`. `AnimatedImshow` is based on Matplotlib's `AxesImage`, and allows to animate a density or heat plot. The function we will plot is the (unnormalized) 2D Gaussian that decays over time:
+```math
+\begin{equation}
+    \varphi(x,y,t) = e^{-r^2 - t/\tau},
+\end{equation}
+```
+where $r^2\equiv x^2+y^2$. The decay constant $\tau$ determines how fast the Gaussian decays over time. Go to the [code](decaying_2D_gaussian/decaying_2D_gaussian.py). 
 
 

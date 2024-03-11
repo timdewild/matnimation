@@ -10,7 +10,6 @@ from src.matnimation.animation.animation import Animation
 from src.matnimation.artist.animated.animated_single_scatter import AnimatedSingleScatter
 from src.matnimation.artist.static.static_line import StaticLine
 from src.matnimation.canvas.single_canvas import SingleCanvas
-from src.matnimation.artist.animated.animated_text import AnimatedText, AnimatedTextBbox
 
 # generate animation of particle moving in (x,y) space according to:
 # x(t) = t

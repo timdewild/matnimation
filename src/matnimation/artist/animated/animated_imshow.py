@@ -6,7 +6,7 @@ from src.matnimation.artist.animated.animated_artist import AnimatedArtist
 
 
 class AnimatedImshow(AnimatedArtist):
-    def __init__(self, name: str, image_data: np.ndarray, extent: list, vis_interval: list[int] = None):    
+    def __init__(self, name: str, image_data: np.ndarray, extent: list, cmap = 'viridis', vmin: float = None, vmax: float = None, vis_interval: list[int] = None):    
         """
         Arguments:
         image_data      (list of 2D numpy arrays)    function values f(x,y) on grid for all timesteps len(image_data) = len(time_array)
@@ -19,6 +19,18 @@ class AnimatedImshow(AnimatedArtist):
         self.image_data = image_data
         self.extent = extent
 
+        # color scheme, set to 'viridis' by default
+        self.cmap = cmap
+
+        # vmin and vmax are by default set to the min and maximum value in the first image of the animation
+        self.vmin = self.image_data[0].min() 
+        self.vmax = self.image_data[0].max()
+
+        # they can be set explicitly by the user
+        if vmin is not None and vmax is not None:
+            self.vmin = vmin
+            self.vmax = vmax
+
         self.artist: AxesImage = None
         self.legend_handle = None
     
@@ -27,13 +39,12 @@ class AnimatedImshow(AnimatedArtist):
             self.image_data[0], 
             origin = 'lower', 
             extent = self.extent, 
-            vmin = self.image_data[0].min(), 
-            vmax = self.image_data[0].max(), 
+            cmap = self.cmap,
+            vmin = self.vmin, 
+            vmax = self.vmax, 
             zorder = self.zorder
             )
-        
-        #self.legend_handle: Line2D = Line2D([], [], marker="$\u279B$", markersize = 10, markerfacecolor = self.color, markeredgecolor = self.color, label = self.name, linewidth = 0)
-        
+                
     def set_styling_properties(self, **styling):
         if self.artist == None:
             ValueError('For Imshows, the artist must first be added to an axes on the canvas before styling properties can be set.')

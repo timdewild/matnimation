@@ -41,7 +41,7 @@ density = AnimatedImshow(
     image_data = image_data, 
     extent = [xmin, xmax, ymin, ymax],
     vmin = 0,
-    vmax = 2
+    vmax = 1
     )
 
 colorscale = StaticColorBar(

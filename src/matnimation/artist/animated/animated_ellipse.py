@@ -17,13 +17,26 @@ class AnimatedEllipse(AnimatedArtist):
             height_data: np.ndarray = None
             ):
         """
-        Arguments:
-        height      (float or int)  height of ellipse
-        width       (float or int)  width of ellipse
-        x_data      (1D np array)   x values of center for all timesteps
-        y_data      (1D np array)   y values of center for all timesteps
-        width_data  (1D np array)   width of ellipse at all timesteps 
-        height_data (1D np array)   height of ellipse at all timesteps
+        Initialize an Animated Ellipse.
+
+        Parameters
+        ----------
+        name : str
+            Name of the animated ellipse
+        width : float
+            Width of the ellipse
+        height : float
+            Height of the ellipse
+        x_data : np.ndarray
+            Array of x-values representing the center for all timesteps
+        y_data : np.ndarray
+            Array of y-values representing the center for all timesteps
+        vis_interval : list[int], optional
+            List with time indices at which visibility must be turned ON and OFF.
+        width_data : np.ndarray, optional
+            Array of ellipse-width at each timestep (default is None)
+        height_data : np.ndarray, optional
+            Array of ellipse-height at each timestep (default is None)
         """
 
         super().__init__(name, vis_interval)
@@ -34,15 +47,18 @@ class AnimatedEllipse(AnimatedArtist):
         self.width_data = width_data
         self.height_data = height_data
 
-        
-
-        self.artist: patches.Ellipse = patches.Ellipse((0, 0), width = self.width, height = self.width)
-
-    def get_legend_handle(self):
-        return super().get_legend_handle()
+        self.artist: patches.Ellipse = patches.Ellipse((0, 0), width=self.width, height=self.width)
+        self.legend_handle = self.artist
 
     def update_timestep(self, time_index):
-        """Set center coordinates of patch at specific timestep in animation."""
+        """
+        Update the properties of the ellipse at a specific timestep in the animation.
+
+        Parameters
+        ----------
+        time_index : int
+            Current time index
+        """
 
         self.update_visibility(time_index)
 

@@ -1,17 +1,18 @@
-from matplotlib.text import Text
 from src.matnimation.artist.static.static_artist import StaticArtist
-
+from matplotlib.text import Text
 
 class StaticText(StaticArtist):
 
     def __init__(self, name: str, xy_center: tuple[float]):
         """
-        StaticCircle
+        Initialize a StaticText object.
 
-        Arguments:
-        name      (float or int)  radius of circle
-        xy_center   (tuple)         (x,y) coordinates of text location
-
+        Parameters
+        ----------
+        name : str
+            Name of the static text
+        xy_center : tuple[float]
+            Tuple containing (x, y) coordinates of text location
         """
 
         super().__init__(name)
@@ -20,9 +21,10 @@ class StaticText(StaticArtist):
         self.x, self.y = self.xy_center
 
         self.artist = Text(
-            x = self.x,
-            y = self.y,
-            text = self.name
+            x=self.x,
+            y=self.y,
+            text=self.name
         )
+
 
         

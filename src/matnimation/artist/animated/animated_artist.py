@@ -6,28 +6,53 @@ class AnimatedArtist(BaseArtist, ABC):
     """Animated Artist (line, circle, arrow etc) to be placed on a specific axis of a defined canvas."""
 
     def __init__(self, name: str, vis_interval: list[int] = None):
+        """
+        Initialize an Animated Artist.
+
+        Parameters
+        ----------
+        name : str
+            Name of the animated artist
+        vis_interval : list[int], optional
+            List with time indices at which visibility must be turned ON and OFF. 
+            If vis_interval = [1, 10], visibility will be turned ON at time index 1 and turned OFF at time index 10.
+        """
         super().__init__(name)
 
-        # set z order
+        # Set z order of animated artist
         self.zorder = 3
-        
-        
-        # list with time_indices at which visiblity must turned ON and OFF, if vis_interval = [1,10], vis will be turned ON at time index 1 and turned OFF at time_index 10
-        # if vis_interval = [1,10, 20, 30], visiblity will turned on at 1 and 20 and off at 10 and 30
+
         self.vis_interval = vis_interval  
 
     def set_styling_properties(self, **styling):
+        """
+        Set styling properties of the animated artist.
+
+        Parameters
+        ----------
+        **styling
+            Keyword arguments representing styling properties
+        """
         return super().set_styling_properties(**styling)
 
     def update_visibility(self, time_index: int):
+        """
+        Update the visibility of the animated artist based on the current time index.
+
+        Parameters
+        ----------
+        time_index : int
+            Current time index
+        """
         if self.vis_interval:
             ti_appear = self.vis_interval[0]
-            ti_dissappear = self.vis_interval[1]
+            ti_disappear = self.vis_interval[1]
 
             self.artist.set_visible(False)
 
-            if time_index in range(ti_appear, ti_dissappear + 1):
+            if time_index in range(ti_appear, ti_disappear + 1):
                 self.artist.set_visible(True)
+
 
         
 

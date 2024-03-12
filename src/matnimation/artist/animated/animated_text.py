@@ -8,10 +8,20 @@ class AnimatedText(AnimatedArtist):
 
     def __init__(self, name: str, text_str_data: list[str], text_x_data: np.ndarray, text_y_data: np.ndarray, vis_interval: list[int] = None):
         """
-        Arguments:
-        text_str_data    (str or list)                  text string at all timesteps        
-        text_x_data      (float or 1D numpy array)      x position of text at all timesteps 
-        text_y_data      (float or 1D numpy array)      y position of text at all timesteps
+        Initialize an Animated Text.
+
+        Parameters:
+        ----------
+        name : str
+            Name of the animated text.
+        text_str_data : list[str]
+            List with text strings at all timesteps.
+        text_x_data : np.ndarray
+            x position of text at all timesteps.
+        text_y_data : np.ndarray
+            y position of text at all timesteps.
+        vis_interval : list[int], optional
+            List with time indices at which visibility must be turned ON and OFF, by default None.
         """
 
         super().__init__(name, vis_interval)
@@ -61,8 +71,14 @@ class AnimatedText(AnimatedArtist):
         self.legend_handle = None
 
     def update_timestep(self, time_index):
-        """Update text at specific timestep in animation."""
+        """
+        Update text and position at specific timestep in animation.
 
+        Parameters:
+        ----------
+        time_index : int
+            Index of the current timestep.
+        """
         if self.text_str_animated:
             self.artist.set_text(self.text_str_data[time_index])
 
@@ -75,7 +91,18 @@ class AnimatedText(AnimatedArtist):
 class AnimatedTextBbox(AnimatedArtist):
 
     def __init__(self, name: str, animated_text: AnimatedText, vis_interval: list[int] = None):
+        """
+        Initialize an AnimatedTextBbox.
 
+        Parameters:
+        ----------
+        name : str
+            Name of the animated text bounding box.
+        animated_text : AnimatedText
+            AnimatedText object to create a bounding box around.
+        vis_interval : list[int], optional
+            List with time indices at which visibility must be turned ON and OFF, by default None.
+        """
         super().__init__(name, vis_interval)
 
         self.bbox_x_data = animated_text.text_x_data
@@ -99,7 +126,14 @@ class AnimatedTextBbox(AnimatedArtist):
             self.bbox_pos_animated = False
 
     def update_timestep(self, time_index):
-        """Update bbox around text at specific timestep in animation."""
+        """
+        Update bounding box around text at specific timestep in animation.
+
+        Parameters:
+        ----------
+        time_index : int
+            Index of the current timestep.
+        """
 
         if self.bbox_pos_animated:
             self.artist.set_x(self.bbox_x_data[time_index])

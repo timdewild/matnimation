@@ -6,15 +6,20 @@ class AnimatedSingleScatter(AnimatedArtist):
 
     def __init__(self, name: str, x_data: np.ndarray, y_data: np.ndarray, vis_interval: list[int] = None):
         """
-        Animated single scatter.
+        Initialize an Animated Single Scatter.
 
         Scatter is interpreted here as a matplotlib Line2D object with no line (linewidth = 0) but with specified markers (marker = '.') at all data points. 
 
-        Arguments:
-        x_data      (1D array)  array with x coordinate of single scatter at all timesteps
-        y_data      (1D array)  array with y coordinate of single scatter at all timesteps
-                                        
-
+        Parameters
+        ----------
+        name : str
+            Name of the animated scatter
+        x_data : np.ndarray
+            Array with x coordinate of single scatter at all timesteps
+        y_data : np.ndarray
+            Array with y coordinate of single scatter at all timesteps
+        vis_interval : list[int], optional
+            List with time indices at which visibility must be turned ON and OFF, by default None
         """
         super().__init__(name, vis_interval)
 
@@ -25,13 +30,23 @@ class AnimatedSingleScatter(AnimatedArtist):
         self.x_data = x_data
         self.y_data = y_data
 
-        #Here scatter is a line with no linewidth and dots as markers at vertices
-        self.artist: Line2D = Line2D([], [], linewidth = 0, marker = '.', markersize = 10, label = self.name) 
+        # Here scatter is a line with no linewidth and dots as markers at vertices
+        self.artist: Line2D = Line2D([], [], linewidth=0, marker='.', markersize=10, label=self.name) 
 
-        #Create handle for legend
+        # Create handle for legend
         self.legend_handle = self.artist
 
     def set_styling_properties(self, **styling):
+        """
+        Set styling properties for the scatter.
+
+        Only supports styling properties related to the marker.
+
+        Parameters
+        ----------
+        **styling : dict
+            Styling properties for the scatter
+        """
         args_dict: dict = locals()
         styling_dict: dict = args_dict['styling']
         marker_stylings = ['marker', 'markerfacecolor', 'markeredgecolor', 'markeredgewidth', 'markersize']
@@ -46,11 +61,13 @@ class AnimatedSingleScatter(AnimatedArtist):
         self.artist.set(**styling_dict)
                 
     def update_timestep(self, time_index: int):
-        """Set coordinates of scatters at specific timestep in animation."""
+        """
+        Set coordinates of scatter at specific timestep in animation.
 
-
+        Parameters
+        ----------
+        time_index : int
+            Current time index
+        """
         self.update_visibility(time_index)
         self.artist.set_data(self.x_data[time_index], self.y_data[time_index])
-
-    
-        

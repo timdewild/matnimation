@@ -7,20 +7,21 @@ from src.matnimation.artist.static.static_artist import StaticArtist
 from src.matnimation.artist.static.static_imshow import StaticImshow
 from src.matnimation.artist.animated.animated_imshow import AnimatedImshow
 
-
-
 class StaticColorBar(StaticArtist):
 
-    def __init__(self, name: str, imshow: Union[StaticImshow, AnimatedImshow], styling_dict: dict = None):       #boundaries: list[float, float] = None
+    def __init__(self, name: str, imshow: Union[StaticImshow, AnimatedImshow], styling_dict: dict = None):
         """
-        StaticColorBar corresponding to Artist, which can be either a StaticImshow or a AnimatedImshow
+        Initialize a StaticColorBar object.
 
-        Arguments:
-        name            (str)  radius of circle
-        imshow          (Artist) 
-        styling_dict    (dict) sytling dictionary, all 'Other Parameters' of matplotlib.figure.Figure.colorbar can be passed here.  
+        Parameters
+        ----------
+        name : str
+            Name of the static color bar
+        imshow : StaticImshow | AnimatedImshow
+            Artist representing the image (either static or animated) associated with the color bar
+        styling_dict : dict, optional
+            Styling dictionary, all 'Other Parameters' of matplotlib.figure.Figure.colorbar can be passed here, by default None
         """
-
         super().__init__(name)
         self.imshow = imshow
         self.imshow_artist = self.imshow.artist
@@ -30,28 +31,37 @@ class StaticColorBar(StaticArtist):
         self.legend_handle = None
 
     def add_to_axes(self, axes: Axes):
+        """
+        Add the color bar to the specified axes.
 
+        Parameters
+        ----------
+        axes : Axes
+            Axes object to add the color bar to
+        """
         # extract figure belonging to axes
         fig: Figure = axes.get_figure()
 
         # define ScalarMappable to be fed to Colorbar artist below
         smap = ScalarMappable(
-            cmap = self.imshow.cmap
+            cmap=self.imshow.cmap
         )
         smap.set_array([])
         smap.set_clim(self.imshow.vmin, self.imshow.vmax)
 
-        
         self.artist: Colorbar = fig.colorbar(
-            mappable = smap,
-            ax = axes,
+            mappable=smap,
+            ax=axes,
             **self.styling_dict
         )
 
     def set_styling_properties(self, **styling):
-        raise ValueError('For Colorbars, styling properties must be set via upon instantiation via styling_dict')
+        """
+        Set styling properties for the color bar.
 
-
-
-
-        
+        Raises
+        ------
+        ValueError
+            For Colorbars, styling properties must be set upon instantiation via styling_dict
+        """
+        raise ValueError('For Colorbars, styling properties must be set upon instantiation via styling_dict')

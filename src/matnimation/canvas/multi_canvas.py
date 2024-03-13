@@ -20,7 +20,9 @@ class MultiCanvas(Canvas):
             axes_limits: list,          
             axes_labels: list,  
             shared_x=False,
-            shared_y=False
+            shared_y=False,
+            height_ratios: list = None,
+            width_ratios: list = None
             ):
         """
         Initialize a MultiCanvas instance.
@@ -47,6 +49,10 @@ class MultiCanvas(Canvas):
             Whether x-axis of subplots is shared, by default False
         shared_y : bool, optional
             Whether y-axis of subplots is shared, by default False
+        height_ratios : list, optional
+            Ratio of heights of different subplots
+        width_ratios : list, optional
+            Ratio of widths of different subplots
         """
         super().__init__(figsize, dpi, time_array)
 
@@ -56,6 +62,8 @@ class MultiCanvas(Canvas):
         self.axes_labels = axes_labels
         self.shared_x = shared_x
         self.shared_y = shared_y
+        self.height_ratios = height_ratios
+        self.width_ratios = width_ratios
 
         if (self.nrows == 1) and (self.ncols == 1):
             raise ValueError('You specified a canvas with only one plot (ncols = nrows = 1), use SingleCanvas instead.')  
@@ -68,6 +76,8 @@ class MultiCanvas(Canvas):
             squeeze=False, 
             sharex=self.shared_x, 
             sharey=self.shared_y,
+            height_ratios=self.height_ratios,
+            width_ratios=self.width_ratios
             )
         
         self.set_layout(self.fig, self.axs_array, self.axes_limits, self.axes_labels)

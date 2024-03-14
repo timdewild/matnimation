@@ -73,6 +73,10 @@ class StaticColorBar(StaticArtist):
         ValueError
             If keyword is not 'vertical' or 'horizontal'. 
         """
+        if self.artist is None:
+            raise ValueError('For Colorbars, the artist must first be added to an axes on the canvas before styling properties can be set.')
+
+
         if orientation == 'vertical':
             self.artist.ax.set_yticklabels(labels)
         if orientation == 'horizontal':

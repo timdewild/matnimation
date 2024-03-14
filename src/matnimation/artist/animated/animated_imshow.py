@@ -9,6 +9,7 @@ class AnimatedImshow(AnimatedArtist):
             name: str, 
             image_data: np.ndarray, 
             extent: list, 
+            aspect: str = 'auto',
             cmap='viridis', 
             vmin: float = None, 
             vmax: float = None, 
@@ -25,6 +26,8 @@ class AnimatedImshow(AnimatedArtist):
             Function values f(x,y) on grid for all timesteps. len(image_data) = len(time_array)
         extent : list
             Extent over which image must be plotted in figure [xmin, xmax, ymin, ymax]
+        aspect: float or str
+            Aspect ratio of imshow axes
         cmap : str, optional
             Colormap style to be used (default is 'viridis')
         vmin : float, optional
@@ -35,7 +38,6 @@ class AnimatedImshow(AnimatedArtist):
             If None, value will be set the to minimum value in the image_data of the initial timestep
         vis_interval : list[int], optional
             List with time indices at which visibility must be turned ON and OFF
-
         """            
 
         super().__init__(name, vis_interval)
@@ -43,6 +45,7 @@ class AnimatedImshow(AnimatedArtist):
         self.image_data = image_data
         self.extent = extent
         self.cmap = cmap
+        self.aspect = aspect
 
         # vmin and vmax are by default set to the min and maximum value in the first image of the animation
         self.vmin = self.image_data[0].min() 
@@ -69,6 +72,7 @@ class AnimatedImshow(AnimatedArtist):
             self.image_data[0], 
             origin='lower', 
             extent=self.extent, 
+            aspect=self.aspect,
             cmap=self.cmap,
             vmin=self.vmin, 
             vmax=self.vmax, 

@@ -56,6 +56,23 @@ class StaticColorBar(StaticArtist):
         )
 
     def set_tick_labels(self, labels: list, orientation: str = 'vertical'):
+        """
+        Set tick labels for the colorbar. 
+
+        Parameters
+        ----------
+        labels : list
+            List with labels for ticks of colorbar. 
+            Should be of same length as list passed to ticks keyword in styling_dict. 
+        orientation : str
+            Orientation of colorbar, must be either 'vertical' or 'horizontal'.
+            Should agree with the value passed to the 'orientation' keyword set in 'styling_dict' upon instantiation.
+        
+        Raises
+        ------
+        ValueError
+            If keyword is not 'vertical' or 'horizontal'. 
+        """
         if orientation == 'vertical':
             self.artist.ax.set_yticklabels(labels)
         if orientation == 'horizontal':

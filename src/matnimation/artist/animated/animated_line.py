@@ -14,7 +14,7 @@ class AnimatedLine(AnimatedArtist):
         name : str
             Name of the animated line
         x_data : np.ndarray
-            x values of line (assuming they don't change over time)
+            x values of line (1D if they dont change over time, 2D if they do)
         y_data : np.ndarray
             y values of line (rows) for all timesteps (cols)
         vis_interval : list[int], optional
@@ -37,5 +37,11 @@ class AnimatedLine(AnimatedArtist):
         time_index : int
             Current time index
         """
+
         self.update_visibility(time_index)
-        self.artist.set_data(self.x_data, self.y_data[:, time_index])
+
+        if self.x_data.ndim == 1:
+            self.artist.set_data(self.x_data, self.y_data[:, time_index])
+
+        if self.x_data.ndim == 2:
+            self.artist.set_data(self.x_data[:, time_index], self.y_data[:, time_index])

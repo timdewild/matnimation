@@ -39,6 +39,6 @@ class AnimatedTrace(AnimatedArtist):
 
         self.update_visibility(time_index)
 
-        self.artist.set_data(self.x_data[:time_index], self.y_data[:time_index])
+        self.artist.set_data(self.x_data[:time_index + 1], self.y_data[:time_index + 1])
 
         

@@ -55,5 +55,49 @@ sys.path.append(os.path.abspath('matnimation'))
 
 This is the simplest setup, if your project contains multiple subfolders with `.py` files that import `matnimation`, the correct paths should be included in each of these files. For an example on how this works, see e.g. [this](https://github.com/timdewild/fourier-series-epicycles) repo. 
 
+# Methodology and Usage
+Before we give a detailed example of how you can use `matnimation` to easily make Matplotlib animations, we will first give an overview of its working principle and main building principle. After that, we will give an example and explicitly compare `matnimation`'s to how the same animation would be constructed in the conventional way (as described in Matplotlib's [documentation](https://matplotlib.org/stable/users/explain/animations/animations.html)).
+
+## Three Building Blocks: Canvas, Artists and Animation
+The working principle of `matnimation` revolves around three fundamental objects/classes:
+* `Canvas`
+
+    The canvas object should be thought of as the stage on which the animations take place. The canvas defines the figure with (possibly multiple) axes on which `BaseArtist` objects live. 
+
+    > **Note** The `Canvas` class has multiple subclasses such as `SingleCanvas` for a single pair of axes or `MultiCanvas` for multiple pairs of axes.   
+
+* `BaseArtist`
+
+    An artist that lives on the canvas. Examples are e.g. a line, circle, vector field or image, but also a textbox is considered an artist. Artists can be _static_ or _animated_, as implemented via the `StaticArtist` and `AnimatedArtist` subclasses. As the name suggests, static artists do not change during the animation. Animated artists change in some way or another during the animation. 
+
+    > **Example** A line can change its shape during the animation, just as the text string in a textbox can change over time. 
+
+* `Animation`
+
+    The canvas and (collection of) artists are rendered into an actual animation (video) using the `Animation` class. This class runs Matplotlib's `animation.FuncAnimation` under it's hood ([docs](https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation)). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Examples
 Examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. 

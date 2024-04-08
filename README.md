@@ -39,15 +39,21 @@ For more details on git submodules, see the [documentation](https://git-scm.com/
 For both options, there should now be a subfolder in `my_animation_project` called `matnimation` that contains (a version of) its source code. Let `animation.py` be the file in which you build the animation. The structure of your project then looks like:
 ```
 my_animation_project
-└── matnination/
+└── matnination
 └── animation.py
 ```
-Now, we wish to import the modules in `matnimation` in our `animation.py` file. To do so, we have to tell python were to look for these modules: inside the `matnimation` folder. 
+Now, we wish to import the modules in `matnimation` in our `animation.py` file. To do so, we have to tell python were to look for these modules: inside the `matnimation` folder. We do this by adding the path to the `matnimation` folder at the top of the file:
 
-```python filename="animation.py"
-import numpy as np
+```python
+# file: animation.py
+
+import sys
+import os
+
+sys.path.append(os.path.abspath('matnimation'))
 ```
 
+This is the simplest setup, if your project contains multiple subfolders with `.py` files that import `matnimation`, the correct paths should be included in each of these files. For an example on how this works, see e.g. [this](https://github.com/timdewild/fourier-series-epicycles) repo. 
 
 # Examples
 Examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. 

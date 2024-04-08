@@ -33,13 +33,9 @@ git push
 For both options, there should now be a subfolder in `my_animation_project` called `matnimation` that contains (a version of) its source code. Let `animation.py` be the file in which you build the animation. The structure of your project then looks like:
 
 ```
-directories
-  file1: f
-  directory1: d
-    file2: file
-    file3: file
-    directory2: d
-  directory3: dir
+my_animation_project
+└── matnination/
+└── animation.py
 ```
 
 

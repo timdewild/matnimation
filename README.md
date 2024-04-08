@@ -42,7 +42,7 @@ my_animation_project
 └── matnination
 └── animation.py
 ```
-Now, we wish to import the modules in `matnimation` in our `animation.py` file. To do so, we have to tell python were to look for these modules: inside the `matnimation` folder. We do this by adding the path to the `matnimation` folder at the top of the file:
+Now, we wish to import the modules in `matnimation` in our `animation.py` file. To do so, we have to tell python where to look for these modules: inside the `matnimation` folder. We do this by adding the path to the `matnimation` folder at the top of the file:
 
 ```python
 # file: animation.py
@@ -53,12 +53,12 @@ import os
 sys.path.append(os.path.abspath('matnimation'))
 ```
 
-This is the simplest setup, if your project contains multiple subfolders with `.py` files that import `matnimation`, the correct paths should be included in each of these files. For an example on how this works, see e.g. [this](https://github.com/timdewild/fourier-series-epicycles) repo. 
+This is the simplest setup, if your project contains multiple subfolders with `.py` files that import `matnimation`, the correct paths should be included in each of these files. For an example of how this works, see e.g. [this](https://github.com/timdewild/fourier-series-epicycles) repo. 
 
 # Methodology and Usage
-Before we give a detailed example of how you can use `matnimation` to easily make Matplotlib animations, we will first give an overview of its working principle and main building principle. After that, we will give an example and explicitly compare `matnimation`'s to how the same animation would be constructed in the conventional way (as described in Matplotlib's [documentation](https://matplotlib.org/stable/users/explain/animations/animations.html)).
+Before we give a detailed example of how you can use `matnimation` to easily make Matplotlib animations, we will first give an overview of its working principle and main building principle. After that, we will give an example and explicitly compare `matnimation`'s workflow to how the same animation would be constructed in the conventional way (as described in Matplotlib's [documentation](https://matplotlib.org/stable/users/explain/animations/animations.html)).
 
-## Three Building Blocks: Canvas, Artists and Animation
+## Three Building Blocks
 The working principle of `matnimation` revolves around three fundamental objects/classes:
 * `Canvas`
 
@@ -75,6 +75,18 @@ The working principle of `matnimation` revolves around three fundamental objects
 * `Animation`
 
     The canvas and (collection of) artists are rendered into an actual animation (video) using the `Animation` class. This class runs Matplotlib's `animation.FuncAnimation` under it's hood ([docs](https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation)). 
+
+## Example Workflow
+Now we are in the position to describe how a simple animation would be constructed using `matnimation` in four steps. More complex animations will still follow the same steps. In this example, we animate a travelling sine wave, described by:
+```math
+\begin{equation}
+    y(x,t) = \sin (kx-\omega t),
+\end{equation}
+```
+where we take the wavenumber $k=2\pi$ and radial frequency $\omega = 4\pi$. 
+
+
+
 
 
 

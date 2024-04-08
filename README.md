@@ -13,7 +13,7 @@ The first, and simplest way, is to clone its Github repository inside your proje
 ```python
 git clone git@github.com:timdewild/matnimation.git
 ``` 
-for SSH0cloning using or 
+for SSH-cloning using or 
 ```python
 git clone https://github.com/timdewild/matnimation.git
 ```
@@ -28,6 +28,18 @@ This will only stage the submodule, you still need to commit the submodule:
 ```python
 git commit -m "Added the submodule to the project."
 git push
+```
+
+For both options, there should now be a subfolder in `my_animation_project` called `matnimation` that contains (a version of) its source code. Let `animation.py` be the file in which you build the animation. The structure of your project then looks like:
+
+```
+directories
+  file1: f
+  directory1: d
+    file2: file
+    file3: file
+    directory2: d
+  directory3: dir
 ```
 
 

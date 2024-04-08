@@ -112,10 +112,12 @@ The animation should be thought of as a collection of frames, one for each time 
 ```python
 def wave(x,t):
     """Returns the traveling waveform y(x,t) = sin(kx - wt) with k = 2pi and w = 4pi."""
+
     y = np.sin(2 * np.pi * (x - 2*t)) 
+    
     return y
 ```
-Now, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. We will store this data in `ydata`, which is a 2D numpy array of shape `(Nx, Nt)`. This meaning that `ydata[:,i]` gives the full wavefrom $y(x,t_i)$ at the $i$-th timestep. This is the default order in which data must be fed to `AnimatedArtist`s in `matnimation`, subsequent columns correspond to consecutive timesteps. 
+Now, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. We will store this data in `ydata`, which is a 2D numpy array of shape `(Nx, Nt)`. This means that `ydata[:,i]` gives the full wavefrom $y(x,t_i)$ at the $i$-th timestep. This is the default order in which data must be fed to `AnimatedArtist`s in `matnimation`, subsequent columns correspond to consecutive timesteps. 
 
 
 

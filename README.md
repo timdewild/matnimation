@@ -83,7 +83,14 @@ Now we are in the position to describe how a simple animation would be construct
     y(x,t) = \sin (kx-\omega t),
 \end{equation}
 ```
-where we take the wavenumber $k=2\pi$ and radial frequency $\omega = 4\pi$. 
+where we take the wavenumber $k=2\pi$ and radial frequency $\omega = 4\pi$.
+
+### Step 1: Generating Data
+We start by setting the spatial and temporal boundaries of our animation, we take $x\in[0,4]$ and $t\in[0,1]$. Those intervals are descretized by the arrays:
+```python
+x_array = np.linspace(0,4,1000)
+t_array = np.linspace(0,1,100)
+```
 
 
 

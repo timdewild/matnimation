@@ -29,15 +29,20 @@ This will only stage the submodule, you still need to commit the submodule:
 git commit -m "Added the submodule to the project."
 git push
 ```
+A submodule always refers to a specific commit, so if you commit changes to `matnimation`, those are not automatically implemented in the submodule. To update the submodule to refer to the newest commit, you run:
+```python
+git submodule update
+```
+For more details on git submodules, see the [documentation](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
+### Importing the Modules
 For both options, there should now be a subfolder in `my_animation_project` called `matnimation` that contains (a version of) its source code. Let `animation.py` be the file in which you build the animation. The structure of your project then looks like:
-
 ```
 my_animation_project
 └── matnination/
 └── animation.py
 ```
-
+Now, we wish to import the modules in `matnimation` in our `animation.py` file. To do so, we have to tell python were to look for these modules: inside the `matnimation` folder. 
 
 
 # Examples

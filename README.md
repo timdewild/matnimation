@@ -85,13 +85,37 @@ Now we are in the position to describe how a simple animation would be construct
 ```
 where we take the wavenumber $k=2\pi$ and radial frequency $\omega = 4\pi$.
 
-### Step 1: Generating Data
-We start by setting the spatial and temporal boundaries of our animation, we take $x\in[0,4]$ and $t\in[0,1]$. Those intervals are descretized by the arrays:
+### Step 0: Import Dependencies
+We start by importing all the dependencies.
 ```python
-x_array = np.linspace(0,4,1000)
-t_array = np.linspace(0,1,100)
+import numpy as np
+import sys
+import os
+
+# to be able to find ~/matnimation directory
+sys.path.append(os.path.abspath('matnimation'))
+
+from matnimation.src.matnimation.animation.animation import Animation
+from matnimation.src.matnimation.canvas.single_canvas import SingleCanvas
+from matnimation.src.matnimation.artist.animated.animated_line import AnimatedLine
+from matnimation.src.matnimation.helper.helper_functions import HelperFunctions
 ```
 
+### Step 1: Generating Data
+We have to set the spatial and temporal boundaries of our animation, we take $x\in[0,4]$ and $t\in[0,1]$. Those intervals are descretized by the arrays:
+```python
+Nx, Nt = 1000, 100
+x_array = np.linspace(0,4,Nx)
+t_array = np.linspace(0,1,Nt)
+```
+The animation should be thought of as a collection of frames, one for each time value in `t_array`, meaning we have a total of 100 frames in this animation. Then we define a function that describes the travelling sine wave:
+```python
+def wave(x,t):
+    """Returns the traveling waveform y(x,t) = sin(kx - wt) with k = 2pi and w = 4pi."""
+    y = np.sin(2 * np.pi * (x - 2*t)) 
+    return y
+```
+Now, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. We will store this data in `ydata`, which is a 2D numpy array of shape `(Nx, Nt)`. This meaning that `ydata[:,i]` gives the full wavefrom $y(x,t_i)$ at the $i$-th timestep. 
 
 
 

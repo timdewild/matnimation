@@ -44,6 +44,10 @@ my_animation_project
 ```
 Now, we wish to import the modules in `matnimation` in our `animation.py` file. To do so, we have to tell python were to look for these modules: inside the `matnimation` folder. 
 
+```python filename="animation.py"
+import numpy as np
+```
+
 
 # Examples
 Examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. 

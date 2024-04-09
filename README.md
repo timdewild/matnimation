@@ -123,6 +123,11 @@ We will animate the travelling sine wave using the `AnimatedLine` artist, which 
 ```math
 \begin{equation}
     \boldsymbol{A}=\left( 
+    \left[\begin{array}{c}
+    y(x_0, t_0)\\
+    \vdots \\
+    y(x_M, t_0)
+    \end{array}\right]
     \begin{array}{c|c|c}
     y(x_0, t_0) & \cdots & y(x_0, t_N) \\
     \vdots &  & \vdots \\

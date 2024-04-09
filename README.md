@@ -122,7 +122,7 @@ Now, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all times
 > [!NOTE]
 > This is the default order in which data must be fed to `AnimatedArtist`s in `matnimation`: subsequent columns correspond to consecutive timesteps.
 
-To generate `ydata`, we use `func_ab_to_grid` from the `HelperFunctions` class. Given a mathematical function of two parameters $f(a,b)$ called `func(a,b)` and two arrays `a_array` and `b_array`, this function returns a 2D array with entry `[i,j]` corresponding to `func(a_array[i], b_array[j])`.
+To generate `ydata`, we use `func_ab_to_grid` from the `HelperFunctions` class.
 ```python
 ydata = HelperFunctions.func_ab_to_grid(
     func = wave,
@@ -130,6 +130,9 @@ ydata = HelperFunctions.func_ab_to_grid(
     b = t_array
     )
 ```
+
+> [!NOTE]
+> Given a mathematical function of two parameters $f(a,b)$ called `func(a,b)` and two arrays `a_array` and `b_array`, this function returns a 2D array with entry `[i,j]` corresponding to `func(a_array[i], b_array[j])`.
  
 
 

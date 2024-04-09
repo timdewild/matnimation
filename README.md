@@ -157,7 +157,21 @@ travelling_wave = AnimatedLine(
 )
 ```
 
-We provide a `name`, the `x_data` which is simply `x_array` and pass the waveform at all timesteps via `ydata`. In this case, only the $y$ coordinates of the animated line change over time and the $x$ coordinates are fixed. This need not be the case, if they also change you can pass a 2D array of the same format as `ydata`. 
+We provide a `name`, the `x_data` which is simply `x_array` and pass the waveform at all timesteps via `ydata`. In this case, only the $y$ coordinates of the animated line change over time and the $x$ coordinates are fixed. This need not be the case, if the latter also change you can pass a 2D array to `x_data` of the same format as `ydata`. Now we add `travelling_wave` to the canvas via:
+
+```python
+canvas.add_artist(travelling_wave)
+```
+
+In this example we only added one artist to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like. 
+
+### Step 4: Construct and Render Animation
+Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N_timesteps * interval` milliseconds. In our case, 100 timesteps or frames and take the interval to be 20 ms, so that our final animation is 2 seconds. 
+
+```python
+animation = Animation(canvas, interval = 20)
+animation.render('sine_wave_using_matnimation.mp4')
+```
 
 
 
@@ -169,7 +183,9 @@ We provide a `name`, the `x_data` which is simply `x_array` and pass the wavefor
 
 
 
-In this example we only added one artist to the canvas, but note that in this way you can add as many artists to the canvas as you like. 
+
+
+
  
 
 

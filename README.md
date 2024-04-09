@@ -106,9 +106,9 @@ from matnimation.src.matnimation.helper.helper_functions import HelperFunctions
 ### Step 1: Generating Data
 We have to set the spatial and temporal boundaries of our animation, we take $x\in[0,4]$ and $t\in[0,1]$. Those intervals are descretized by the arrays:
 ```python
-Nx, Nt = 1000, 100
-x_array = np.linspace(0,4,Nx)
-t_array = np.linspace(0,1,Nt)
+N, M = 1000, 100
+x_array = np.linspace(0,4,M)
+t_array = np.linspace(0,1,N)
 ```
 The animation should be thought of as a collection of frames, one for each time value in `t_array`, meaning we have a total of 100 frames in this animation. Then we define a function that describes the travelling sine wave:
 ```python
@@ -119,14 +119,14 @@ def wave(x,t):
 
     return y
 ```
-We will animate the travelling sine wave using the `AnimatedLine` artist, which requires the $y$ coordinates of the line at all timesteps in the animation. That is, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. The data must be passed into `AnimatedLine` as a 2D numpy array of shape `(Nx, Nt)`, which we will call `ydata`. 
+We will animate the travelling sine wave using the `AnimatedLine` artist, which requires the $y$ coordinates of the line at all timesteps in the animation. That is, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. The data must be passed into `AnimatedLine` as a 2D numpy array of shape `(M, N)`, which we will call `ydata`. 
 ```math
 \begin{equation}
     \boldsymbol{A}=\left( 
-    \begin{array}{ccc}
-    a & b & c \\
-    d & e & f \\
-    g & h & i 
+    \begin{array}{c|c|c}
+    \Psi(x_0, t_0) & \cdots & \Psi(x_0, t_N) \\
+    \vdots &  & \vdots \\
+    \Psi(x_M, t_0) & \cdots & \Psi(x_M, t_N)
     \end{array} 
     \right)
 \end{equation}

@@ -117,12 +117,8 @@ def wave(x,t):
 
     return y
 ```
-Now, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. We will store this data in `ydata`, which is a 2D numpy array of shape `(Nx, Nt)`. This means that `ydata[:,i]` gives the full wavefrom $y(x,t_i)$ at the $i$-th timestep. 
+We will animate the travelling sine wave using the `AnimatedLine` artist, which requires the $y$ coordinates of the line at all timesteps in the animation. That is, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. The data must be passed into `AnimatedLine` as a 2D numpy array of shape `(Nx, Nt)`, which we will call `ydata`. This means that `ydata[:,i]` gives the full wavefrom $y(x,t_i)$ at the $i$-th timestep. We use `func_ab_to_grid` from the `HelperFunctions` class to generate the data.
 
-> [!NOTE]
-> This is the default order in which data must be fed to `AnimatedArtist`s in `matnimation`: subsequent columns correspond to consecutive timesteps.
-
-To generate `ydata`, we use `func_ab_to_grid` from the `HelperFunctions` class.
 ```python
 ydata = HelperFunctions.func_ab_to_grid(
     func = wave,
@@ -132,7 +128,36 @@ ydata = HelperFunctions.func_ab_to_grid(
 ```
 
 > [!NOTE]
-> Given a mathematical function of two parameters $f(a,b)$ called `func(a,b)` and two arrays `a_array` and `b_array`, this function returns a 2D array with entry `[i,j]` corresponding to `func(a_array[i], b_array[j])`.
+> Given a mathematical function of two parameters $f(a,b)$ called `func(a,b)` and two arrays `a_array` and `b_array`, `func_ab_to_grid` returns a 2D array with entry `[i,j]` corresponding to `func(a_array[i], b_array[j])`.
+
+### Step 2: Define Canvas
+Next, we constuct a canvas on which the artists, to be constructed in the next step, live. We make a simple animation with only a single panel, so we use `SingleCanvas`. We set the `figsize` in inches, the resolution `dpi` in dots-per-inch, the `time_array`, the `axis_limits` and the `axis_labels`. Simple mathmetical expressions are passed into the labels via the double dollar syntax `$$`. 
+
+```python
+canvas = SingleCanvas(
+    figsize = (4,4),
+    dpi = 400,
+    time_array = time_array,
+    axis_limits = [0, 4, -2, 2],
+    axis_labels = ['$x$', '$y(x,t)$']
+)
+```
+
+> [!IMPORTANT]
+> The canvas should be thought of as the stage on which animated (and static) objects live over time. Therefore, it takes the `time_array` as argument. The dynamic behavior of all animated artists should be defined for all timesteps in `time_array`. 
+
+
+
+
+
+
+
+
+
+
+
+
+In this example we only added one artist to the canvas, but note that in this way you can add as many artists to the canvas as you like. 
  
 
 

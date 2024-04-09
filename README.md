@@ -120,7 +120,7 @@ def wave(x,t):
     return y
 ```
 We will animate the travelling sine wave using the `AnimatedLine` artist, which requires the $y$ coordinates of the line at all timesteps in the animation. That is, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. The data must be passed into `AnimatedLine` as a 2D numpy array of shape `(Nx, Nt)`, which we will call `ydata`. 
-```latex
+```math
 \begin{equation}
     \left( 
     \begin{array}{ccc}

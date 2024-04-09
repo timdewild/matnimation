@@ -146,6 +146,18 @@ canvas = SingleCanvas(
 > [!IMPORTANT]
 > The canvas should be thought of as the stage on which animated (and static) objects live over time. Therefore, it takes the `time_array` as argument. The dynamic behavior of all animated artists should be defined for all timesteps in `t_array`. 
 
+### Step 3: Construct Artists
+Now we are in the position to construct the artists. In our example we only have one artist, the `AnimatedLine` representing the travelling wave. 
+
+```python
+travelling_wave = AnimatedLine(
+    name = 'Travelling Wave',
+    x_data = x_array,
+    y_data = ydata,
+)
+```
+
+We provide a `name`, the `x_data` which is simply `x_array` and pass the waveform at all timesteps via `ydata`. In this case, only the $y$ coordinates of the animated line change over time and the $x$ coordinates are fixed. This need not be the case, if they also change you can pass a 2D array of the same format as `ydata`. 
 
 
 

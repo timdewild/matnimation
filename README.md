@@ -124,9 +124,9 @@ We will animate the travelling sine wave using the `AnimatedLine` artist, which 
 \begin{equation}
     \boldsymbol{A}=\left( 
     \begin{array}{c|c|c}
-    \Psi(x_0, t_0) & \cdots & \Psi(x_0, t_N) \\
+    y(x_0, t_0) & \cdots & y(x_0, t_N) \\
     \vdots &  & \vdots \\
-    \Psi(x_M, t_0) & \cdots & \Psi(x_M, t_N)
+    y(x_M, t_0) & \cdots & y(x_M, t_N)
     \end{array} 
     \right)
 \end{equation}

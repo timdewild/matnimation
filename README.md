@@ -280,23 +280,25 @@ line, = axis.plot([], [])
 # data which the line will 
 # contain (x, y) 
 def init(): 
-	line.set_data([], []) 
-	return line, 
+    line.set_data([], []) 
+    return line, 
 
 x = np.linspace(0, 4, 1000) 
 t = np.linspace(0, 1, 100)
 
 def animate(i):  
-	y = np.sin(2 * np.pi * (x - 2*t[i])) 
-	line.set_data(x, y) 
+    y = np.sin(2 * np.pi * (x - 2*t[i])) 
+    line.set_data(x, y) 
 	
-	return line, 
+    return line, 
 
-anim = FuncAnimation(fig, animate, 
-					init_func = init, 
-					frames = len(t), 
-					interval = 20, 
-					) 
+anim = FuncAnimation(
+    fig, 
+    animate, 
+    init_func = init, 
+    frames = len(t), 
+    interval = 20, 
+    ) 
 
 anim.save('sine_wave_using_FuncAnimation.mp4')
 ```

@@ -142,10 +142,9 @@ We will animate the travelling sine wave using the `AnimatedLine` artist, which 
 ```
 This means that `ydata[:,i]` gives the full wavefrom at the $i$-th timestep:
 ```math
-\textsf{ydata[:,i]} = [y(x_1,t_1), \dots, y(x_M,t_1)]. 
+[y(x_1,t_i), \dots, y(x_M,t_i)]. 
 ```
 We use `func_ab_to_grid` from the `HelperFunctions` class to generate the `ydata`.
-
 ```python
 ydata = HelperFunctions.func_ab_to_grid(
     func = wave,
@@ -193,12 +192,66 @@ canvas.add_artist(travelling_wave)
 In this example we only added one artist to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like. 
 
 ### Step 4: Construct and Render Animation
-Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N_timesteps * interval` milliseconds. In our case, 100 timesteps or frames and take the interval to be 20 ms, so that our final animation is 2 seconds. 
+Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N * interval` milliseconds. In our case, we have `N=100` timesteps or frames and take the interval to be 20 ms, so that our final animation is 2 seconds. 
 
 ```python
 animation = Animation(canvas, interval = 20)
 animation.render('sine_wave_using_matnimation.mp4')
 ```
+
+### Full Script and Comparison
+Below, we show the full content of `animation.py` and compare it to the conventional way in which animations are made using Matplotlib, as described in the [docs](https://matplotlib.org/stable/users/explain/animations/animations.html).
+
+```python
+import numpy as np
+import sys
+import os
+
+# to be able to find ~/matnimation directory
+sys.path.append(os.path.abspath('matnimation'))
+
+from matnimation.src.matnimation.animation.animation import Animation
+from matnimation.src.matnimation.canvas.single_canvas import SingleCanvas
+from matnimation.src.matnimation.artist.animated.animated_line import AnimatedLine
+from matnimation.src.matnimation.helper.helper_functions import HelperFunctions
+
+Nx, Nt = 1000, 100
+x_array = np.linspace(0, 4, Nx) 
+t_array = np.linspace(0, 1, Nt)
+
+def wave(x,t):
+    """Returns the traveling waveform y(x,t) = sin(kx - wt) with k = 2pi and w = 4pi."""
+    y = np.sin(2 * np.pi * (x - 2*t)) 
+    return y
+
+ydata = HelperFunctions.func_ab_to_grid(
+    func = wave,
+    a = x_array,
+    b = t_array
+    )
+
+canvas = SingleCanvas(
+    figsize = (6.4, 4.8),
+    dpi = 400,
+    time_array = t_array,
+    axis_limits = [0, 4, -2, 2],
+    axis_labels = ['$x$', '$y(x,t)$']
+)
+
+travelling_wave = AnimatedLine(
+    name = 'Travelling Wave',
+    x_data = x_array,
+    y_data = ydata,
+)
+
+canvas.add_artist(travelling_wave)
+
+animation = Animation(canvas, interval = 20)
+animation.render('sine_wave_using_matnimation.mp4')
+
+```
+
+
 
 
 

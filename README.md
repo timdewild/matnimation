@@ -202,6 +202,7 @@ animation.render('sine_wave_using_matnimation.mp4')
 ### Full Script and Comparison
 Below, we show the full content of `animation.py` and compare it to the conventional way in which animations are made using Matplotlib, as described in the [docs](https://matplotlib.org/stable/users/explain/animations/animations.html).
 
+#### The `matnimation` Way
 ```python
 import numpy as np
 import sys
@@ -215,9 +216,9 @@ from matnimation.src.matnimation.canvas.single_canvas import SingleCanvas
 from matnimation.src.matnimation.artist.animated.animated_line import AnimatedLine
 from matnimation.src.matnimation.helper.helper_functions import HelperFunctions
 
-Nx, Nt = 1000, 100
-x_array = np.linspace(0, 4, Nx) 
-t_array = np.linspace(0, 1, Nt)
+M, N = 1000, 100
+x_array = np.linspace(0, 4, M) 
+t_array = np.linspace(0, 1, N)
 
 def wave(x,t):
     """Returns the traveling waveform y(x,t) = sin(kx - wt) with k = 2pi and w = 4pi."""
@@ -251,7 +252,54 @@ animation.render('sine_wave_using_matnimation.mp4')
 
 ```
 
+#### The `Matplotlib` Way
+```python
+from matplotlib import pyplot as plt 
+import numpy as np 
+from matplotlib.animation import FuncAnimation 
 
+# initializing a figure and axis
+fig, axis = plt.subplots() 
+print(fig.get_size_inches())
+
+# marking the x-axis and y-axis 
+axis.set_xlim(0,4)
+axis.set_ylim(-2,2)
+
+# update grid and bkg facecolor
+axis.grid(True, color=u'white', lw=1.5, zorder=0)
+axis.set_facecolor('#EEEEEE')
+
+# set x and y labels
+axis.set_xlabel('$x$')
+axis.set_ylabel('$y(x,t)$')
+
+# initializing a line object/artist 
+line, = axis.plot([], []) 
+
+# data which the line will 
+# contain (x, y) 
+def init(): 
+	line.set_data([], []) 
+	return line, 
+
+x = np.linspace(0, 4, 1000) 
+t = np.linspace(0, 1, 100)
+
+def animate(i):  
+	y = np.sin(2 * np.pi * (x - 2*t[i])) 
+	line.set_data(x, y) 
+	
+	return line, 
+
+anim = FuncAnimation(fig, animate, 
+					init_func = init, 
+					frames = len(t), 
+					interval = 20, 
+					) 
+
+anim.save('sine_wave_using_FuncAnimation.mp4')
+```
 
 
 

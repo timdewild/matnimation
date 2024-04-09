@@ -119,7 +119,7 @@ def wave(x,t):
 
     return y
 ```
-We will animate the travelling sine wave using the `AnimatedLine` artist, which requires the $y$ coordinates of the line at all timesteps in the animation. That is, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. The data must be passed into `AnimatedLine` as a 2D numpy array of shape `(M, N)`, which we will call `ydata`. 
+We will animate the travelling sine wave using the `AnimatedLine` artist, which requires the $y$ coordinates of the line at all timesteps in the animation. That is, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. The data must be passed into `AnimatedLine` as a 2D numpy array of shape `(M, N)`, which we will call `ydata` and schematically looks like this:
 ```math
 \begin{equation}
     \textsf{ydata}=\left( 
@@ -140,8 +140,11 @@ We will animate the travelling sine wave using the `AnimatedLine` artist, which 
     \right)
 \end{equation}
 ```
-
-This means that `ydata[:,i]` gives the full wavefrom $y(x,t_i)$ at the $i$-th timestep. We use `func_ab_to_grid` from the `HelperFunctions` class to generate the data.
+This means that `ydata[:,i]` gives the full wavefrom at the $i$-th timestep:
+```math
+\textsf{ydata[:,i]} = [y(x_1,t_1), \dots, y(x_M,t_1)]. 
+```
+We use `func_ab_to_grid` from the `HelperFunctions` class to generate the `ydata`.
 
 ```python
 ydata = HelperFunctions.func_ab_to_grid(

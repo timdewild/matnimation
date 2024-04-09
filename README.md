@@ -124,16 +124,16 @@ We will animate the travelling sine wave using the `AnimatedLine` artist, which 
 \begin{equation}
     \textsf{ydata}=\left( 
     \left[\begin{array}{c}
-    y(x_0, t_0)\\
+    y(x_1, t_1)\\
     \vdots \\
-    y(x_M, t_0)
+    y(x_M, t_1)
     \end{array}\right]
     \begin{array}{c}
     \\
     \cdots\\
     \end{array}
     \left[\begin{array}{c}
-    y(x_0, t_N) \\
+    y(x_1, t_N) \\
     \vdots \\
     y(x_M, t_N)
     \end{array}\right]

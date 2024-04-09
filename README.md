@@ -128,11 +128,10 @@ We will animate the travelling sine wave using the `AnimatedLine` artist, which 
     \vdots \\
     y(x_M, t_0)
     \end{array}\right]
-    \left[\begin{array}{c}
+    \begin{array}{c}
+    \\
     \cdots\\
-    \cdots\\
-    \cdots\\
-    \end{array}\right]
+    \end{array}
     \left[\begin{array}{c}
     y(x_0, t_N) \\
     \vdots \\

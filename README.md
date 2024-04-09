@@ -137,14 +137,14 @@ Next, we constuct a canvas on which the artists, to be constructed in the next s
 canvas = SingleCanvas(
     figsize = (4,4),
     dpi = 400,
-    time_array = time_array,
+    time_array = t_array,
     axis_limits = [0, 4, -2, 2],
     axis_labels = ['$x$', '$y(x,t)$']
 )
 ```
 
 > [!IMPORTANT]
-> The canvas should be thought of as the stage on which animated (and static) objects live over time. Therefore, it takes the `time_array` as argument. The dynamic behavior of all animated artists should be defined for all timesteps in `time_array`. 
+> The canvas should be thought of as the stage on which animated (and static) objects live over time. Therefore, it takes the `time_array` as argument. The dynamic behavior of all animated artists should be defined for all timesteps in `t_array`. 
 
 
 

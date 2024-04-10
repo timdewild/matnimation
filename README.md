@@ -76,7 +76,7 @@ The working principle of `matnimation` revolves around three fundamental objects
 
     The canvas and (collection of) artists are rendered into an actual animation (video) using the `Animation` class. This class runs Matplotlib's `animation.FuncAnimation` under it's hood ([docs](https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation)). 
 
-https://github.com/timdewild/matnimation/assets/93600756/6388ec0b-f749-44fc-9153-2bec5a076cb2
+https://github.com/timdewild/matnimation/assets/93600756/50f7ada2-e2df-4224-ab1e-6d708f25f6c0
 
 ## Example Workflow
 Now we are in the position to describe how a simple animation would be constructed using `matnimation` in four steps. More complex animations will still follow the same steps. In this example, shown above, we animate a particle that follows the following parametric trajectory:

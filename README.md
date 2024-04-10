@@ -79,13 +79,13 @@ The working principle of `matnimation` revolves around three fundamental objects
 https://github.com/timdewild/matnimation/assets/93600756/6388ec0b-f749-44fc-9153-2bec5a076cb2
 
 ## Example Workflow
-Now we are in the position to describe how a simple animation would be constructed using `matnimation` in four steps. More complex animations will still follow the same steps. In this example, shown above, we animate a travelling sine wave, described by:
+Now we are in the position to describe how a simple animation would be constructed using `matnimation` in four steps. More complex animations will still follow the same steps. In this example, shown above, we animate a particle that follows the following parametric trajectory:
 ```math
 \begin{equation}
-    y(x,t) = \sin (kx-\omega t),
+    x(t) = t/2 \sin(t),\quad\quad y(t) = t/2 \cos(t)
 \end{equation}
 ```
-where we take the wavenumber $k=2\pi$ and radial frequency $\omega = 4\pi$.
+where we take the wavenumber we take the time paramter to be in the range $t\in[0,4\pi]$. We want to (a) show the particle at every moment in time and (b) add a trace (line) of the completed part of the trajectory so far. We will animate them using the `AnimatedSingleScatter` and `AnimatedTrace` artists, respectively. 
 
 ### Step 0: Import Dependencies
 We start by importing all the dependencies.
@@ -99,104 +99,77 @@ sys.path.append(os.path.abspath('matnimation'))
 
 from matnimation.src.matnimation.animation.animation import Animation
 from matnimation.src.matnimation.canvas.single_canvas import SingleCanvas
-from matnimation.src.matnimation.artist.animated.animated_line import AnimatedLine
-from matnimation.src.matnimation.helper.helper_functions import HelperFunctions
+from matnimation.src.matnimation.artist.animated.animated_single_scatter import AnimatedSingleScatter
+from matnimation.src.matnimation.artist.animated.animated_trace import AnimatedTrace
 ```
 
 ### Step 1: Generating Data
-We have to set the spatial and temporal boundaries of our animation, we take $x\in[0,4]$ and $t\in[0,1]$. Those intervals are descretized by the arrays:
+We discretize the temporal interval into 200 timesteps in `t_array`.
 ```python
-N, M = 1000, 100
-x_array = np.linspace(0,4,M)
-t_array = np.linspace(0,1,N)
-```
-The animation should be thought of as a collection of frames, one for each time value in `t_array`, meaning we have a total of 100 frames in this animation. Then we define a function that describes the travelling sine wave:
-```python
-def wave(x,t):
-    """Returns the traveling waveform y(x,t) = sin(kx - wt) with k = 2pi and w = 4pi."""
+N_time_steps = 200
+t_array = np.linspace(0, 4*np.pi, N_time_steps)
 
-    y = np.sin(2 * np.pi * (x - 2*t)) 
+def trajectory(t):
+    return 0.5 * t * np.sin(t), 0.5 * t * np.cos(t)
 
-    return y
+x_trajectory, y_trajectory = trajectory(t_array)
 ```
-We will animate the travelling sine wave using the `AnimatedLine` artist, which requires the $y$ coordinates of the line at all timesteps in the animation. That is, we have to find the waveform $y(x,t)$ for all $x$ in `x_array` at all timesteps $t$ in `t_array`. The data must be passed into `AnimatedLine` as a 2D numpy array of shape `(M, N)`, which we will call `ydata` and schematically looks like this:
-```math
-\begin{equation}
-    \textsf{ydata}=\left( 
-    \left[\begin{array}{c}
-    y(x_1, t_1)\\
-    \vdots \\
-    y(x_M, t_1)
-    \end{array}\right]
-    \begin{array}{c}
-    \\
-    \cdots\\
-    \end{array}
-    \left[\begin{array}{c}
-    y(x_1, t_N) \\
-    \vdots \\
-    y(x_M, t_N)
-    \end{array}\right]
-    \right)
-\end{equation}
-```
-This means that `ydata[:,i]` gives the full wavefrom at the $i$-th timestep:
-```math
-[y(x_1,t_i), \dots, y(x_M,t_i)]. 
-```
-We use `func_ab_to_grid` from the `HelperFunctions` class to generate the `ydata`.
-```python
-ydata = HelperFunctions.func_ab_to_grid(
-    func = wave,
-    a = x_array,
-    b = t_array
-    )
-```
+The animation should be thought of as a collection of frames, one for each time value in `t_array`, meaning we have a total of 200 frames in this animation. As mentioned, we represent the particle as a moving dot using the `AnimatedSingleScatter` artist and the trace using the `AnimatedTrace`. The data (`x_data` and `y_data` parameters) that must be provided to these artists are the same. 
 
 > [!NOTE]
-> Given a mathematical function of two parameters $f(a,b)$ called `func(a,b)` and two arrays `a_array` and `b_array`, `func_ab_to_grid` returns a 2D array with entry `[i,j]` corresponding to `func(a_array[i], b_array[j])`.
+> The format in which data must be provided to artists differs: see the docstring of the artist in question to find out how data must be provided. 
 
 ### Step 2: Define Canvas
 Next, we constuct a canvas on which the artists, to be constructed in the next step, live. We make a simple animation with only a single panel, so we use `SingleCanvas`. We set the `figsize` in inches, the resolution `dpi` in dots-per-inch, the `time_array`, the `axis_limits` and the `axis_labels`. Simple mathmetical expressions are passed into the labels via the double dollar syntax `$$`. 
 
 ```python
 canvas = SingleCanvas(
-    figsize = (4,4),
+    figsize = (4, 5),
     dpi = 400,
     time_array = t_array,
-    axis_limits = [0, 4, -2, 2],
-    axis_labels = ['$x$', '$y(x,t)$']
+    axis_limits = [-2*np.pi, 2*np.pi, -2*np.pi, 2*np.pi],
+    axis_labels = ['$x$', '$y$']
 )
+
+canvas.set_axis_properties(aspect = 'equal')
 ```
+In the last line, we have set the aspect ratio of the axes to `'equal'`, so that it is visualized in the correct proportion.
 
 > [!IMPORTANT]
 > The canvas should be thought of as the stage on which animated (and static) objects live over time. Therefore, it takes the `time_array` as argument. The dynamic behavior of all animated artists should be defined for all timesteps in `t_array`. 
 
 ### Step 3: Construct Artists
-Now we are in the position to construct the artists. In our example we only have one artist, the `AnimatedLine` representing the travelling wave. 
+Now we are in the position to construct the artists: the particle and trace. 
 
 ```python
-travelling_wave = AnimatedLine(
-    name = 'Travelling Wave',
-    x_data = x_array,
-    y_data = ydata,
+particle = AnimatedSingleScatter(
+    name = 'Particle',
+    x_data = x_trajectory,
+    y_data = y_trajectory,
+)
+
+trajectory_trace = AnimatedTrace(
+    name = 'Trajectory Trace',
+    x_data = x_trajectory,
+    y_data = y_trajectory
 )
 ```
 
-We provide a `name`, the `x_data` which is simply `x_array` and pass the waveform at all timesteps via `ydata`. In this case, only the $y$ coordinates of the animated line change over time and the $x$ coordinates are fixed. This need not be the case, if the latter also change you can pass a 2D array to `x_data` of the same format as `ydata`. Now we add `travelling_wave` to the canvas via:
+After construction, we add the artists to the canvas via:
 
 ```python
-canvas.add_artist(travelling_wave)
+canvas.add_artist(particle)
+canvas.add_artist(trajectory_trace)
 ```
 
-In this example we only added one artist to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like. 
+In this example we only added tow artists to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like. 
 
 ### Step 4: Construct and Render Animation
-Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N * interval` milliseconds. In our case, we have `N=100` timesteps or frames and take the interval to be 20 ms, so that our final animation is 2 seconds. 
+Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N * interval` milliseconds. In our case, we have `N_timesteps=200` steps or frames and take the interval to be 20 ms, so that our final animation is 2 seconds. 
 
 ```python
 animation = Animation(canvas, interval = 20)
-animation.render('sine_wave_using_matnimation.mp4')
+animation.render('parametric_particle_using_matnimation.mp4')
 ```
 
 ### Full Script and Comparison
@@ -213,43 +186,44 @@ sys.path.append(os.path.abspath('matnimation'))
 
 from matnimation.src.matnimation.animation.animation import Animation
 from matnimation.src.matnimation.canvas.single_canvas import SingleCanvas
-from matnimation.src.matnimation.artist.animated.animated_line import AnimatedLine
-from matnimation.src.matnimation.helper.helper_functions import HelperFunctions
+from matnimation.src.matnimation.artist.animated.animated_single_scatter import AnimatedSingleScatter
+from matnimation.src.matnimation.artist.animated.animated_trace import AnimatedTrace
 
-M, N = 1000, 100
-x_array = np.linspace(0, 4, M) 
-t_array = np.linspace(0, 1, N)
+N_time_steps = 200
+t_array = np.linspace(0, 4*np.pi, N_time_steps)
 
-def wave(x,t):
-    """Returns the traveling waveform y(x,t) = sin(kx - wt) with k = 2pi and w = 4pi."""
-    y = np.sin(2 * np.pi * (x - 2*t)) 
-    return y
+def trajectory(t):
+    return 0.5 * t * np.sin(t), 0.5 * t * np.cos(t)
 
-ydata = HelperFunctions.func_ab_to_grid(
-    func = wave,
-    a = x_array,
-    b = t_array
-    )
+x_trajectory, y_trajectory = trajectory(t_array)
 
 canvas = SingleCanvas(
-    figsize = (6.4, 4.8),
+    figsize = (4, 5),
     dpi = 400,
     time_array = t_array,
-    axis_limits = [0, 4, -2, 2],
-    axis_labels = ['$x$', '$y(x,t)$']
+    axis_limits = [-2*np.pi, 2*np.pi, -2*np.pi, 2*np.pi],
+    axis_labels = ['$x$', '$y$']
 )
 
-travelling_wave = AnimatedLine(
-    name = 'Travelling Wave',
-    x_data = x_array,
-    y_data = ydata,
+canvas.set_axis_properties(aspect = 'equal')
+
+particle = AnimatedSingleScatter(
+    name = 'Particle',
+    x_data = x_trajectory,
+    y_data = y_trajectory,
 )
 
-canvas.add_artist(travelling_wave)
+trajectory_trace = AnimatedTrace(
+    name = 'Trajectory Trace',
+    x_data = x_trajectory,
+    y_data = y_trajectory
+)
+
+canvas.add_artist(particle)
+canvas.add_artist(trajectory_trace)
 
 animation = Animation(canvas, interval = 20)
-animation.render('sine_wave_using_matnimation.mp4')
-
+animation.render('parametric_particle_using_matnimation.mp4')
 ```
 
 #### The `matplotlib` Way
@@ -260,47 +234,50 @@ from matplotlib.animation import FuncAnimation
 
 # initializing a figure and axis
 fig, axis = plt.subplots() 
-print(fig.get_size_inches())
+fig.set_size_inches(4,5)
 
 # marking the x-axis and y-axis 
-axis.set_xlim(0,4)
-axis.set_ylim(-2,2)
+axis.set_xlim(-2 * np.pi, 2 * np.pi)
+axis.set_ylim(-2 * np.pi, 2 * np.pi)
+
+# set aspect ratio
+axis.set_aspect('equal')
 
 # update grid and bkg facecolor
-axis.grid(True, color=u'white', lw=1.5, zorder=0)
+axis.grid(
+	True, 
+	color=u'white', 
+	lw=1.5, 
+	zorder=0
+	)
 axis.set_facecolor('#EEEEEE')
 
 # set x and y labels
 axis.set_xlabel('$x$')
-axis.set_ylabel('$y(x,t)$')
+axis.set_ylabel('$y$')
 
-# initializing a line object/artist 
-line, = axis.plot([], []) 
+# initializing dot and trace 
+dot = axis.scatter([], [], zorder = 3) 
+trace, = axis.plot([], [])
 
-# data which the line will 
-# contain (x, y) 
-def init(): 
-    line.set_data([], []) 
-    return line, 
+N_time_steps = 200
+t = np.linspace(0, 4*np.pi, N_time_steps)
 
-x = np.linspace(0, 4, 1000) 
-t = np.linspace(0, 1, 100)
+x_trajectory = 0.5 * t * np.sin(t)
+y_trajectory = 0.5 * t * np.cos(t)
 
-def animate(i):  
-    y = np.sin(2 * np.pi * (x - 2*t[i])) 
-    line.set_data(x, y) 
+def animate(i):   
+	dot.set_offsets(np.column_stack([x_trajectory[i], y_trajectory[i]])) 
+	trace.set_data(x_trajectory[:i+1], y_trajectory[:i+1])
 	
-    return line, 
+	return dot, trace,
 
-anim = FuncAnimation(
-    fig, 
-    animate, 
-    init_func = init, 
-    frames = len(t), 
-    interval = 20, 
-    ) 
+anim = FuncAnimation(fig, animate,  
+					frames = len(t), 
+					interval = 20, 
+					) 
 
-anim.save('sine_wave_using_FuncAnimation.mp4')
+anim.save('parametric_particle_using_FuncAnimation.mp4')
 ```
 
 

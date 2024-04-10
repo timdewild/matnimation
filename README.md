@@ -252,7 +252,7 @@ animation.render('sine_wave_using_matnimation.mp4')
 
 ```
 
-#### The `Matplotlib` Way
+#### The `matplotlib` Way
 ```python
 from matplotlib import pyplot as plt 
 import numpy as np 

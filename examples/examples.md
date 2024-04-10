@@ -1,11 +1,17 @@
+# Contents
+We provide tutorials, with detailed steps on the `matnimation` workflow, and examples with source code. 
 
-# Examples
+#### Tutorials
 - [Oscillating Particle](#oscillating-particle)
+- [Travelling Sine Wave](#travelling-sine-wave)
+
+#### Examples
 - [Travelling Waves](#travelling-waves)
 - [Rotating Vectors](#rotating-vectors)
 - [Lissajous Curves](#lissajous-curves)
 - [Decaying 2D Gaussian](#decaying-2d-gaussian)
 
+# Tutorials
 ## Oscillating Particle
 Animation of a particle that moves along a trajectory using the `AnimatedSingleScatter` artist. The trajectory is given by:
 ```math
@@ -18,8 +24,20 @@ over the time interval $t\in [0,2\pi]$. Go to the [code](oscillating_particle/os
 
 https://github.com/timdewild/matnimation/assets/93600756/d51b1a3f-6b0b-476b-8277-93d33d578183
 
+# Travelling Sine Wave
+Animation of a travelling sine wave using the `AnimatedLine` artist. The wave profile $y(x,t)$ is given by:
+```math
+\begin{equation}
+    y(x,t) = \sin (kx-\omega t),
+\end{equation}
+```
+where we take the wavenumber $k=2\pi$ and radial frequency $\omega = 4\pi$. Go to the [code](travelling_sine_wave/travelling_sine_wave.py) or the [tutorial](travelling_sine_wave/travelling_sine_wave_tutorial.py). 
+
+https://github.com/timdewild/matnimation/assets/93600756/6388ec0b-f749-44fc-9153-2bec5a076cb2
+
+# Examples
 ## Travelling Waves
-Animation of travelling waves using the `AnimatedLine` artist. The waves are of the form:
+Animation of travelling waves using the `AnimatedLine` artist, this is an extension of the [Travelling Sine Wave](#travelling-sine-wave) tutorial. The waves are of the form:
 ```math
 \begin{equation}
 \Psi(x,t) = A\sin(kx-\omega t),

@@ -76,16 +76,16 @@ The working principle of `matnimation` revolves around three fundamental objects
 
     The canvas and (collection of) artists are rendered into an actual animation (video) using the `Animation` class. This class runs Matplotlib's `animation.FuncAnimation` under it's hood ([docs](https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation)). 
 
-https://github.com/timdewild/matnimation/assets/93600756/50f7ada2-e2df-4224-ab1e-6d708f25f6c0
-
 ## Example Workflow
-Now we are in the position to describe how a simple animation would be constructed using `matnimation` in four steps. More complex animations will still follow the same steps. In this example, shown above, we animate a particle that follows the following parametric trajectory:
+Now we are in the position to describe how a simple animation would be constructed using `matnimation` in four steps. More complex animations will still follow the same steps. In this example, shown below, we animate a particle that follows the following parametric trajectory:
 ```math
 \begin{equation}
     x(t) = t/2 \sin(t),\quad\quad y(t) = t/2 \cos(t)
 \end{equation}
 ```
 where we take the wavenumber we take the time paramter to be in the range $t\in[0,4\pi]$. We want to (a) show the particle at every moment in time and (b) add a trace (line) of the completed part of the trajectory so far. We will animate them using the `AnimatedSingleScatter` and `AnimatedTrace` artists, respectively. 
+
+https://github.com/timdewild/matnimation/assets/93600756/50f7ada2-e2df-4224-ab1e-6d708f25f6c0
 
 ### Step 0: Import Dependencies
 We start by importing all the dependencies.
@@ -165,7 +165,7 @@ canvas.add_artist(trajectory_trace)
 In this example we only added tow artists to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like. 
 
 ### Step 4: Construct and Render Animation
-Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N * interval` milliseconds. In our case, we have `N_timesteps=200` steps or frames and take the interval to be 20 ms, so that our final animation is 2 seconds. 
+Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N * interval` milliseconds. In our case, we have `N_timesteps=200` steps or frames and take the interval to be 20 ms, so that our final animation is 4 seconds. 
 
 ```python
 animation = Animation(canvas, interval = 20)

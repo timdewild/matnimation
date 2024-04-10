@@ -31,7 +31,7 @@ Animation of a travelling sine wave using the `AnimatedLine` artist. The wave pr
     y(x,t) = \sin (kx-\omega t),
 \end{equation}
 ```
-where we take the wavenumber $k=2\pi$ and radial frequency $\omega = 4\pi$. Go to the [code](travelling_sine_wave/travelling_sine_wave.py) or the [tutorial](travelling_sine_wave/travelling_sine_wave_tutorial.py). 
+where we take the wavenumber $k=2\pi$ and radial frequency $\omega = 4\pi$. Go to the [code](travelling_sine_wave/travelling_sine_wave.py) or the [tutorial](travelling_sine_wave/travelling_sine_wave_tutorial.md). 
 
 https://github.com/timdewild/matnimation/assets/93600756/6388ec0b-f749-44fc-9153-2bec5a076cb2
 

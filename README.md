@@ -267,15 +267,16 @@ x_trajectory = 0.5 * t * np.sin(t)
 y_trajectory = 0.5 * t * np.cos(t)
 
 def animate(i):   
-	dot.set_offsets(np.column_stack([x_trajectory[i], y_trajectory[i]])) 
-	trace.set_data(x_trajectory[:i+1], y_trajectory[:i+1])
+    dot.set_offsets(np.column_stack([x_trajectory[i], y_trajectory[i]])) 
+    trace.set_data(x_trajectory[:i+1], y_trajectory[:i+1])
 	
-	return dot, trace,
+    return dot, trace,
 
-anim = FuncAnimation(fig, animate,  
-					frames = len(t), 
-					interval = 20, 
-					) 
+anim = FuncAnimation(
+    fig, animate,  
+    frames = len(t), 
+    interval = 20, 
+	) 
 
 anim.save('parametric_particle_using_FuncAnimation.mp4')
 ```

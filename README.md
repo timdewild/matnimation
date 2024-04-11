@@ -91,7 +91,7 @@ The working principle of `matnimation` revolves around three fundamental objects
 Now we are in the position to describe how a simple animation would be constructed using `matnimation` in four steps. More complex animations will still follow the same steps. In this example, shown below, we animate a particle that follows the following parametric trajectory:
 ```math
 \begin{equation}
-    x(t) = t/2 \sin(t),\quad\quad y(t) = t/2 \cos(t)
+    x(t) = \frac{1}{2}t \sin(t),\quad\quad y(t) = \frac{1}{2}t \cos(t)
 \end{equation}
 ```
 where we take the wavenumber we take the time paramter to be in the range $t\in[0,4\pi]$. We want to (a) show the particle at every moment in time and (b) add a trace (line) of the completed part of the trajectory so far. We will animate them using the `AnimatedSingleScatter` and `AnimatedTrace` artists, respectively. 

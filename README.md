@@ -10,8 +10,7 @@ A wrapper to quickly make Matplotlib animations.
     - [Three Building Blocks](#three-building-blocks)
     - [Example Workflow](#example-workflow)
     - [Advantages of `matnimation`](#advantages-of-matnimation)
-
-
+- [Tutorials & Examples](#tutorials-and-examples)
 
 > [!WARNING]
 > This README file is not complete yet, but will be updated soon! Take a sneak peak at the [examples](./examples/examples.md)!
@@ -313,47 +312,5 @@ We note a number of differences in the approaches above:
 
 - **Static vs Animated Artists** In Matplotlib's approach, there is no clear distinction between static and animated artists. More specifically, to find out whether an artist is animated or not, one should check if the artist is updated in the animation function or not. However, already from the creation of a static artist, it should be clear that it does not change during the animation. In `matnimation`, this distinction between an `AnimatedArtist` and `StaticArtist` is made very apparent already in terms of naming. 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Examples
-Examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. 
+# Tutorials and Examples
+Tutorials and examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. 

@@ -278,7 +278,7 @@ axis.set_xlabel('$x$')
 axis.set_ylabel('$y$')
 
 # initializing dot and trace 
-dot = axis.scatter([], [], zorder = 3) 
+particle = axis.scatter([], [], zorder = 3) 
 trace, = axis.plot([], [])
 
 N_time_steps = 200
@@ -288,10 +288,10 @@ x_trajectory = 0.5 * t * np.sin(t)
 y_trajectory = 0.5 * t * np.cos(t)
 
 def animate(i):   
-    dot.set_offsets(np.column_stack([x_trajectory[i], y_trajectory[i]])) 
+    particle.set_offsets(np.column_stack([x_trajectory[i], y_trajectory[i]])) 
     trace.set_data(x_trajectory[:i+1], y_trajectory[:i+1])
 	
-    return dot, trace,
+    return particle, trace,
 
 anim = FuncAnimation(
     fig, animate,  
@@ -305,11 +305,13 @@ anim.save('parametric_particle_using_FuncAnimation.mp4')
 ## Comparing the Two Approaches
 We note a number of differences in the approaches above:
 
-- **Scalability** In the Matplotlib approach, animated artists are constructed in a two-step process. First they are initialized and added to the figure. Only after that, in the `animate()` function, their dynamic behavior is specified (i.e. how they change from frame to frame). For multiple animated artists, the function quickly becomes extensive and difficult to read. In `matnimation`, the dynamic behavior of the artists is defined when they are instantiated. Under the hood of the `Animation` class, the equivalent of the `animate()` function is created automatically. Therefore, multiple artists can be added in systematic and clear way, increasing scalability.
+- **Scalability** In the Matplotlib approach, animated artists are constructed in a two-step process. First they are initialized and added to the figure. Only after that, in the `animate()` function, their dynamic behavior is specified (i.e. how they change from frame to frame). For multiple animated artists, the function quickly becomes extensive and difficult to read. In `matnimation`, the dynamic behavior of the artists is defined when they are instantiated. Under the hood of `matnimation`'s `Animation` class, the `animate()` function is created automatically. Therefore, multiple artists can be added in systematic and clear way, increasing scalability.
 
-- **Consistency** In the Matplotlib approach, the dynamic behavior of the animated artists is defined explicitly in `animate()` via `set_` methods. However, the naming of these methods is not consistent. For the `dot`, this method is called `set_offsets()` and for the trace it is called `set_data`. Furthermore, the method signatures are not consistent as `set_offsets()` takes one 2D array as input, while `set_data()` takes two 1D arrays as arguments. By defining the dynamic behavior of the animated artists as they are created, the user does not have to deal with the naming and signature inconsistencies of the `set_` methods. 
+- **Consistency** There is another, more practical reason, why automatic creation of the `animate()` is advantageous. In Matplotlib's `animate()` function, the dynamic behavior of artists is defined via `set_` methods. However, the naming of these methods is not consistent from artist to artist. Take the example above: for the `particle`, the method is called `set_offsets()` and for the `trace` it is called `set_data()`. Furthermore, the method signatures are not consistent as `set_offsets()` takes one 2D array as input, while `set_data()` takes two 1D arrays as arguments. By creating the `animate()` function automatically under the hood of `Animation`, the user does not have to deal with the naming and signature inconsistencies of the `set_` methods.
 
-- **Cohesion** Although not immediately appararent from the example above, in practice it often happens for more complex animations that the `animate()` function deals with both _generating_ the data (e.g. calculating the new position of a particle) and _updating_ the artist with this data (see e.g. [this](https://matplotlib.org/stable/gallery/animation/double_pendulum.html) example). An example would be an `animate()` function that both _calculates_ the new position of a particle and _sets_ this new position. However, strictly speaking the function should be only concerned with updating the position of the particle from frame to frame, not with the generating of the actual data. In `matnimation`, all data of an animated artist is calculated beforehand and then fed to the `AnimatedArtist`. That is,  the two tasks are clearly separated, leading to more cohesion.
+- **Cohesion** Although not immediately appararent from the example above, in practice it often happens for more complex animations that the `animate()` function deals with both _generating_ the data (e.g. calculating the new position of a particle) and _updating_ the artist with this data (see e.g. [this](https://matplotlib.org/stable/gallery/animation/double_pendulum.html) example). However, strictly speaking the function should be only concerned with updating the animated artist from frame to frame and not with the generation of the data that is used to do this. In `matnimation`, all data of an animated artist is calculated beforehand and then fed to the `AnimatedArtist`. That is, the two tasks are clearly separated, leading to more cohesion.
+
+- **Static vs Animated Artists** In Matplotlib's approach, there is no clear distinction between static and animated artists. More specifically, to find out whether an artist is animated or not, one should check if the artist is updated in the `animate()` function or not. However, already from the creation of a static artist, it should be clear that it does not change during the animation. In `matnimation`, this distinction between an `AnimatedArtist` and `StaticArtist` is made very apparent already in terms of naming. 
 
 
 

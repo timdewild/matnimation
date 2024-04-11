@@ -12,9 +12,6 @@ A wrapper to quickly make Matplotlib animations.
     - [Advantages of `matnimation`](#advantages-of-matnimation)
 - [Tutorials & Examples](#tutorials-and-examples)
 
-> [!WARNING]
-> This README file is not complete yet, but will be updated soon! Take a sneak peak at the [examples](./examples/examples.md)!
-
 # Installation
 `matnimation` is not an official python package that can be installed locally. Instead, you have two options to use `matnimation` yourself. 
 

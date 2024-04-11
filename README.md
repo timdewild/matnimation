@@ -2,6 +2,17 @@
 
 A wrapper to quickly make Matplotlib animations. 
 
+- [Installation](#installation)
+    - [Option 1: Cloning Repository](#option-1-cloning-repository)
+    - [Option 2: Git Submodules](#option-2-git-submodules)
+    - [Importing the Modules](#importing-the-modules)
+- [Methodology and Usage](#methodology-and-usage)
+    - [Three Building Blocks](#three-building-blocks)
+    - [Example Workflow](#example-workflow)
+    - [Advantages of `matnimation`](#advantages-of-matnimation)
+
+
+
 > [!WARNING]
 > This README file is not complete yet, but will be updated soon! Take a sneak peak at the [examples](./examples/examples.md)!
 
@@ -104,7 +115,7 @@ from matnimation.src.matnimation.artist.animated.animated_trace import AnimatedT
 ```
 
 ### Step 1: Generating Data
-We discretize the temporal interval into 200 timesteps in `t_array`.
+We discretize the temporal interval into 200 timesteps in `t_array`. For all these timesteps, we compute the trajectory of the particle via the function `trajectory(t)`. 
 ```python
 N_time_steps = 200
 t_array = np.linspace(0, 4*np.pi, N_time_steps)
@@ -172,11 +183,15 @@ animation = Animation(canvas, interval = 20)
 animation.render('parametric_particle_using_matnimation.mp4')
 ```
 
-### Full Script and Comparison
-Below, we show the full content of `animation.py` and compare it to the conventional way in which animations are made using Matplotlib, as described in the [docs](https://matplotlib.org/stable/users/explain/animations/animations.html).
+# Advantages of `matnimation`
+Below, we show the full workflow and compare it to the conventional approach in which animations are made using Matplotlib, as described in the [docs](https://matplotlib.org/stable/users/explain/animations/animations.html).
 
-#### The `matnimation` Way
+## The `matnimation` Approach
+The complete contents of the file `animation.py` are shown below, highlighting the four sequential steps required to construct the animation. 
+
 ```python
+
+# Step 0: Import Dependencies 
 import numpy as np
 import sys
 import os
@@ -189,6 +204,7 @@ from matnimation.src.matnimation.canvas.single_canvas import SingleCanvas
 from matnimation.src.matnimation.artist.animated.animated_single_scatter import AnimatedSingleScatter
 from matnimation.src.matnimation.artist.animated.animated_trace import AnimatedTrace
 
+# Step 1: Generating Data
 N_time_steps = 200
 t_array = np.linspace(0, 4*np.pi, N_time_steps)
 
@@ -197,6 +213,7 @@ def trajectory(t):
 
 x_trajectory, y_trajectory = trajectory(t_array)
 
+# Step 2: Define Canvas
 canvas = SingleCanvas(
     figsize = (4, 5),
     dpi = 400,
@@ -207,6 +224,7 @@ canvas = SingleCanvas(
 
 canvas.set_axis_properties(aspect = 'equal')
 
+# Step 3: Construct Artists
 particle = AnimatedSingleScatter(
     name = 'Particle',
     x_data = x_trajectory,
@@ -222,11 +240,14 @@ trajectory_trace = AnimatedTrace(
 canvas.add_artist(particle)
 canvas.add_artist(trajectory_trace)
 
+# Step 4: Construct and Render Animation
 animation = Animation(canvas, interval = 20)
 animation.render('parametric_particle_using_matnimation.mp4')
 ```
 
-#### The `matplotlib` Way
+## The `matplotlib` Approach
+Now we show how you can make the exact same animation, using the conventional approach as described in Matplotlib's [animation documentation](https://matplotlib.org/stable/users/explain/animations/animations.html). The basic idea is to generate a `Figure` object, add `Artist` objects to this figure instance and write an `animate()` function that encodes how the artists change from frame to frame. Both the figure instance and `animate()` are then passed to `FuncAnimation`, which returns the animation object that can be saved as a video file. 
+
 ```python
 from matplotlib import pyplot as plt 
 import numpy as np 
@@ -280,6 +301,17 @@ anim = FuncAnimation(
 
 anim.save('parametric_particle_using_FuncAnimation.mp4')
 ```
+
+## Comparing the Two Approaches
+We note a number of differences in the approaches above:
+
+- In the Matplotlib approach, animated artists are constructed in a two-step process. First they are initialized and added to the figure. Only after that, in the `animate()` function, their dynamic behavior is specified (i.e. how they change from frame to frame). In `matnimation`, the dynamic behavior of the artists is defined when they are instantiated. Under the hood of the `Animation` class, the equivalent of the `animate()` function is created automatically.
+
+- In the Matplotlib approach, the dynamic behavior of the animated artists is defined explicitly in `animate()` via `set_` methods. However, the naming of these methods is not consistent. For the `dot`, this method is called `set_offsets()` and for the trace it is called `set_data`. Furthermore, the method signatures are not consistent as `set_offsets()` takes one 2D array as input, while `set_data()` takes two 1D arrays as arguments. By defining the dynamic behavior of the animated artists as they are created, the user does not have to deal with the naming and signature inconsistencies of the `set_` methods. 
+
+- Although not emmdiatialy appararent from the example above, in practice it often happens for more complex animations that the `animate()` function deals with both _generating_ the data (e.g. calculating the new position of a particle) and _updating_ the artist with this data. An example would be an `animate()` function that both _calculates_ the new position of a particle and _sets_ this new position. However, strictly speaking the function should be only concerned with updating the position of the particle from frame to frame, not with the generating of the actual data. In `matnimation`, all data of an animated artist is calculated beforehand and then fed to the `AnimatedArtist`. That is,  the two tasks are clearly separated, leading to more cohesion.
+
+
 
 
 

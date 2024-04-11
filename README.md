@@ -12,6 +12,7 @@ A wrapper to quickly make Matplotlib animations.
     - [Example Workflow](#example-workflow)
     - [Advantages of `matnimation`](#advantages-of-matnimation)
 - [Tutorials & Examples](#tutorials-and-examples)
+- [Projects using `matnimation`](#projects-using-matnimation)
 
 # Installation
 `matnimation` is not an official python package that can be installed locally. Instead, you have two options to use `matnimation` yourself. 
@@ -312,3 +313,10 @@ We note a number of differences in the approaches above:
 
 # Tutorials and Examples
 Tutorials and examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. 
+
+# Projects using `matnimation`
+Below, we list a number of projects that use `matnimation` to generate animations. 
+- [Ocean Tides Animation](https://github.com/timdewild/ocean-tides-animation)
+- [Fourier Series Epicycles](https://github.com/timdewild/fourier-series-epicycles)
+- [Heat Equation Rod](https://github.com/timdewild/heat-equation-rod)
+

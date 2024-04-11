@@ -1,5 +1,6 @@
-# matnimation
+![alt text](https://github.com/timdewild/matnimation/blob/main/header/header.png)
 
+# matnimation
 A wrapper to quickly make Matplotlib animations. 
 
 - [Installation](#installation)

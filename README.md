@@ -129,7 +129,7 @@ The animation should be thought of as a collection of frames, one for each time 
 > The format in which data must be provided to artists differs: see the docstring of the artist in question to find out how data must be provided. 
 
 ### Step 2: Define Canvas
-Next, we constuct a canvas on which the artists, to be constructed in the next step, live. We make a simple animation with only a single panel, so we use `SingleCanvas`. We set the `figsize` in inches, the resolution `dpi` in dots-per-inch, the `time_array`, the `axis_limits` and the `axis_labels`. Simple mathmetical expressions are passed into the labels via the double dollar syntax `$$`. 
+Next, we constuct a canvas on which the artists, to be constructed in the next step, live. We make a simple animation with only a single panel, so we use `SingleCanvas`. We set the `figsize` in inches, the resolution `dpi` in dots-per-inch, the `time_array`, the `axis_limits` and the `axis_labels`. Simple mathematical expressions are passed into the labels via the double dollar syntax `$$`. 
 
 ```python
 canvas = SingleCanvas(
@@ -171,7 +171,7 @@ canvas.add_artist(particle)
 canvas.add_artist(trajectory_trace)
 ```
 
-In this example we only added tow artists to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like. 
+In this example we only added two artists to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like. 
 
 ### Step 4: Construct and Render Animation
 Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N * interval` milliseconds. In our case, we have `N_timesteps=200` steps or frames and take the interval to be 20 ms, so that our final animation is 4 seconds. 
@@ -312,7 +312,7 @@ We note a number of differences in the approaches above:
 - **Static vs Animated Artists** - In Matplotlib's approach, there is no clear distinction between static and animated artists. More specifically, to find out whether an artist is animated or not, one should check if the artist is updated in the animation function or not. However, already from the creation of a static artist, it should be clear that it does not change during the animation. In `matnimation`, this distinction between an `AnimatedArtist` and `StaticArtist` is made very apparent already in terms of naming. 
 
 # Tutorials and Examples
-Tutorials and examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. 
+Tutorials and examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. After going over the example given above, we highly recommend the interested reader go through the tutorials to learn more about how `matnimation` works.  
 
 # Projects using `matnimation`
 Below, we list a number of projects that use `matnimation` to generate animations. 

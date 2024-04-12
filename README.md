@@ -303,7 +303,7 @@ anim.save('parametric_particle_using_FuncAnimation.mp4')
 ## Comparing the Two Approaches
 We note a number of differences in the approaches above:
 
-- **Scalability** - In the Matplotlib approach, animated artists are constructed in a two-step process. First they are initialized and added to the figure. Only after that, in the animation function `animate()`, their dynamic behavior is specified (i.e. how they change from frame to frame). For multiple animated artists, the function quickly becomes extensive and difficult to read. In `matnimation`, the dynamic behavior of the artists is defined when they are instantiated. Under the hood of `matnimation`'s `Animation` class, the animation function is created automatically. Therefore, multiple artists can be added in systematic and clear way, increasing scalability.
+- **Scalability** - In the Matplotlib approach, animated artists are constructed in a two-step process. First they are initialized and added to axes in the figure. Only after that, in the animation function `animate()`, their dynamic behavior is specified (i.e. how they change from frame to frame). For multiple animated artists and/or multiple axes, the function quickly becomes extensive and difficult to read. In `matnimation`, the dynamic behavior of the artists is defined when they are instantiated. Under the hood of `matnimation`'s `Animation` class, the animation function is created automatically. Therefore, multiple artists can be added in a systematic and clear way, increasing scalability. 
 
 - **Consistency** - There is another, more practical reason, why automatic creation of the animation function is advantageous. In Matplotlib's animation function, the dynamic behavior of artists is defined via `set_` methods. However, the naming of these methods is not consistent from artist to artist. Take the example above: for the `particle`, the method is called `set_offsets()` and for the `trace` it is called `set_data()`. Furthermore, the method signatures are not consistent as `set_offsets()` takes one 2D array as input, while `set_data()` takes two 1D arrays as arguments. By creating the animation function automatically under the hood of `Animation`, the user does not have to deal with the naming and signature inconsistencies of the `set_` methods.
 
@@ -319,4 +319,6 @@ Below, we list a number of projects that use `matnimation` to generate animation
 - [Ocean Tides Animation](https://github.com/timdewild/ocean-tides-animation)
 - [Fourier Series Epicycles](https://github.com/timdewild/fourier-series-epicycles)
 - [Heat Equation Rod](https://github.com/timdewild/heat-equation-rod)
+
+
 

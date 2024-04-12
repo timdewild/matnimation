@@ -171,7 +171,13 @@ canvas.add_artist(particle)
 canvas.add_artist(trajectory_trace)
 ```
 
-In this example we only added two artists to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like. 
+In this example we only added two artists to the canvas, but note that in this way you can systematically add as many artists to the canvas as you like.
+
+> [!TIP]
+> Before adding the artists to the canvas, you can change their styling properties via the `set_styling_properties()` method. For each kind of artist, the docstring tells you which keywords can be passed to this method. For example, for the trajectory trace, you could change the linewidth, linestyle and color via:
+```python
+trajectory_trace.set_styling_properties(linewidth = 1.5, linestyle = 'dotted', color = 'black')
+```
 
 ### Step 4: Construct and Render Animation
 Lastly, we construct an `Animation` object which takes the `canvas` as input, in addition to the `interval` keyword which specifies the time interval between succesive frames in milliseconds (ms). The default is set to 30 ms. We render the animation via the `render` method, which takes the filename (or filepath) as input. The final animation will have a duration of `N * interval` milliseconds. In our case, we have `N_timesteps=200` steps or frames and take the interval to be 20 ms, so that our final animation is 4 seconds. 

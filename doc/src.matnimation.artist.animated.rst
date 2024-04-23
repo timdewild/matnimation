@@ -1,12 +1,12 @@
 The ``AnimatedArtist`` Class and Subclasses
 =======================================
 
-.. automodule:: src.matnimation.artist.animated.animated_arrow
+.. automodule:: src.matnimation.artist.animated.animated_artist
    :members:
    :undoc-members:
    :show-inheritance:
 
-.. automodule:: src.matnimation.artist.animated.animated_artist
+.. automodule:: src.matnimation.artist.animated.animated_arrow
    :members:
    :undoc-members:
    :show-inheritance:

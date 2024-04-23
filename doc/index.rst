@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to matnimation's documentation!
+Welcome to matnimation's API documentation!
 =======================================
 This is the API documentation for ``matnimation``, a wrapper around Matplotlib to easily build animations. For tutorials and examples on what ``matnimation`` can do, check out the corresponding `GitHub repository <https://github.com/timdewild/matnimation>`_. 
 

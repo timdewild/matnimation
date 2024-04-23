@@ -12,6 +12,7 @@ A wrapper to quickly make Matplotlib animations.
     - [Example Workflow](#example-workflow)
     - [Advantages of `matnimation`](#advantages-of-matnimation)
 - [Tutorials & Examples](#tutorials-and-examples)
+- [API Documentation](#api-documentation)
 - [Projects using `matnimation`](#projects-using-matnimation)
 
 # Installation
@@ -319,6 +320,9 @@ We note a number of differences in the approaches above:
 
 # Tutorials and Examples
 Tutorials and examples are given in the folder `examples`. They are also listed in [this](./examples/examples.md) overview. After going over the example given above, we highly recommend the interested reader go through the tutorials to learn more about how `matnimation` works.  
+
+# API Documentation
+The `matnimation` API documentation can be found [here](https://timdewild.github.io/matnimation/). 
 
 # Projects using `matnimation`
 Below, we list a number of projects that use `matnimation` to generate animations. 

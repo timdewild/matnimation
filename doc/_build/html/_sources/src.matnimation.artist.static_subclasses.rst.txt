@@ -1,0 +1,14 @@
+.. autoclass:: src.matnimation.artist.static.static_circle.StaticCircle
+      :members:
+      :special-members: __init__
+      :show-inheritance:
+
+.. autoclass:: src.matnimation.artist.static.static_colorbar.StaticColorBar
+    :members:
+    :special-members: __init__
+    :show-inheritance:
+
+.. autoclass:: src.matnimation.artist.static.static_hlines.StaticHlines
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The AnimatedArtist Class and Subclasses &mdash; matnimation 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Canvas Class and Subclasses" href="src.matnimation.canvas.html" />
+    <link rel="prev" title="The StaticArtist Class and Subclasses" href="src.matnimation.artist.static.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            matnimation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.animation.html">The <code class="docutils literal notranslate"><span class="pre">Animation</span></code> Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.artist.html">The <code class="docutils literal notranslate"><span class="pre">BaseArtist</span></code> Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.artist.static.html">The <code class="docutils literal notranslate"><span class="pre">StaticArtist</span></code> Class and Subclasses</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The <code class="docutils literal notranslate"><span class="pre">AnimatedArtist</span></code> Class and Subclasses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_arrow.AnimatedArrow"><code class="docutils literal notranslate"><span class="pre">AnimatedArrow</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_arrow.AnimatedArrow.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedArrow.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_arrow.AnimatedArrow.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedArrow.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedArtist.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">AnimatedArtist.set_styling_properties()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist.update_visibility"><code class="docutils literal notranslate"><span class="pre">AnimatedArtist.update_visibility()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_circle.AnimatedCircle"><code class="docutils literal notranslate"><span class="pre">AnimatedCircle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_circle.AnimatedCircle.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedCircle.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_circle.AnimatedCircle.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedCircle.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse"><code class="docutils literal notranslate"><span class="pre">AnimatedEllipse</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedEllipse.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedEllipse.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow"><code class="docutils literal notranslate"><span class="pre">AnimatedImshow</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedImshow.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow.add_to_axes"><code class="docutils literal notranslate"><span class="pre">AnimatedImshow.add_to_axes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">AnimatedImshow.set_styling_properties()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedImshow.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_line.AnimatedLine"><code class="docutils literal notranslate"><span class="pre">AnimatedLine</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_line.AnimatedLine.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedLine.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_line.AnimatedLine.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedLine.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_polygon.AnimatedPolygon"><code class="docutils literal notranslate"><span class="pre">AnimatedPolygon</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_polygon.AnimatedPolygon.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedPolygon.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_polygon.AnimatedPolygon.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedPolygon.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver"><code class="docutils literal notranslate"><span class="pre">AnimatedQuiver</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedQuiver.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.add_to_axes"><code class="docutils literal notranslate"><span class="pre">AnimatedQuiver.add_to_axes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">AnimatedQuiver.set_styling_properties()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedQuiver.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_scatter.AnimatedScatter"><code class="docutils literal notranslate"><span class="pre">AnimatedScatter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_scatter.AnimatedScatter.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedScatter.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_scatter.AnimatedScatter.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedScatter.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter"><code class="docutils literal notranslate"><span class="pre">AnimatedSingleScatter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedSingleScatter.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">AnimatedSingleScatter.set_styling_properties()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedSingleScatter.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_text.AnimatedText"><code class="docutils literal notranslate"><span class="pre">AnimatedText</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_text.AnimatedText.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedText.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_text.AnimatedText.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedText.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_text.AnimatedTextBbox"><code class="docutils literal notranslate"><span class="pre">AnimatedTextBbox</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_text.AnimatedTextBbox.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedTextBbox.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_text.AnimatedTextBbox.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedTextBbox.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.animated.animated_trace.AnimatedTrace"><code class="docutils literal notranslate"><span class="pre">AnimatedTrace</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_trace.AnimatedTrace.__init__"><code class="docutils literal notranslate"><span class="pre">AnimatedTrace.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.animated.animated_trace.AnimatedTrace.update_timestep"><code class="docutils literal notranslate"><span class="pre">AnimatedTrace.update_timestep()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.canvas.html">The <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> Class and Subclasses</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">matnimation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The <code class="docutils literal notranslate"><span class="pre">AnimatedArtist</span></code> Class and Subclasses</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.matnimation.artist.animated.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-animatedartist-class-and-subclasses">
+<h1>The <code class="docutils literal notranslate"><span class="pre">AnimatedArtist</span></code> Class and Subclasses<a class="headerlink" href="#the-animatedartist-class-and-subclasses" title="Link to this heading"></a></h1>
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_arrow">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_arrow.AnimatedArrow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_arrow.</span></span><span class="sig-name descname"><span class="pre">AnimatedArrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_tail_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_tail_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_tip_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_tip_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">head_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">head_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overhang</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_arrow.AnimatedArrow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_arrow.AnimatedArrow.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_tail_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_tail_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_tip_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_tip_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">head_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">head_length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overhang</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_arrow.AnimatedArrow.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Circle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated circle</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the circle</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – Array of x-values representing the center for all timesteps</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – Array of y-values representing the center for all timesteps</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_arrow.AnimatedArrow.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_arrow.AnimatedArrow.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the center coordinates of the circle at a specific timestep in the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_artist">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_artist.AnimatedArtist">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_artist.</span></span><span class="sig-name descname"><span class="pre">AnimatedArtist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseArtist</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Animated Artist (line, circle, arrow etc) to be placed on a specific axis of a defined canvas.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_artist.AnimatedArtist.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Artist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated artist</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF.
+If vis_interval = [1, 10], visibility will be turned ON at time index 1 and turned OFF at time index 10.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_artist.AnimatedArtist.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties of the animated artist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**styling</strong> – Keyword arguments representing styling properties</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_artist.AnimatedArtist.update_visibility">
+<span class="sig-name descname"><span class="pre">update_visibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist.update_visibility" title="Link to this definition"></a></dt>
+<dd><p>Update the visibility of the animated artist based on the current time index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_circle">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_circle.AnimatedCircle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_circle.</span></span><span class="sig-name descname"><span class="pre">AnimatedCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_circle.AnimatedCircle" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_circle.AnimatedCircle.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_circle.AnimatedCircle.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Circle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated circle</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the circle</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – Array of x-values representing the center for all timesteps</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – Array of y-values representing the center for all timesteps</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_circle.AnimatedCircle.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_circle.AnimatedCircle.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the center coordinates of the circle at a specific timestep in the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_ellipse">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_ellipse.</span></span><span class="sig-name descname"><span class="pre">AnimatedEllipse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Ellipse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated ellipse</p></li>
+<li><p><strong>width</strong> (<em>float</em>) – Width of the ellipse</p></li>
+<li><p><strong>height</strong> (<em>float</em>) – Height of the ellipse</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – Array of x-values representing the center for all timesteps</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – Array of y-values representing the center for all timesteps</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF.</p></li>
+<li><p><strong>width_data</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Array of ellipse-width at each timestep (default is None)</p></li>
+<li><p><strong>height_data</strong> (<em>np.ndarray</em><em>, </em><em>optional</em>) – Array of ellipse-height at each timestep (default is None)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_ellipse.AnimatedEllipse.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the properties of the ellipse at a specific timestep in the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_imshow">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_imshow.AnimatedImshow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_imshow.</span></span><span class="sig-name descname"><span class="pre">AnimatedImshow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_imshow.AnimatedImshow.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aspect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an AnimatedImshow object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated imshow</p></li>
+<li><p><strong>image_data</strong> (<em>list</em><em> of </em><em>2D numpy arrays</em>) – Function values f(x,y) on grid for all timesteps. len(image_data) = len(time_array)</p></li>
+<li><p><strong>extent</strong> (<em>list</em>) – Extent over which image must be plotted in figure [xmin, xmax, ymin, ymax]</p></li>
+<li><p><strong>aspect</strong> (<em>float</em><em> or </em><em>str</em>) – Aspect ratio of imshow axes</p></li>
+<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – Colormap style to be used (default is ‘viridis’)</p></li>
+<li><p><strong>vmin</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum value in data range covered by colormap (None by default)
+If None, value will be set the to minimum value in the image_data of the initial timestep</p></li>
+<li><p><strong>vmax</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum value in data range covered by colormap (None by default)
+If None, value will be set the to minimum value in the image_data of the initial timestep</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_imshow.AnimatedImshow.add_to_axes">
+<span class="sig-name descname"><span class="pre">add_to_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow.add_to_axes" title="Link to this definition"></a></dt>
+<dd><p>Add the artist to the specified axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axes</strong> (<em>Axes</em>) – Matplotlib axes object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_imshow.AnimatedImshow.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for the artist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the artist has not been added to an axes yet</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>**styling</strong> – Keyword arguments for styling properties</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_imshow.AnimatedImshow.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_imshow.AnimatedImshow.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the imshow data at a specific timestep in the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_line">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_line.AnimatedLine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_line.</span></span><span class="sig-name descname"><span class="pre">AnimatedLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_line.AnimatedLine" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_line.AnimatedLine.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_line.AnimatedLine.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated line</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – x values of line (1D if they dont change over time, 2D if they do)</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – y values of line (rows) for all timesteps (cols)</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_line.AnimatedLine.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_line.AnimatedLine.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the line data at a specific timestep in the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_polygon">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_polygon.AnimatedPolygon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_polygon.</span></span><span class="sig-name descname"><span class="pre">AnimatedPolygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_polygon.AnimatedPolygon" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_polygon.AnimatedPolygon.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_polygon.AnimatedPolygon.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Polygon.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated polygon</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – x values of polygon (rows) for all timesteps (cols)</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – y values of polygon (rows) for all timesteps (cols)</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_polygon.AnimatedPolygon.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_polygon.AnimatedPolygon.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the polygon coordinates at a specific timestep in the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_quiver">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_quiver.AnimatedQuiver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_quiver.</span></span><span class="sig-name descname"><span class="pre">AnimatedQuiver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fx_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fy_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fx_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fy_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Quiver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated quiver</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – x coordinates of tails of vectors</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – y coordinates of tails of vectors</p></li>
+<li><p><strong>Fx_data</strong> (<em>np.ndarray</em>) – x-component of vectors (rows) at all timesteps (cols)</p></li>
+<li><p><strong>Fy_data</strong> (<em>np.ndarray</em>) – y-component of vectors (rows) at all timesteps (cols)</p></li>
+<li><p><strong>scale</strong> (<em>float</em><em>, </em><em>optional</em>) – Sets scale of vectors, by default 1.</p></li>
+<li><p><strong>scale_units</strong> (<em>str</em><em>, </em><em>optional</em>) – Units of the scale, by default None</p></li>
+<li><p><strong>width</strong> (<em>float</em><em>, </em><em>optional</em>) – Width of arrow shaft, by default None</p></li>
+<li><p><strong>color</strong> (<em>str</em><em> or </em><em>RGBA seq</em><em>, </em><em>optional</em>) – Arrow color, by default ‘k’</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF, by default None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.add_to_axes">
+<span class="sig-name descname"><span class="pre">add_to_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.add_to_axes" title="Link to this definition"></a></dt>
+<dd><p>Add the quiver to the given axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axes</strong> (<em>Axes</em>) – Axes object to which the quiver will be added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for the quiver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the artist has not been added to an axes yet</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>**styling</strong> (<em>dict</em>) – Styling properties to be set</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_quiver.AnimatedQuiver.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the quiver vector data at a specific timestep in the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_scatter">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_scatter.AnimatedScatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_scatter.</span></span><span class="sig-name descname"><span class="pre">AnimatedScatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_scatter.AnimatedScatter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_scatter.AnimatedScatter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_scatter.AnimatedScatter.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Scatter.</p>
+<p>Scatter is interpreted here as a matplotlib Line2D object with no line (linewidth = 0) but with specified markers (marker = ‘.’) at all data points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated scatter</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – 1D array with x coodinations of scatter points (assuming x coordinates are time-INDEPENDENT)
+or 2D array wtih x coordinates (rows) of scatter points at all timesteps (cols)</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – 1D array with y coodinations of scatter points (assuming y coordinates are time-INDEPENDENT)
+or 2D array wtih y coordinates (rows) of scatter points at all timesteps (cols)</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF, by default None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_scatter.AnimatedScatter.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_scatter.AnimatedScatter.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the coordinates of scatters at specific timestep in animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_single_scatter">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_single_scatter.</span></span><span class="sig-name descname"><span class="pre">AnimatedSingleScatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Single Scatter.</p>
+<p>Scatter is interpreted here as a matplotlib Line2D object with no line (linewidth = 0) but with specified markers (marker = ‘.’) at all data points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated scatter</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – Array with x coordinate of single scatter at all timesteps</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – Array with y coordinate of single scatter at all timesteps</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF, by default None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for the scatter.</p>
+<p>Only supports styling properties related to the marker.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**styling</strong> (<em>dict</em>) – Styling properties for the scatter</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_single_scatter.AnimatedSingleScatter.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Set coordinates of scatter at specific timestep in animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_text">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_text.AnimatedText">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_text.</span></span><span class="sig-name descname"><span class="pre">AnimatedText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_str_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_text.AnimatedText" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_text.AnimatedText.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_str_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_text.AnimatedText.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Text.</p>
+<section id="parameters">
+<h2>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>name<span class="classifier">str</span></dt><dd><p>Name of the animated text.</p>
+</dd>
+<dt>text_str_data<span class="classifier">list[str]</span></dt><dd><p>List with text strings at all timesteps.</p>
+</dd>
+<dt>text_x_data<span class="classifier">np.ndarray</span></dt><dd><p>x position of text at all timesteps.</p>
+</dd>
+<dt>text_y_data<span class="classifier">np.ndarray</span></dt><dd><p>y position of text at all timesteps.</p>
+</dd>
+<dt>vis_interval<span class="classifier">list[int], optional</span></dt><dd><p>List with time indices at which visibility must be turned ON and OFF, by default None.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_text.AnimatedText.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_text.AnimatedText.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update text and position at specific timestep in animation.</p>
+<section id="id1">
+<h2>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>time_index<span class="classifier">int</span></dt><dd><p>Index of the current timestep.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_text.AnimatedTextBbox">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_text.</span></span><span class="sig-name descname"><span class="pre">AnimatedTextBbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animated_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.matnimation.artist.animated.animated_text.AnimatedText" title="src.matnimation.artist.animated.animated_text.AnimatedText"><span class="pre">AnimatedText</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_text.AnimatedTextBbox" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_text.AnimatedTextBbox.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animated_text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.matnimation.artist.animated.animated_text.AnimatedText" title="src.matnimation.artist.animated.animated_text.AnimatedText"><span class="pre">AnimatedText</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_text.AnimatedTextBbox.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an AnimatedTextBbox.</p>
+<section id="id2">
+<h2>Parameters:<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>name<span class="classifier">str</span></dt><dd><p>Name of the animated text bounding box.</p>
+</dd>
+<dt>animated_text<span class="classifier">AnimatedText</span></dt><dd><p>AnimatedText object to create a bounding box around.</p>
+</dd>
+<dt>vis_interval<span class="classifier">list[int], optional</span></dt><dd><p>List with time indices at which visibility must be turned ON and OFF, by default None.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_text.AnimatedTextBbox.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_text.AnimatedTextBbox.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update bounding box around text at specific timestep in animation.</p>
+<section id="id3">
+<h2>Parameters:<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>time_index<span class="classifier">int</span></dt><dd><p>Index of the current timestep.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.animated.animated_trace">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_trace.AnimatedTrace">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.animated.animated_trace.</span></span><span class="sig-name descname"><span class="pre">AnimatedTrace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_trace.AnimatedTrace" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.animated.animated_artist.AnimatedArtist" title="src.matnimation.artist.animated.animated_artist.AnimatedArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimatedArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_trace.AnimatedTrace.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vis_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_trace.AnimatedTrace.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize an Animated Trace.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the animated line</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – x values of complete trace over all timesteps</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – y values of complete trace over all timesteps</p></li>
+<li><p><strong>vis_interval</strong> (<em>list</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – List with time indices at which visibility must be turned ON and OFF</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.animated.animated_trace.AnimatedTrace.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.animated.animated_trace.AnimatedTrace.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the line data at a specific timestep in the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Current time index</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.matnimation.artist.static.html" class="btn btn-neutral float-left" title="The StaticArtist Class and Subclasses" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="src.matnimation.canvas.html" class="btn btn-neutral float-right" title="The Canvas Class and Subclasses" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Tim de Wild.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -15,7 +15,7 @@ class Canvas:
         figsize : tuple
             Figure size (width, height) in inches
         dpi : int
-            Dots per inch, resolution of canvas, set to 200 by default
+            Dots per inch, resolution of canvas
         time_array : np.ndarray
             Array representing time steps in animation
         """

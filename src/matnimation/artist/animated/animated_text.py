@@ -11,7 +11,7 @@ class AnimatedText(AnimatedArtist):
         Initialize an Animated Text.
 
         Parameters:
-        ----------
+        -----------
         name : str
             Name of the animated text.
         text_str_data : list[str]
@@ -75,7 +75,7 @@ class AnimatedText(AnimatedArtist):
         Update text and position at specific timestep in animation.
 
         Parameters:
-        ----------
+        -----------
         time_index : int
             Index of the current timestep.
         """
@@ -95,7 +95,7 @@ class AnimatedTextBbox(AnimatedArtist):
         Initialize an AnimatedTextBbox.
 
         Parameters:
-        ----------
+        -----------
         name : str
             Name of the animated text bounding box.
         animated_text : AnimatedText
@@ -130,7 +130,7 @@ class AnimatedTextBbox(AnimatedArtist):
         Update bounding box around text at specific timestep in animation.
 
         Parameters:
-        ----------
+        -----------
         time_index : int
             Index of the current timestep.
         """

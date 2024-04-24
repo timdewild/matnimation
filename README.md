@@ -93,7 +93,7 @@ Now we are in the position to describe how a simple animation would be construct
     x(t) = \frac{1}{2}t \sin(t),\quad\quad y(t) = \frac{1}{2}t \cos(t)
 \end{equation}
 ```
-where we take the wavenumber we take the time paramter to be in the range $t\in[0,4\pi]$. We want to (a) show the particle at every moment in time and (b) add a trace (line) of the completed part of the trajectory so far. We will animate them using the `AnimatedSingleScatter` and `AnimatedTrace` artists, respectively. 
+where the time paramter to be in the range $t\in[0,4\pi]$. We want to (a) show the particle at every moment in time and (b) add a trace (line) of the completed part of the trajectory so far. We will animate them using the `AnimatedSingleScatter` and `AnimatedTrace` artists, respectively. 
 
 https://github.com/timdewild/matnimation/assets/93600756/50f7ada2-e2df-4224-ab1e-6d708f25f6c0
 
@@ -127,7 +127,7 @@ x_trajectory, y_trajectory = trajectory(t_array)
 The animation should be thought of as a collection of frames, one for each time value in `t_array`, meaning we have a total of 200 frames in this animation. As mentioned, we represent the particle as a moving dot using the `AnimatedSingleScatter` artist and the trace using the `AnimatedTrace`. The data (`x_data` and `y_data` parameters) that must be provided to these artists are the same. 
 
 > [!NOTE]
-> The format in which data must be provided to artists differs: see the docstring of the artist in question to find out how data must be provided. 
+> The format in which data must be provided to artists differs: see the docstring of the artist or the [API documentation](https://timdewild.github.io/matnimation/index.html) in question to find out how data must be provided. 
 
 ### Step 2: Define Canvas
 Next, we constuct a canvas on which the artists, to be constructed in the next step, live. We make a simple animation with only a single panel, so we use `SingleCanvas`. We set the `figsize` in inches, the resolution `dpi` in dots-per-inch, the `time_array`, the `axis_limits` and the `axis_labels`. Simple mathematical expressions are passed into the labels via the double dollar syntax `$$`. 

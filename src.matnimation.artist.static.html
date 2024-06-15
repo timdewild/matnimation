@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The StaticArtist Class and Subclasses &mdash; matnimation 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The AnimatedArtist Class and Subclasses" href="src.matnimation.artist.animated.html" />
+    <link rel="prev" title="The BaseArtist Class" href="src.matnimation.artist.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            matnimation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.animation.html">The <code class="docutils literal notranslate"><span class="pre">Animation</span></code> Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.artist.html">The <code class="docutils literal notranslate"><span class="pre">BaseArtist</span></code> Class</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The <code class="docutils literal notranslate"><span class="pre">StaticArtist</span></code> Class and Subclasses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist"><code class="docutils literal notranslate"><span class="pre">StaticArtist</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist.__init__"><code class="docutils literal notranslate"><span class="pre">StaticArtist.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist.update_timestep"><code class="docutils literal notranslate"><span class="pre">StaticArtist.update_timestep()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_circle.StaticCircle"><code class="docutils literal notranslate"><span class="pre">StaticCircle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_circle.StaticCircle.__init__"><code class="docutils literal notranslate"><span class="pre">StaticCircle.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar"><code class="docutils literal notranslate"><span class="pre">StaticColorBar</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar.__init__"><code class="docutils literal notranslate"><span class="pre">StaticColorBar.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar.add_to_axes"><code class="docutils literal notranslate"><span class="pre">StaticColorBar.add_to_axes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">StaticColorBar.set_styling_properties()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar.set_tick_labels"><code class="docutils literal notranslate"><span class="pre">StaticColorBar.set_tick_labels()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_hlines.StaticHlines"><code class="docutils literal notranslate"><span class="pre">StaticHlines</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_hlines.StaticHlines.__init__"><code class="docutils literal notranslate"><span class="pre">StaticHlines.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_hlines.StaticHlines.add_to_axes"><code class="docutils literal notranslate"><span class="pre">StaticHlines.add_to_axes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_hlines.StaticHlines.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">StaticHlines.set_styling_properties()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_imshow.StaticImshow"><code class="docutils literal notranslate"><span class="pre">StaticImshow</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_imshow.StaticImshow.__init__"><code class="docutils literal notranslate"><span class="pre">StaticImshow.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_imshow.StaticImshow.add_to_axes"><code class="docutils literal notranslate"><span class="pre">StaticImshow.add_to_axes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_imshow.StaticImshow.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">StaticImshow.set_styling_properties()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_line.StaticLine"><code class="docutils literal notranslate"><span class="pre">StaticLine</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_line.StaticLine.__init__"><code class="docutils literal notranslate"><span class="pre">StaticLine.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_polygon.StaticPolygon"><code class="docutils literal notranslate"><span class="pre">StaticPolygon</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_polygon.StaticPolygon.__init__"><code class="docutils literal notranslate"><span class="pre">StaticPolygon.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_quiver.StaticQuiver"><code class="docutils literal notranslate"><span class="pre">StaticQuiver</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_quiver.StaticQuiver.__init__"><code class="docutils literal notranslate"><span class="pre">StaticQuiver.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_quiver.StaticQuiver.add_to_axes"><code class="docutils literal notranslate"><span class="pre">StaticQuiver.add_to_axes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_quiver.StaticQuiver.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">StaticQuiver.set_styling_properties()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_scatter.StaticScatter"><code class="docutils literal notranslate"><span class="pre">StaticScatter</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_scatter.StaticScatter.__init__"><code class="docutils literal notranslate"><span class="pre">StaticScatter.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_text.StaticText"><code class="docutils literal notranslate"><span class="pre">StaticText</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_text.StaticText.__init__"><code class="docutils literal notranslate"><span class="pre">StaticText.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.artist.static.static_vlines.StaticVlines"><code class="docutils literal notranslate"><span class="pre">StaticVlines</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_vlines.StaticVlines.__init__"><code class="docutils literal notranslate"><span class="pre">StaticVlines.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_vlines.StaticVlines.add_to_axes"><code class="docutils literal notranslate"><span class="pre">StaticVlines.add_to_axes()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.artist.static.static_vlines.StaticVlines.set_styling_properties"><code class="docutils literal notranslate"><span class="pre">StaticVlines.set_styling_properties()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.artist.animated.html">The <code class="docutils literal notranslate"><span class="pre">AnimatedArtist</span></code> Class and Subclasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.canvas.html">The <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> Class and Subclasses</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">matnimation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The <code class="docutils literal notranslate"><span class="pre">StaticArtist</span></code> Class and Subclasses</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.matnimation.artist.static.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-staticartist-class-and-subclasses">
+<h1>The <code class="docutils literal notranslate"><span class="pre">StaticArtist</span></code> Class and Subclasses<a class="headerlink" href="#the-staticartist-class-and-subclasses" title="Link to this heading"></a></h1>
+<dl class="py class" id="module-src.matnimation.artist.static.static_artist">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_artist.StaticArtist">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_artist.</span></span><span class="sig-name descname"><span class="pre">StaticArtist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_artist.StaticArtist.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_artist.StaticArtist.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticArtist object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the static artist</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_artist.StaticArtist.update_timestep">
+<span class="sig-name descname"><span class="pre">update_timestep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_artist.StaticArtist.update_timestep" title="Link to this definition"></a></dt>
+<dd><p>Update the static artist for a specific time index.</p>
+<p>This method is intended to be overridden by subclasses if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Index representing the time step</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_circle">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_circle.StaticCircle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_circle.</span></span><span class="sig-name descname"><span class="pre">StaticCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy_center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_circle.StaticCircle" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_circle.StaticCircle.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy_center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_circle.StaticCircle.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticCircle object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static circle</p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – Radius of the circle</p></li>
+<li><p><strong>xy_center</strong> (<em>tuple</em><em>[</em><em>float</em><em>]</em>) – (x, y) coordinates of the center of the circle</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_colorbar">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_colorbar.StaticColorBar">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_colorbar.</span></span><span class="sig-name descname"><span class="pre">StaticColorBar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imshow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.matnimation.artist.static.static_imshow.StaticImshow" title="src.matnimation.artist.static.static_imshow.StaticImshow"><span class="pre">StaticImshow</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="src.matnimation.artist.animated.html#src.matnimation.artist.animated.animated_imshow.AnimatedImshow" title="src.matnimation.artist.animated.animated_imshow.AnimatedImshow"><span class="pre">AnimatedImshow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">styling_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_colorbar.StaticColorBar.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imshow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#src.matnimation.artist.static.static_imshow.StaticImshow" title="src.matnimation.artist.static.static_imshow.StaticImshow"><span class="pre">StaticImshow</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="src.matnimation.artist.animated.html#src.matnimation.artist.animated.animated_imshow.AnimatedImshow" title="src.matnimation.artist.animated.animated_imshow.AnimatedImshow"><span class="pre">AnimatedImshow</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">styling_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticColorBar object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static color bar</p></li>
+<li><p><strong>imshow</strong> (<a class="reference internal" href="#src.matnimation.artist.static.static_imshow.StaticImshow" title="src.matnimation.artist.static.static_imshow.StaticImshow"><em>StaticImshow</em></a><em> | </em><a class="reference internal" href="src.matnimation.artist.animated.html#src.matnimation.artist.animated.animated_imshow.AnimatedImshow" title="src.matnimation.artist.animated.animated_imshow.AnimatedImshow"><em>AnimatedImshow</em></a>) – Artist representing the image (either static or animated) associated with the color bar</p></li>
+<li><p><strong>styling_dict</strong> (<em>dict</em><em>, </em><em>optional</em>) – Styling dictionary, all ‘Other Parameters’ of matplotlib.figure.Figure.colorbar can be passed here, by default None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_colorbar.StaticColorBar.add_to_axes">
+<span class="sig-name descname"><span class="pre">add_to_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar.add_to_axes" title="Link to this definition"></a></dt>
+<dd><p>Add the color bar to the specified axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axes</strong> (<em>Axes</em>) – Axes object to add the color bar to</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_colorbar.StaticColorBar.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for the color bar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – For Colorbars, styling properties must be set upon instantiation via styling_dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_colorbar.StaticColorBar.set_tick_labels">
+<span class="sig-name descname"><span class="pre">set_tick_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'vertical'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_colorbar.StaticColorBar.set_tick_labels" title="Link to this definition"></a></dt>
+<dd><p>Set tick labels for the colorbar.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>labels</strong> (<em>list</em>) – List with labels for ticks of colorbar.
+Should be of same length as list passed to ticks keyword in styling_dict.</p></li>
+<li><p><strong>orientation</strong> (<em>str</em>) – Orientation of colorbar, must be either ‘vertical’ or ‘horizontal’.
+Should agree with the value passed to the ‘orientation’ keyword set in ‘styling_dict’ upon instantiation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If keyword is not ‘vertical’ or ‘horizontal’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_hlines">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_hlines.StaticHlines">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_hlines.</span></span><span class="sig-name descname"><span class="pre">StaticHlines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_hlines.StaticHlines" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_hlines.StaticHlines.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_hlines.StaticHlines.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticHlines object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the hlines object</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing y values of hlines</p></li>
+<li><p><strong>x_min</strong> (<em>float</em>) – x-value of start of hlines</p></li>
+<li><p><strong>x_max</strong> (<em>float</em>) – x-value of end of hlines</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_hlines.StaticHlines.add_to_axes">
+<span class="sig-name descname"><span class="pre">add_to_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_hlines.StaticHlines.add_to_axes" title="Link to this definition"></a></dt>
+<dd><p>Add the hlines to the specified axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axes</strong> (<em>Axes</em>) – Axes object to add the hlines to</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_hlines.StaticHlines.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_hlines.StaticHlines.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for the hlines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the artist has not been added to an axes yet</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>**styling</strong> (<em>dict</em>) – Keyword arguments for styling the hlines</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_imshow">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_imshow.StaticImshow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_imshow.</span></span><span class="sig-name descname"><span class="pre">StaticImshow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_imshow.StaticImshow" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_imshow.StaticImshow.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cmap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'viridis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_imshow.StaticImshow.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticImshow object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static imshow</p></li>
+<li><p><strong>image_data</strong> (<em>np.ndarray</em>) – 2D numpy array containing function values f(x,y) on grid, format like np.meshgrid</p></li>
+<li><p><strong>extent</strong> (<em>list</em>) – Extent over which image must be plotted in figure [xmin, xmax, ymin, ymax]</p></li>
+<li><p><strong>cmap</strong> (<em>str</em><em>, </em><em>optional</em>) – Colormap style to be used, by default ‘viridis’</p></li>
+<li><p><strong>vmin</strong> (<em>float</em><em>, </em><em>optional</em>) – Minimum value in data range covered by colormap, by default None</p></li>
+<li><p><strong>vmax</strong> (<em>float</em><em>, </em><em>optional</em>) – Maximum value in data range covered by colormap, by default None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_imshow.StaticImshow.add_to_axes">
+<span class="sig-name descname"><span class="pre">add_to_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_imshow.StaticImshow.add_to_axes" title="Link to this definition"></a></dt>
+<dd><p>Add the imshow to the specified axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axes</strong> (<em>Axes</em>) – Axes object to add the imshow to</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_imshow.StaticImshow.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_imshow.StaticImshow.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for the imshow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the artist has not been added to an axes yet</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>**styling</strong> (<em>dict</em>) – Keyword arguments for styling the imshow</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_line">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_line.StaticLine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_line.</span></span><span class="sig-name descname"><span class="pre">StaticLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_line.StaticLine" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_line.StaticLine.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_line.StaticLine.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticLine object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static line</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing x values of the line</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing y values of the line</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_polygon">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_polygon.StaticPolygon">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_polygon.</span></span><span class="sig-name descname"><span class="pre">StaticPolygon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_polygon.StaticPolygon" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_polygon.StaticPolygon.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_polygon.StaticPolygon.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticPolygon object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static polygon</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing x values of the polygon</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing y values of the polygon</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_quiver">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_quiver.StaticQuiver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_quiver.</span></span><span class="sig-name descname"><span class="pre">StaticQuiver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fx_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fy_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_quiver.StaticQuiver" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_quiver.StaticQuiver.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fx_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Fy_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_units</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'k'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_quiver.StaticQuiver.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticQuiver object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static quiver</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing x coordinates of tails of vectors</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing y coordinates of tails of vectors</p></li>
+<li><p><strong>Fx_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing x-component of vectors</p></li>
+<li><p><strong>Fy_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing y-component of vectors</p></li>
+<li><p><strong>scale</strong> (<em>float</em><em>, </em><em>optional</em>) – Sets scale of vectors, by default 1.</p></li>
+<li><p><strong>scale_units</strong> (<em>str</em><em>, </em><em>optional</em>) – Scale units of the vectors, by default None</p></li>
+<li><p><strong>width</strong> (<em>float</em><em>, </em><em>optional</em>) – Width of the arrow shaft, by default None</p></li>
+<li><p><strong>color</strong> (<em>str</em><em> or </em><em>RGBA seq</em><em>, </em><em>optional</em>) – Arrow color, by default ‘k’</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_quiver.StaticQuiver.add_to_axes">
+<span class="sig-name descname"><span class="pre">add_to_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_quiver.StaticQuiver.add_to_axes" title="Link to this definition"></a></dt>
+<dd><p>Add the quiver to the given axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axes</strong> (<em>Axes</em>) – Axes object to which the quiver will be added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_quiver.StaticQuiver.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_quiver.StaticQuiver.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties of the quiver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the artist has not been added to an axes yet</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>**styling</strong> – Styling properties to be set on the quiver</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_scatter">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_scatter.StaticScatter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_scatter.</span></span><span class="sig-name descname"><span class="pre">StaticScatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_scatter.StaticScatter" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_scatter.StaticScatter.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_scatter.StaticScatter.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticScatter object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static scatter</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing x values of scatters</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing y values of scatters</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_text">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_text.StaticText">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_text.</span></span><span class="sig-name descname"><span class="pre">StaticText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy_center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_text.StaticText" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_text.StaticText.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xy_center</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_text.StaticText.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticText object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static text</p></li>
+<li><p><strong>xy_center</strong> (<em>tuple</em><em>[</em><em>float</em><em>]</em>) – Tuple containing (x, y) coordinates of text location</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.artist.static.static_vlines">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_vlines.StaticVlines">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.artist.static.static_vlines.</span></span><span class="sig-name descname"><span class="pre">StaticVlines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_vlines.StaticVlines" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.artist.static.static_artist.StaticArtist" title="src.matnimation.artist.static.static_artist.StaticArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">StaticArtist</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_vlines.StaticVlines.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_vlines.StaticVlines.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StaticVlines object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Name of the static vlines</p></li>
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – 1D numpy array containing x values of vlines</p></li>
+<li><p><strong>y_min</strong> (<em>float</em>) – y-value of start of vlines</p></li>
+<li><p><strong>y_max</strong> (<em>float</em>) – y-value of end of vlines</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_vlines.StaticVlines.add_to_axes">
+<span class="sig-name descname"><span class="pre">add_to_axes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_vlines.StaticVlines.add_to_axes" title="Link to this definition"></a></dt>
+<dd><p>Add the static vlines to the specified axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axes</strong> (<em>Axes</em>) – The axes to which the vlines will be added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.artist.static.static_vlines.StaticVlines.set_styling_properties">
+<span class="sig-name descname"><span class="pre">set_styling_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.artist.static.static_vlines.StaticVlines.set_styling_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties of the static vlines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the artist has not been added to an axes yet</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>**styling</strong> – Keyword arguments representing styling properties</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.matnimation.artist.html" class="btn btn-neutral float-left" title="The BaseArtist Class" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="src.matnimation.artist.animated.html" class="btn btn-neutral float-right" title="The AnimatedArtist Class and Subclasses" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Tim de Wild.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

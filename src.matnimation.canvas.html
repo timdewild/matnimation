@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Canvas Class and Subclasses &mdash; matnimation 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="The AnimatedArtist Class and Subclasses" href="src.matnimation.artist.animated.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            matnimation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.animation.html">The <code class="docutils literal notranslate"><span class="pre">Animation</span></code> Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.artist.html">The <code class="docutils literal notranslate"><span class="pre">BaseArtist</span></code> Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.artist.static.html">The <code class="docutils literal notranslate"><span class="pre">StaticArtist</span></code> Class and Subclasses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.matnimation.artist.animated.html">The <code class="docutils literal notranslate"><span class="pre">AnimatedArtist</span></code> Class and Subclasses</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> Class and Subclasses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas"><code class="docutils literal notranslate"><span class="pre">Canvas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas.__init__"><code class="docutils literal notranslate"><span class="pre">Canvas.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas.add_legend"><code class="docutils literal notranslate"><span class="pre">Canvas.add_legend()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas.get_axs_array"><code class="docutils literal notranslate"><span class="pre">Canvas.get_axs_array()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas.get_figure"><code class="docutils literal notranslate"><span class="pre">Canvas.get_figure()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas.save_canvas"><code class="docutils literal notranslate"><span class="pre">Canvas.save_canvas()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas.set_figure_properties"><code class="docutils literal notranslate"><span class="pre">Canvas.set_figure_properties()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas.set_layout"><code class="docutils literal notranslate"><span class="pre">Canvas.set_layout()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas.update_frame"><code class="docutils literal notranslate"><span class="pre">Canvas.update_frame()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.canvas.custom_canvas.CustomCanvas"><code class="docutils literal notranslate"><span class="pre">CustomCanvas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.__init__"><code class="docutils literal notranslate"><span class="pre">CustomCanvas.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.add_artist"><code class="docutils literal notranslate"><span class="pre">CustomCanvas.add_artist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.construct_legend"><code class="docutils literal notranslate"><span class="pre">CustomCanvas.construct_legend()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.get_axis"><code class="docutils literal notranslate"><span class="pre">CustomCanvas.get_axis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.set_axis_properties"><code class="docutils literal notranslate"><span class="pre">CustomCanvas.set_axis_properties()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.canvas.grid_canvas.GridCanvas"><code class="docutils literal notranslate"><span class="pre">GridCanvas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.grid_canvas.GridCanvas.__init__"><code class="docutils literal notranslate"><span class="pre">GridCanvas.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.grid_canvas.GridCanvas.add_artist"><code class="docutils literal notranslate"><span class="pre">GridCanvas.add_artist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.grid_canvas.GridCanvas.construct_legend"><code class="docutils literal notranslate"><span class="pre">GridCanvas.construct_legend()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.grid_canvas.GridCanvas.get_axis"><code class="docutils literal notranslate"><span class="pre">GridCanvas.get_axis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.grid_canvas.GridCanvas.set_axis_properties"><code class="docutils literal notranslate"><span class="pre">GridCanvas.set_axis_properties()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.canvas.multi_canvas.MultiCanvas"><code class="docutils literal notranslate"><span class="pre">MultiCanvas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.__init__"><code class="docutils literal notranslate"><span class="pre">MultiCanvas.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.add_artist"><code class="docutils literal notranslate"><span class="pre">MultiCanvas.add_artist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.construct_legend"><code class="docutils literal notranslate"><span class="pre">MultiCanvas.construct_legend()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.get_axis"><code class="docutils literal notranslate"><span class="pre">MultiCanvas.get_axis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.set_axis_properties"><code class="docutils literal notranslate"><span class="pre">MultiCanvas.set_axis_properties()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#src.matnimation.canvas.single_canvas.SingleCanvas"><code class="docutils literal notranslate"><span class="pre">SingleCanvas</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.single_canvas.SingleCanvas.__init__"><code class="docutils literal notranslate"><span class="pre">SingleCanvas.__init__()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.single_canvas.SingleCanvas.add_artist"><code class="docutils literal notranslate"><span class="pre">SingleCanvas.add_artist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.single_canvas.SingleCanvas.construct_legend"><code class="docutils literal notranslate"><span class="pre">SingleCanvas.construct_legend()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.single_canvas.SingleCanvas.get_axis"><code class="docutils literal notranslate"><span class="pre">SingleCanvas.get_axis()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src.matnimation.canvas.single_canvas.SingleCanvas.set_axis_properties"><code class="docutils literal notranslate"><span class="pre">SingleCanvas.set_axis_properties()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">matnimation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">The <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> Class and Subclasses</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/src.matnimation.canvas.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-canvas-class-and-subclasses">
+<h1>The <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> Class and Subclasses<a class="headerlink" href="#the-canvas-class-and-subclasses" title="Link to this heading"></a></h1>
+<dl class="py class" id="module-src.matnimation.canvas.canvas">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.canvas.canvas.</span></span><span class="sig-name descname"><span class="pre">Canvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize Canvas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size (width, height) in inches</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – Dots per inch, resolution of canvas</p></li>
+<li><p><strong>time_array</strong> (<em>np.ndarray</em>) – Array representing time steps in animation</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas.add_legend">
+<span class="sig-name descname"><span class="pre">add_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_handles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">set</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">legend_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas.add_legend" title="Link to this definition"></a></dt>
+<dd><p>Add a legend to the canvas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> (<em>Axes</em>) – Matplotlib Axes object to add legend to</p></li>
+<li><p><strong>legend_handles</strong> (<em>set</em>) – Set of legend handles</p></li>
+<li><p><strong>**legend_styling</strong> (<em>dict</em>) – Keyword arguments for styling the legend, all kwargs (‘Other Parameters’) of Matplotlib’s Axes.legend() may be passed here.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas.get_axs_array">
+<span class="sig-name descname"><span class="pre">get_axs_array</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas.get_axs_array" title="Link to this definition"></a></dt>
+<dd><p>Get the array of Axes objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self.axs_array</strong> – Array of Axes objects</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas.get_figure">
+<span class="sig-name descname"><span class="pre">get_figure</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas.get_figure" title="Link to this definition"></a></dt>
+<dd><p>Get the canvas figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self.fig</strong> – The canvas figure</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas.save_canvas">
+<span class="sig-name descname"><span class="pre">save_canvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas.save_canvas" title="Link to this definition"></a></dt>
+<dd><p>Save the canvas figure to a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Name of the file to save as</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas.set_figure_properties">
+<span class="sig-name descname"><span class="pre">set_figure_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">figure_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas.set_figure_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties of the canvas figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**figure_styling</strong> (<em>dict</em>) – Styling keyword arguments for Matplotlib Figure object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas.set_layout">
+<span class="sig-name descname"><span class="pre">set_layout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Figure</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axs_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">Axes</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas.set_layout" title="Link to this definition"></a></dt>
+<dd><p>Set the layout of the canvas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fig</strong> (<em>Figure</em>) – Matplotlib Figure object</p></li>
+<li><p><strong>axs_array</strong> (<em>np.ndarray</em>) – Array of Axes objects</p></li>
+<li><p><strong>axes_limits</strong> (<em>list</em><em>[</em><em>float</em><em>]</em>) – List of axis limits in the form [[xmin, xmax, ymin, ymax], …]</p></li>
+<li><p><strong>axes_labels</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of axis labels in the form [[xlabel, ylabel], …]</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In axes_limits and axes_labels, first sublist corresponds to first Axes object in axs_array.
+Order is left-right then top-bottom through possible subplots.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.canvas.Canvas.update_frame">
+<span class="sig-name descname"><span class="pre">update_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.canvas.Canvas.update_frame" title="Link to this definition"></a></dt>
+<dd><p>Update the canvas for a given time index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>time_index</strong> (<em>int</em>) – Index representing time</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.canvas.custom_canvas">
+<dt class="sig sig-object py" id="src.matnimation.canvas.custom_canvas.CustomCanvas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.canvas.custom_canvas.</span></span><span class="sig-name descname"><span class="pre">CustomCanvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mosaic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridspec_kw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.custom_canvas.CustomCanvas" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas" title="src.matnimation.canvas.canvas.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">Canvas</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.custom_canvas.CustomCanvas.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mosaic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gridspec_kw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a CustomCanvas instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size (width, height) in inches</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – Dots per inch, resolution of canvas</p></li>
+<li><p><strong>time_array</strong> (<em>np.ndarray</em>) – Array representing time steps in animation</p></li>
+<li><p><strong>mosaic</strong> (<em>list</em>) – List specifying the layout of subplots, e.g., [[‘Axes 1’, ‘Axes 1’], [‘Axes 2’, ‘Axes 3’]]
+Here ‘Axes 1’ spans the entire first row, ‘Axes 2’ (‘Axes 3’) is on second row first (second) column</p></li>
+<li><p><strong>axes_limits</strong> (<em>list</em>) – 2D list with axes limits [[xmin, xmax, ymin, ymax], …]
+Order of subplots in list is left-to-right then top-to-bottom.</p></li>
+<li><p><strong>axes_labels</strong> (<em>list</em>) – 2D list with axes labels [[‘xlabel’, ‘ylabel’], …]
+Order of subplots in list is left-to-right then top-to-bottom.</p></li>
+<li><p><strong>shared_x</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether x-axis of subplots is shared, by default False</p></li>
+<li><p><strong>shared_y</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether y-axis of subplots is shared, by default False</p></li>
+<li><p><strong>width_ratios</strong> (<em>list</em><em>, </em><em>optional</em>) – Width ratios of subplots, by default None</p></li>
+<li><p><strong>height_ratios</strong> (<em>list</em><em>, </em><em>optional</em>) – Height ratios of subplots, by default None</p></li>
+<li><p><strong>gridspec_kw</strong> (<em>dict</em><em>, </em><em>optional</em>) – Additional keyword arguments for specifying the layout, by default None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.custom_canvas.CustomCanvas.add_artist">
+<span class="sig-name descname"><span class="pre">add_artist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">artist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><span class="pre">BaseArtist</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.add_artist" title="Link to this definition"></a></dt>
+<dd><p>Add an artist to a specific subplot/Axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>artist</strong> (<a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><em>BaseArtist</em></a>) – Artist object to add</p></li>
+<li><p><strong>axes_key</strong> (<em>str</em>) – Key representing the desired subplot</p></li>
+<li><p><strong>in_legend</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the artist should be included in the subplot’s legend, by default False</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.custom_canvas.CustomCanvas.construct_legend">
+<span class="sig-name descname"><span class="pre">construct_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">legend_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.construct_legend" title="Link to this definition"></a></dt>
+<dd><p>Construct a legend for a specific subplot, if legend handles are available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes_key</strong> (<em>str</em>) – Key representing the desired subplot/Axes</p></li>
+<li><p><strong>**legend_styling</strong> (<em>dict</em>) – Keyword arguments for styling the legend</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.custom_canvas.CustomCanvas.get_axis">
+<span class="sig-name descname"><span class="pre">get_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Axes</span></span></span><a class="headerlink" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.get_axis" title="Link to this definition"></a></dt>
+<dd><p>Get the Axes object corresponding to a specific subplot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axis_key</strong> (<em>str</em>) – Key representing the desired subplot/Axes</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ax</strong> – Matplotlib Axes object corresponding to the specified subplot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Axes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.custom_canvas.CustomCanvas.set_axis_properties">
+<span class="sig-name descname"><span class="pre">set_axis_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">axis_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.custom_canvas.CustomCanvas.set_axis_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for a specific subplot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axis_key</strong> (<em>str</em>) – Key representing the desired subplot/Axes</p></li>
+<li><p><strong>**axis_styling</strong> (<em>dict</em>) – Keyword arguments for styling the subplot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.canvas.grid_canvas">
+<dt class="sig sig-object py" id="src.matnimation.canvas.grid_canvas.GridCanvas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.canvas.grid_canvas.</span></span><span class="sig-name descname"><span class="pre">GridCanvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.grid_canvas.GridCanvas" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas" title="src.matnimation.canvas.canvas.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">Canvas</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.grid_canvas.GridCanvas.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spans</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_keys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_ratios</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.grid_canvas.GridCanvas.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a GridCanvas instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size (width, height) in inches</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – Dots per inch, resolution of canvas</p></li>
+<li><p><strong>time_array</strong> (<em>np.ndarray</em>) – Array representing time steps in animation</p></li>
+<li><p><strong>nrows</strong> (<em>int</em>) – Number of rows in the grid of subplots</p></li>
+<li><p><strong>ncols</strong> (<em>int</em>) – Number of columns in the grid of subplots</p></li>
+<li><p><strong>spans</strong> (<em>list</em><em>[</em><em>list</em><em>]</em>) – <p>List indicating the span of each subplot
+Each sublist [span_row, span_col] defines the span of a subplot, span_row and span_col can be either an int or list of length 2.</p>
+<p>Example:
+Suppose that nrows = 2, ncols = 2 and spans = [[0, [0,1]], [1,0], [1,1]]
+Here the first subplot spans the entire first row, the second spans row 1, col 0 and the third spans row 1, col 1.</p>
+</p></li>
+<li><p><strong>axes_keys</strong> (<em>list</em><em>[</em><em>str</em><em>]</em>) – List of keys identifying each subplot, order of subplots is the same as in spans. Lenght must be equal to spans as well.</p></li>
+<li><p><strong>axes_limits</strong> (<em>list</em>) – 2D list with axes limits [[xmin, xmax, ymin, ymax], …], order of subplots is the same as in spans. Lenght must be equal to spans as well.</p></li>
+<li><p><strong>axes_labels</strong> (<em>list</em>) – 2D list with axes labels [[‘xlabel’, ‘ylabel’], …], order of subplots is the same as in spans. Lenght must be equal to spans as well.</p></li>
+<li><p><strong>width_ratios</strong> (<em>list</em><em>, </em><em>optional</em>) – Width ratios of subplots, by default None</p></li>
+<li><p><strong>height_ratios</strong> (<em>list</em><em>, </em><em>optional</em>) – Height ratios of subplots, by default None</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.grid_canvas.GridCanvas.add_artist">
+<span class="sig-name descname"><span class="pre">add_artist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">artist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><span class="pre">BaseArtist</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.grid_canvas.GridCanvas.add_artist" title="Link to this definition"></a></dt>
+<dd><p>Add an artist to a specific subplot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>artist</strong> (<a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><em>BaseArtist</em></a>) – Artist object to add</p></li>
+<li><p><strong>axes_key</strong> (<em>str</em>) – Key representing the desired subplot</p></li>
+<li><p><strong>in_legend</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the artist should be included in the subplot’s legend, by default False</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.grid_canvas.GridCanvas.construct_legend">
+<span class="sig-name descname"><span class="pre">construct_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">legend_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.grid_canvas.GridCanvas.construct_legend" title="Link to this definition"></a></dt>
+<dd><p>Construct a legend for a specific subplot, if legend handles are available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes_key</strong> (<em>str</em>) – Key representing the desired subplot</p></li>
+<li><p><strong>**legend_styling</strong> (<em>dict</em>) – Keyword arguments for styling the legend</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.grid_canvas.GridCanvas.get_axis">
+<span class="sig-name descname"><span class="pre">get_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.grid_canvas.GridCanvas.get_axis" title="Link to this definition"></a></dt>
+<dd><p>Get the Axes object corresponding to a specific subplot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axes_key</strong> (<em>str</em>) – Key representing the desired subplot</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ax</strong> – Matplotlib Axes object corresponding to the specified subplot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Axes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.grid_canvas.GridCanvas.set_axis_properties">
+<span class="sig-name descname"><span class="pre">set_axis_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">axis_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.grid_canvas.GridCanvas.set_axis_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for a specific subplot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes_key</strong> (<em>str</em>) – Key representing the desired subplot</p></li>
+<li><p><strong>**axis_styling</strong> (<em>dict</em>) – Keyword arguments for styling the subplot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.canvas.multi_canvas">
+<dt class="sig sig-object py" id="src.matnimation.canvas.multi_canvas.MultiCanvas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.canvas.multi_canvas.</span></span><span class="sig-name descname"><span class="pre">MultiCanvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_ratios</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_ratios</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.multi_canvas.MultiCanvas" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas" title="src.matnimation.canvas.canvas.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">Canvas</span></code></a></p>
+<p>A canvas for creating multi-axis plots with a grid layout.
+This class extends the functionality of the base <cite>Canvas</cite> class and allows for creating a grid of subplots.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.multi_canvas.MultiCanvas.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nrows</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ncols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shared_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height_ratios</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_ratios</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a MultiCanvas instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size (width, height) in inches</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – Dots per inch, resolution of canvas</p></li>
+<li><p><strong>time_array</strong> (<em>np.ndarray</em>) – Array representing time steps in animation</p></li>
+<li><p><strong>nrows</strong> (<em>int</em>) – Number of rows in the grid of subplots</p></li>
+<li><p><strong>ncols</strong> (<em>int</em>) – Number of columns in the grid of subplots</p></li>
+<li><p><strong>axes_limits</strong> (<em>list</em>) – 2D list with axes limits [[xmin, xmax, ymin, ymax], …]
+Order of subplots in list is left-to-right then top-to-bottom.</p></li>
+<li><p><strong>axes_labels</strong> (<em>list</em>) – 2D list with axes labels [[‘xlabel’, ‘ylabel’], …]
+Order of subplots in list is left-to-right then top-to-bottom.</p></li>
+<li><p><strong>shared_x</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether x-axis of subplots is shared, by default False</p></li>
+<li><p><strong>shared_y</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether y-axis of subplots is shared, by default False</p></li>
+<li><p><strong>height_ratios</strong> (<em>list</em><em>, </em><em>optional</em>) – Ratio of heights of different subplots</p></li>
+<li><p><strong>width_ratios</strong> (<em>list</em><em>, </em><em>optional</em>) – Ratio of widths of different subplots</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.multi_canvas.MultiCanvas.add_artist">
+<span class="sig-name descname"><span class="pre">add_artist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">artist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><span class="pre">BaseArtist</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.add_artist" title="Link to this definition"></a></dt>
+<dd><p>Add an artist to a specific subplot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>artist</strong> (<a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><em>BaseArtist</em></a>) – Artist object to add</p></li>
+<li><p><strong>row</strong> (<em>int</em>) – Row index of the subplot in the grid</p></li>
+<li><p><strong>col</strong> (<em>int</em>) – Column index of the subplot in the grid</p></li>
+<li><p><strong>in_legend</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the artist should be included in the subplot’s legend, by default False</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.multi_canvas.MultiCanvas.construct_legend">
+<span class="sig-name descname"><span class="pre">construct_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">legend_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.construct_legend" title="Link to this definition"></a></dt>
+<dd><p>Construct a legend for a specific subplot, if legend handles are available.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> (<em>int</em>) – Row index of the subplot in the grid</p></li>
+<li><p><strong>col</strong> (<em>int</em>) – Column index of the subplot in the grid</p></li>
+<li><p><strong>**legend_styling</strong> (<em>dict</em>) – Keyword arguments for styling the legend</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.multi_canvas.MultiCanvas.get_axis">
+<span class="sig-name descname"><span class="pre">get_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Axes</span></span></span><a class="headerlink" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.get_axis" title="Link to this definition"></a></dt>
+<dd><p>Get the Axes object corresponding to a specific subplot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> (<em>int</em>) – Row index of the subplot in the grid</p></li>
+<li><p><strong>col</strong> (<em>int</em>) – Column index of the subplot in the grid</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ax</strong> – Matplotlib Axes object corresponding to the specified subplot</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Axes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.multi_canvas.MultiCanvas.set_axis_properties">
+<span class="sig-name descname"><span class="pre">set_axis_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">axis_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.multi_canvas.MultiCanvas.set_axis_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for a specific subplot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> (<em>int</em>) – Row index of the subplot in the grid</p></li>
+<li><p><strong>col</strong> (<em>int</em>) – Column index of the subplot in the grid</p></li>
+<li><p><strong>**axis_styling</strong> (<em>dict</em>) – Keyword arguments for styling the subplot</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-src.matnimation.canvas.single_canvas">
+<dt class="sig sig-object py" id="src.matnimation.canvas.single_canvas.SingleCanvas">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">src.matnimation.canvas.single_canvas.</span></span><span class="sig-name descname"><span class="pre">SingleCanvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.single_canvas.SingleCanvas" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#src.matnimation.canvas.canvas.Canvas" title="src.matnimation.canvas.canvas.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">Canvas</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.single_canvas.SingleCanvas.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">figsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dpi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_array</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.single_canvas.SingleCanvas.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a SingleCanvas instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>figsize</strong> (<em>tuple</em>) – Figure size (width, height) in inches</p></li>
+<li><p><strong>dpi</strong> (<em>int</em>) – Dots per inch, resolution of canvas</p></li>
+<li><p><strong>time_array</strong> (<em>np.ndarray</em>) – Array representing time steps in animation</p></li>
+<li><p><strong>axis_limits</strong> (<em>list</em>) – 1D list with axis limits [xmin, xmax, ymin, ymax]</p></li>
+<li><p><strong>axis_labels</strong> (<em>list</em>) – 1D list with axis labels [‘xlabel’, ‘ylabel’]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.single_canvas.SingleCanvas.add_artist">
+<span class="sig-name descname"><span class="pre">add_artist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">artist</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><span class="pre">BaseArtist</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.single_canvas.SingleCanvas.add_artist" title="Link to this definition"></a></dt>
+<dd><p>Add an artist to the single canvas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>artist</strong> (<a class="reference internal" href="src.matnimation.artist.html#src.matnimation.artist.base_artist.BaseArtist" title="src.matnimation.artist.base_artist.BaseArtist"><em>BaseArtist</em></a>) – Artist object to add</p></li>
+<li><p><strong>in_legend</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether the artist should be included in the canvas’s legend, by default False</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.single_canvas.SingleCanvas.construct_legend">
+<span class="sig-name descname"><span class="pre">construct_legend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">legend_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.single_canvas.SingleCanvas.construct_legend" title="Link to this definition"></a></dt>
+<dd><p>Construct legend for the single canvas, if legend handles collection is not empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**legend_styling</strong> (<em>dict</em>) – Keyword arguments for styling the legend</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.single_canvas.SingleCanvas.get_axis">
+<span class="sig-name descname"><span class="pre">get_axis</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Axes</span></span></span><a class="headerlink" href="#src.matnimation.canvas.single_canvas.SingleCanvas.get_axis" title="Link to this definition"></a></dt>
+<dd><p>Get the Axes object for the single canvas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>self.ax</strong> – Matplotlib Axes object for the canvas</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Axes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="src.matnimation.canvas.single_canvas.SingleCanvas.set_axis_properties">
+<span class="sig-name descname"><span class="pre">set_axis_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">axis_styling</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#src.matnimation.canvas.single_canvas.SingleCanvas.set_axis_properties" title="Link to this definition"></a></dt>
+<dd><p>Set styling properties for the single canvas.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**axis_styling</strong> (<em>dict</em>) – Keyword arguments for styling the canvas</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="src.matnimation.artist.animated.html" class="btn btn-neutral float-left" title="The AnimatedArtist Class and Subclasses" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Tim de Wild.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
